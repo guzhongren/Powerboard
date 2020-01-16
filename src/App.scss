@@ -1,0 +1,21 @@
+:local {
+  .container {
+    background-color: #c1c1c1;
+    .abc {
+      background-color: rebeccapurple;
+    }
+    :global{
+      .ga {
+        background-color: green;
+      }
+    }
+  }
+
+  :global(.gb) {
+    background-color: red;
+  }
+}
+
+.out {
+  background-color: ghostwhite;
+}

@@ -44,6 +44,7 @@ body {
 
   &.FAILED {
     background-color: #f37051;
+    animation: blinkRed 1s linear infinite;
   }
 
   &.CANCELED {
@@ -82,7 +83,6 @@ body {
         color-stop(.75, transparent), to(transparent)
       );
       animation: move 2s linear infinite;
-      -webkit-animation: move 2s linear infinite;
       z-index: 2;
       background-size: 100px 100px;
     }
@@ -155,4 +155,11 @@ body {
   100% {
     background-position: 100px 100px;
   }
+}
+
+@keyframes blinkRed {
+  from {background-color: #f37051}
+  50% {background-color: #ff0000
+  }
+  to {background-color: #f37051}
 }

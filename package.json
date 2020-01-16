@@ -4,7 +4,7 @@
   "scripts": {
     "start": "yarn dev",
     "dev": "webpack-dev-server --config build/webpack.dev.js --progress",
-    "build": "webpack --config build/webpack.build.js --progress",
+    "build": "webpack --config build/webpack.build.js",
     "test": "jest",
     "lint": "yarn tslint --project tsconfig.json",
     "typecheck": "tsc --noEmit"
@@ -12,7 +12,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
-      "pre-push": "yarn lint && yarn typecheck && yarn test"
+      "pre-push": "yarn lint && yarn typecheck"
     }
   },
   "lint-staged": {
@@ -34,7 +34,10 @@
     ]
   },
   "dependencies": {
-    "axios": "^0.19.1",
+    "dayjs": "^1.8.19",
+    "graphql-request": "^1.8.2",
+    "lodash": "^4.17.15",
+    "query-string": "^6.9.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-router-dom": "^5.1.2",
@@ -44,6 +47,8 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.0",
     "@types/jest": "^24.9.0",
+    "@types/lodash": "^4.14.149",
+    "@types/query-string": "^6.3.0",
     "@types/react": "^16.9.17",
     "@types/react-dom": "^16.9.4",
     "autoprefixer": "^9.7.4",

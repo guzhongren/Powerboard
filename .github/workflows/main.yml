@@ -1,0 +1,30 @@
+name: Test and deploy
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  test_deploy:
+    name: test and deploy Y-BuildKite-Monitor
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - name: yarn install
+        run: |
+          yarn install
+      - name: build project
+        run: |
+          yarn build
+      - name: deploy to github pages
+        uses: JamesIves/github-pages-deploy-action@master
+        env:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: dist

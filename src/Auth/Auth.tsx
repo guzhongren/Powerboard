@@ -69,7 +69,7 @@ const Auth: React.FC = () => {
         <label>
           <span>Pipeline Name</span>
           <textarea
-            placeholder={`pipline-a\npipline-b\npipline-c\npipline-d`}
+            placeholder={`pipeline-a\npipeline-b\npipeline-c\npipeline-d`}
             value={search}
             onChange={(event) => {
               setSearch(event.target.value)

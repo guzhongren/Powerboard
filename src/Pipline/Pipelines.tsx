@@ -1,10 +1,11 @@
 import * as React from 'react'
 import useSWR from 'swr'
 import { buildKiteQuery, fetcher } from '@root/fetcher'
-import Pipline from '@root/Pipline'
 import { parse } from 'query-string'
+import { mergePipelinesWithResponse } from '@root/help'
+import Pipeline from '@root/Pipline/Pipeline'
 
-const Piplines: React.FC = () => {
+const Pipelines: React.FC = () => {
 
   const params = parse(location.search) as {
     orz: string
@@ -23,15 +24,17 @@ const Piplines: React.FC = () => {
     }
   )
 
-  const piplines = data?.organization?.pipelines?.edges || []
+  const mergedData = mergePipelinesWithResponse(data)
+
+  const pipelines = mergedData?.organization?.pipelines?.edges || []
 
   return (
     <div className="container">
-      {piplines.map((pipline: any) => (
-        <Pipline pipline={pipline} key={pipline.node.name}/>
+      {pipelines.map((pipeline: any) => (
+        <Pipeline pipeline={pipeline} key={pipeline.node.name}/>
       ))}
     </div>
   )
 }
 
-export default Piplines
+export default Pipelines

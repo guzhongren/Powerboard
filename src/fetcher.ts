@@ -1,5 +1,5 @@
 import { GraphQLClient } from 'graphql-request'
-
+import { isString, isArray, isNil } from 'lodash'
 const API = 'https://graphql.buildkite.com/v1'
 
 export const fetcher = (query: string, token: string) => {
@@ -10,11 +10,10 @@ export const fetcher = (query: string, token: string) => {
   }).request(query)
 }
 
-export const buildKiteQuery = (orz: string, team: string, search: string) => `
-{
-  organization(slug: "${orz}") {
-    name
-    pipelines(first:10, team: "${team}",search: "${search}") {
+export const buildKiteQuery = (orz: string, team: string, search: string[] | string) => {
+
+  const buildPipelineQuery = (pipeline: string, index?: number) => `
+    pipelines${isNil(index) ? '' : index}: pipelines(first:10, team: "${team}",search: "${pipeline}") {
       edges {
         node {
           name
@@ -56,7 +55,15 @@ export const buildKiteQuery = (orz: string, team: string, search: string) => `
         }
       }
     }
-  }
-}
+    `
 
-`
+  return `
+    {
+      organization(slug: "${orz}") {
+        name
+        ${isString(search) ? buildPipelineQuery(search) : ''}
+        ${isArray(search) ? search.map(buildPipelineQuery) : ''}
+      }
+    }
+    `
+}

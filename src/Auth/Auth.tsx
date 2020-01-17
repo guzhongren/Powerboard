@@ -1,7 +1,8 @@
 import * as React from 'react'
-import './Auth.scss'
 import { useState } from 'react'
+import './Auth.scss'
 import { stringify } from 'query-string'
+import { compact, union } from 'lodash'
 
 const Auth: React.FC = () => {
 
@@ -12,11 +13,14 @@ const Auth: React.FC = () => {
   const [error, setError] = useState(false)
 
   const submit = () => {
+
     if (token && team && search && orz) {
-      const urlSearch = stringify({
-        token, team, search, orz,
+
+      const parsedSearch = union(compact(search.split(/\n|\s/)))
+
+      location.search = stringify({
+        token, team, search: parsedSearch, orz,
       })
-      location.search = urlSearch
     } else {
       setError(true)
     }
@@ -59,12 +63,12 @@ const Auth: React.FC = () => {
       </div>
       <div>
         <label>
-          <span>Pipline Name</span>
-          <input type="text"
-                 value={search}
-                 onChange={(event) => {
-                   setSearch(event.target.value)
-                 }}
+          <span>pipeline Name</span>
+          <textarea
+            value={search}
+            onChange={(event) => {
+              setSearch(event.target.value)
+            }}
           />
         </label>
       </div>

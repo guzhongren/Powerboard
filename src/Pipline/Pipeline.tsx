@@ -2,13 +2,14 @@ import * as React from 'react'
 import { first } from 'lodash'
 import * as dayjs from 'dayjs'
 import * as relativeTime from 'dayjs/plugin/relativeTime'
-import Jobs from '@root/Jobs'
+import Jobs from '@root/Pipline/Jobs'
+import './Pipeline.scss'
 
 dayjs.extend(relativeTime)
 
-const Pipline: React.FC<{ pipline: any }> = ({pipline}) => {
+const Pipeline: React.FC<{ pipeline: any }> = ({pipeline}) => {
 
-  const builds: any[] = pipline?.node?.builds?.edges || []
+  const builds: any[] = pipeline?.node?.builds?.edges || []
   const lastBuild = first(builds)?.node || {}
 
   const startAt = dayjs(lastBuild.startedAt)
@@ -16,23 +17,23 @@ const Pipline: React.FC<{ pipline: any }> = ({pipline}) => {
   const jobs = lastBuild.jobs?.edges || []
 
   return (
-    <div className={`pipline ${lastBuild.state}`}>
-      <div className="pipline__title">
-        {pipline?.node?.name}
+    <div className={`pipeline ${lastBuild.state}`}>
+      <div className="pipeline__title">
+        {pipeline?.node?.name}
       </div>
-      <div className="pipline__commit-info">
+      <div className="pipeline__commit-info">
         [{lastBuild.branch}] {lastBuild.message}
       </div>
 
       <Jobs jobs={jobs}/>
 
-      <div className="pipline__trigger">
+      <div className="pipeline__trigger">
         <div>{lastBuild.createdBy?.name}</div>
         <div>
           Finished at {dayjs().from(finishAt)} and ran for {finishAt.diff(startAt, 'minute')} minutes
         </div>
       </div>
-      <div className="pipline__overview">
+      <div className="pipeline__overview">
         <div>#{lastBuild.number}</div>
         <div>{lastBuild.state}</div>
       </div>
@@ -40,4 +41,4 @@ const Pipline: React.FC<{ pipline: any }> = ({pipline}) => {
   )
 }
 
-export default Pipline
+export default Pipeline

@@ -1,0 +1,120 @@
+.pipeline {
+  padding: 20px;
+  min-height: 200px;
+  border: 5px solid #3d3c35;
+  position: relative;
+  background-color: #808080;
+
+  & + & {
+    margin-top: 10px;
+  }
+
+  &.PASSED {
+    background-color: #79c68f;
+  }
+
+  &.FAILED {
+    background-color: #f37051;
+    animation: blinkRed 1s linear infinite;
+  }
+
+  &.CANCELED {
+    background-color: #ff4d4d;
+  }
+  &.CANCELING {
+    background-color: #ffb3b3;
+  }
+  &.BLOCKED {
+    background-color: #79c68f;
+  }
+  &.NOT_RUN {
+    background-color: #808080;
+  }
+  &.SKIPPED{
+    background-color: #ffff00;
+  }
+  &.SCHEDULED {
+    background-color: #0000ff;
+  }
+
+  &.RUNNING {
+    background-color: #ffa500;
+    &:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background-image: -webkit-gradient(linear, 0 0, 100% 100%,
+        color-stop(.25, rgba(255, 255, 255, .2)),
+        color-stop(.25, transparent), color-stop(.5, transparent),
+        color-stop(.5, rgba(255, 255, 255, .2)),
+        color-stop(.75, rgba(255, 255, 255, .2)),
+        color-stop(.75, transparent), to(transparent)
+      );
+      animation: move 2s linear infinite;
+      z-index: 2;
+      background-size: 100px 100px;
+    }
+  }
+
+  &__title {
+    text-transform: uppercase;
+    font-size: 2.5em;
+  }
+
+  &__overview {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    color: rgba(255, 255, 255, .7);
+    text-align: right;
+
+    & > div:nth-child(1) {
+      font-size: 4em;
+    }
+
+    & > div:nth-child(2) {
+      font-size: 5em;
+    }
+  }
+
+  &__commit-info {
+    margin: 0.5em 0;
+    font-size: 1.3em;
+  }
+
+  &__trigger {
+    //position: absolute;
+    //left: 20px;
+    //bottom: 20px;
+    color: rgba(0, 0, 0, 0.7);
+    margin-top: 1em;
+
+    & > div:nth-child(1) {
+      font-size: 2em;
+    }
+
+    & > div:nth-child(2) {
+      font-size: 1.2em;
+    }
+  }
+}
+
+.jobs {
+  margin: 0.5em 0;
+  padding-right: 300px;
+}
+
+.job {
+  padding: 10px 5px;
+  display: inline-block;
+  line-height: 20px;
+  height: 20px;
+
+  & > div {
+    background-color: rgba(255, 255, 255, .7);
+    padding: 2px 10px;
+  }
+}

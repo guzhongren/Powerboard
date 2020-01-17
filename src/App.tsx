@@ -1,8 +1,8 @@
 import * as React from 'react'
 import './App.scss'
 import { parse } from 'query-string'
-import Piplines from '@root/Piplines'
 import Auth from '@root/Auth/Auth'
+import Pipelines from '@root/Pipline/Pipelines'
 
 function App() {
 
@@ -15,7 +15,7 @@ function App() {
 
   if (params.orz && params.team && params.search && params.token) {
      return (
-       <Piplines/>
+       <Pipelines />
      )
   } else {
     return (

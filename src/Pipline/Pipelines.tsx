@@ -14,7 +14,7 @@ const Pipelines: React.FC = () => {
     token: string
   }
 
-  const {data} = useSWR([
+  const {data, error} = useSWR([
       buildKiteQuery(params.orz, params.team, params.search),
       params.token,
     ],
@@ -23,6 +23,17 @@ const Pipelines: React.FC = () => {
       refreshInterval: 20 * 1000,
     }
   )
+
+  if (error) {
+    console.log(error?.response.errors)
+    return (
+      <div className="global-error">
+        <pre>
+        {JSON.stringify(error?.response.errors, null, 2)}
+        </pre>
+      </div>
+    )
+  }
 
   const mergedData = mergePipelinesWithResponse(data)
 

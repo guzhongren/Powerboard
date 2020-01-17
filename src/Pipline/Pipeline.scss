@@ -131,3 +131,16 @@
     }
   }
 }
+
+.global-error {
+  background-color: #f37051;
+  padding: 20px;
+  border: 5px solid #3d3c35;
+  margin: 20px;
+
+  pre {
+    word-break: break-all;
+    white-space: pre-wrap;
+  }
+
+}

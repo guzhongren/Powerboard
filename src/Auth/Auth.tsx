@@ -31,6 +31,10 @@ const Auth: React.FC = () => {
       <div>
         <label>
           <span>Access Token</span>
+          <div>
+            make sure your access token can access pipelines you filling.
+            <a href="https://buildkite.com/user/api-access-tokens" target="_blank">generate a Token </a>
+          </div>
           <input type="text"
                  value={token}
                  onChange={(event) => {
@@ -52,7 +56,7 @@ const Auth: React.FC = () => {
       </div>
       <div>
         <label>
-          <span>Team</span>
+          <span>Team Name</span>
           <input type="text"
                  value={team}
                  onChange={(event) => {
@@ -63,8 +67,9 @@ const Auth: React.FC = () => {
       </div>
       <div>
         <label>
-          <span>pipeline Name</span>
+          <span>Pipeline Name</span>
           <textarea
+            placeholder={`pipline-a\npipline-b\npipline-c\npipline-d`}
             value={search}
             onChange={(event) => {
               setSearch(event.target.value)

@@ -5,7 +5,9 @@ const Job: React.FC<{ job: any }> = ({job}) => {
   return (
     <div className="job">
       <div>
-        {jobData.label} {jobData.passed && '√'} {jobData.passed === false && jobData.state === 'FINISHED' && 'X'}
+        {jobData.label}
+        {jobData.passed && <i className="icon check" />}
+        {jobData.passed === false && jobData.state === 'FINISHED' && <i className="icon error"/>}
       </div>
     </div>
   )

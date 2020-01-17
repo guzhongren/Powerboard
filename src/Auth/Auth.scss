@@ -3,14 +3,18 @@
   min-height: 200px;
   border: 5px solid #3d3c35;
   position: relative;
-  background-color: #808080;
+  background-color: #c7d7b9;
   width: 800px;
-  margin: 0 auto;
+  margin: 20px auto;
 
   & > div {
 
     & > label > span {
       display: block;
+      margin-bottom: 7px;
+    }
+
+    & > label > div {
       margin-bottom: 7px;
     }
 

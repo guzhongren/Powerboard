@@ -1,61 +1,58 @@
 .pipeline {
-  padding: 20px;
-  min-height: 200px;
-  border: 5px solid #3d3c35;
-  position: relative;
-  background-color: #808080;
-
   & + & {
     margin-top: 10px;
   }
 
-  &.PASSED {
-    background-color: #79c68f;
-  }
+  &__current {
+    padding: 20px;
+    min-height: 200px;
+    border: 5px solid #3d3c35;
+    position: relative;
 
-  &.FAILED {
-    background-color: #f37051;
-    animation: blinkRed 1s linear infinite;
-  }
+    &.FAILED {
+      animation: blinkRed 1s linear infinite;
+    }
 
-  &.CANCELED {
-    background-color: #ff4d4d;
-  }
-  &.CANCELING {
-    background-color: #ffb3b3;
-  }
-  &.BLOCKED {
-    background-color: #79c68f;
-  }
-  &.NOT_RUN {
-    background-color: #808080;
-  }
-  &.SKIPPED{
-    background-color: #ffff00;
-  }
-  &.SCHEDULED {
-    background-color: #0000ff;
-  }
+    &.SCHEDULED {
+      &:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background-image: -webkit-gradient(linear, 0 0, 100% 100%,
+          color-stop(.25, rgba(255, 255, 255, .2)),
+          color-stop(.25, transparent), color-stop(.5, transparent),
+          color-stop(.5, rgba(255, 255, 255, .2)),
+          color-stop(.75, rgba(255, 255, 255, .2)),
+          color-stop(.75, transparent), to(transparent)
+        );
+        animation: move 2s linear infinite;
+        z-index: 2;
+        background-size: 100px 100px;
+      }
+    }
 
-  &.RUNNING {
-    background-color: #ffa500;
-    &:after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      right: 0;
-      background-image: -webkit-gradient(linear, 0 0, 100% 100%,
-        color-stop(.25, rgba(255, 255, 255, .2)),
-        color-stop(.25, transparent), color-stop(.5, transparent),
-        color-stop(.5, rgba(255, 255, 255, .2)),
-        color-stop(.75, rgba(255, 255, 255, .2)),
-        color-stop(.75, transparent), to(transparent)
-      );
-      animation: move 2s linear infinite;
-      z-index: 2;
-      background-size: 100px 100px;
+    &.RUNNING {
+      &:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background-image: -webkit-gradient(linear, 0 0, 100% 100%,
+          color-stop(.25, rgba(255, 255, 255, .2)),
+          color-stop(.25, transparent), color-stop(.5, transparent),
+          color-stop(.5, rgba(255, 255, 255, .2)),
+          color-stop(.75, rgba(255, 255, 255, .2)),
+          color-stop(.75, transparent), to(transparent)
+        );
+        animation: move 2s linear infinite;
+        z-index: 2;
+        background-size: 100px 100px;
+      }
     }
   }
 
@@ -100,21 +97,37 @@
       font-size: 1.2em;
     }
   }
-}
 
-.jobs {
-  margin: 0.5em 0;
-  padding-right: 300px;
-}
+  &__history {
+    margin-left: -5px;
+    &-build {
+      opacity: 0.8;
+      display: inline-block;
+      height: 30px;
+      width: 50px;
+      margin-left: 5px;
+      margin-top: 3px;
+      font-size: 1.2em;
+      color: rgba(255,255,255, .8);
+      text-align: center;
+      line-height: 30px;
+    }
+  }
 
-.job {
-  padding: 10px 5px;
-  display: inline-block;
-  line-height: 20px;
-  height: 20px;
+  .jobs {
+    margin: 0.5em 0;
+    padding-right: 300px;
+  }
 
-  & > div {
-    background-color: rgba(255, 255, 255, .7);
-    padding: 2px 10px;
+  .job {
+    padding: 10px 5px;
+    display: inline-block;
+    line-height: 20px;
+    height: 20px;
+
+    & > div {
+      background-color: rgba(255, 255, 255, .7);
+      padding: 2px 10px;
+    }
   }
 }

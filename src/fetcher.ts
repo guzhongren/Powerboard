@@ -18,7 +18,7 @@ export const buildKiteQuery = (orz: string, team: string, search: string[] | str
         node {
           name
           slug
-          builds(first:5) {
+          builds(first:11) {
             edges {
               node {
                 id

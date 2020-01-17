@@ -31,14 +31,49 @@ body {
   padding: 40px;
 }
 
-@keyframes move {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 100px 100px;
-  }
+.PASSED {
+  background-color: #79c68f;
 }
+
+.FAILED {
+  background-color: #f37051;
+}
+
+.CANCELED {
+  background-color: #ff4d4d;
+}
+
+.CANCELING {
+  background-color: #ffb3b3;
+}
+
+.BLOCKED {
+  background-color: #79c68f;
+}
+
+.NOT_RUN {
+  background-color: #808080;
+}
+
+.SKIPPED {
+  background-color: #ffa700;
+}
+
+.SCHEDULED {
+  background-color: #2980ff;
+}
+.RUNNING {
+  background-color: #ffa500;
+}
+
+  @keyframes move {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 100px 100px;
+    }
+  }
 
 @keyframes blinkRed {
   from {background-color: #f37051}

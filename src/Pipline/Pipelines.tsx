@@ -35,7 +35,6 @@ const Pipelines: React.FC = () => {
   )
 
   if (error) {
-    console.log(error?.response.errors)
     return (
       <>
         <div className="global-error">
@@ -58,7 +57,7 @@ const Pipelines: React.FC = () => {
   return (
     <>
       <Titan lastUpdate={lastUpdateTime}/>
-      {pipelines.length === 2 && data && (
+      {pipelines.length === 0 && data && (
         <Auth message="No pipelines found, Please check your config"/>
       )}
       <div className="container">

@@ -13,13 +13,13 @@ function App() {
     token: string
   }
 
-  if (params.orz && params.team && params.search && params.token) {
-     return (
-       <Pipelines />
-     )
+  if (params.orz && params.token) {
+    return (
+      <Pipelines/>
+    )
   } else {
     return (
-      <Auth />
+      <Auth/>
     )
   }
 }

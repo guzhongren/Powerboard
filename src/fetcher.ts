@@ -13,7 +13,7 @@ export const fetcher = (query: string, token: string) => {
 export const buildKiteQuery = (orz: string, team: string, search: string[] | string) => {
 
   const buildPipelineQuery = (pipeline: string, index?: number) => `
-    pipelines${isNil(index) ? '' : index}: pipelines(first:10, team: "${team}",search: "${pipeline}") {
+    pipelines${isNil(index) ? '' : index}: pipelines(first:10, ${team && `team: "${team}"`} ${pipeline && `,search: "${pipeline}"`}) {
       edges {
         node {
           name

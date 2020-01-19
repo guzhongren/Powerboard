@@ -7,6 +7,11 @@
   width: 800px;
   margin: 20px auto;
 
+  &__message {
+    text-align: center;
+    color: #f37051;
+  }
+
   & > div {
 
     & > label > span {

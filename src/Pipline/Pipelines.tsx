@@ -8,6 +8,7 @@ import Titan from '@root/Titan/Titan'
 import { useState } from 'react'
 import * as dayjs from 'dayjs'
 import Auth from '@root/Auth/Auth'
+import { chunk } from 'lodash'
 
 const Pipelines: React.FC = () => {
 
@@ -51,15 +52,26 @@ const Pipelines: React.FC = () => {
 
   const pipelines = mergedData?.organization?.pipelines?.edges || []
 
+  const column = 1
+  const width = 100 / column - (column > 1 ? 1 : 0)
+
   return (
     <>
       <Titan lastUpdate={lastUpdateTime}/>
-      {pipelines.length === 0 && data && (
+      {pipelines.length === 2 && data && (
         <Auth message="No pipelines found, Please check your config"/>
       )}
       <div className="container">
-        {pipelines.map((pipeline: any) => (
-          <Pipeline pipeline={pipeline} key={pipeline.node.name}/>
+        {chunk(pipelines, column).map((pips: any[], index) => (
+          <div key={index} className="pipelines">
+            {pips.map((pipeline: any) => (
+              <Pipeline
+                style={{width: `${width}%`}}
+                pipeline={pipeline}
+                key={pipeline.node.name}
+              />
+            ))}
+          </div>
         ))}
       </div>
     </>

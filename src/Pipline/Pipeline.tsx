@@ -17,7 +17,7 @@ const BuildHistory: React.FC<{ build: any }> = ({build}) => {
   )
 }
 
-const Pipeline: React.FC<{ pipeline: any }> = ({pipeline}) => {
+const Pipeline: React.FC<{ pipeline: any, style?: React.CSSProperties }> = ({pipeline, style}) => {
 
   const builds: any[] = pipeline?.node?.builds?.edges || []
   const lastBuild = first(builds)?.node || {}
@@ -28,7 +28,7 @@ const Pipeline: React.FC<{ pipeline: any }> = ({pipeline}) => {
   const jobs = lastBuild.jobs?.edges || []
 
   return (
-    <div className="pipeline">
+    <div className="pipeline" style={style}>
       <div className={`pipeline__current ${lastBuild.state}`}>
         <div className="pipeline__title">
           {pipeline?.node?.name}

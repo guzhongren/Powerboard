@@ -1,7 +1,12 @@
-.pipeline {
+.pipelines {
+  display: flex;
+  justify-content: space-between;
   & + & {
     margin-top: 15px;
   }
+}
+
+.pipeline {
 
   &__current {
     padding: 20px;
@@ -80,6 +85,8 @@
   &__commit-info {
     margin: 0.5em 0;
     font-size: 1.3em;
+    max-height: 2.5em;
+    overflow: hidden;
   }
 
   &__trigger {

@@ -34,7 +34,7 @@ const Pipeline: React.FC<{ pipeline: any, style?: React.CSSProperties }> = ({pip
           {pipeline?.node?.name}
         </div>
         <div className="pipeline__commit-info">
-          [{lastBuild.branch}] {lastBuild.message}
+          [{startAt.format('MM-DD HH:mm')}] [{lastBuild.branch}] {lastBuild.message}
         </div>
 
         <Jobs jobs={jobs}/>
@@ -44,9 +44,16 @@ const Pipeline: React.FC<{ pipeline: any, style?: React.CSSProperties }> = ({pip
 
           {['PASSED', 'FAILED'].includes(lastBuild.state) && (
             <div>
-              Finished at {dayjs().from(finishAt)} and ran for {finishAt.diff(startAt, 'minute')} minutes
+              Finished at <i>{dayjs().from(finishAt)}</i> and ran for <i>{finishAt.diff(startAt, 'minute')}</i> minutes
             </div>
           )}
+          {
+            ['BLOCKED'].includes(lastBuild.state) && (
+              <div>
+                Trigger at <i>{dayjs().from(startAt)}</i>
+              </div>
+            )
+          }
 
           {['RUNNING'].includes(lastBuild.state) && <Timer startAt={startAt}/>}
 

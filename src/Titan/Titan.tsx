@@ -15,7 +15,7 @@ const Titan: React.FC<{ lastUpdate: any }> = ({lastUpdate}) => {
           <i className="icon setting" onClick={() => {setSettingVisible(true)}}/>
         </div>
         <div className="titan__info">
-          Last update at {lastUpdate.format('MM-DD HH:mm')}
+          Last updated at {lastUpdate.format('MM-DD HH:mm')}
         </div>
       </div>
       <Modal

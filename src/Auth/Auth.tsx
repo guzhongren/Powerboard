@@ -22,7 +22,7 @@ const Auth: React.FC<{message?: string}> = (props) => {
 
   const submit = () => {
 
-    const parsedSearch = search ? union(compact(search.split(/\n|\s/))) : ''
+    const parsedSearch = search ? union(compact(search.split(/\n/))) : ''
 
     location.search = stringify({
       token, team, search: parsedSearch, orz,

@@ -2,7 +2,7 @@ import * as React from 'react'
 import './App.scss'
 import { parse } from 'query-string'
 import Auth from '@root/Auth/Auth'
-import Pipelines from '@root/Pipline/Pipelines'
+import Grid from './Pipline/Grid'
 
 function App() {
 
@@ -15,7 +15,7 @@ function App() {
 
   if (params.orz && params.token) {
     return (
-      <Pipelines/>
+      <Grid/>
     )
   } else {
     return (

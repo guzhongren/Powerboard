@@ -8,7 +8,7 @@ import Timer from '@root/Components/Timer'
 
 dayjs.extend(relativeTime)
 
-const BuildHistory: React.FC<{ build: any }> = ({build}) => {
+const BuildHistory: React.FC<{ build: any }> = ({ build }) => {
   const info = build?.node || {}
   return (
     <div className={`pipeline__history-build ${info.state}`}>
@@ -17,7 +17,7 @@ const BuildHistory: React.FC<{ build: any }> = ({build}) => {
   )
 }
 
-const Pipeline: React.FC<{ pipeline: any, style?: React.CSSProperties }> = ({pipeline, style}) => {
+const Pipeline: React.FC<{ pipeline: any, org: string, style?: React.CSSProperties }> = ({ pipeline, org, style }) => {
 
   const builds: any[] = pipeline?.node?.builds?.edges || []
   const lastBuild = first(builds)?.node || {}
@@ -31,13 +31,15 @@ const Pipeline: React.FC<{ pipeline: any, style?: React.CSSProperties }> = ({pip
     <div className="pipeline" style={style}>
       <div className={`pipeline__current ${lastBuild.state}`}>
         <div className="pipeline__title">
-          {pipeline?.node?.name}
+          <a target="_blank"
+           href={lastBuild?.url}>
+             {pipeline?.node?.name}</a>
         </div>
         <div className="pipeline__commit-info">
           [{startAt.format('MM-DD HH:mm')}] [{lastBuild.branch}] {lastBuild.message}
         </div>
 
-        <Jobs jobs={jobs}/>
+        <Jobs jobs={jobs} />
 
         <div className="pipeline__trigger">
           <div>{lastBuild.createdBy?.name}</div>
@@ -55,7 +57,7 @@ const Pipeline: React.FC<{ pipeline: any, style?: React.CSSProperties }> = ({pip
             )
           }
 
-          {['RUNNING'].includes(lastBuild.state) && <Timer startAt={startAt}/>}
+          {['RUNNING'].includes(lastBuild.state) && <Timer startAt={startAt} />}
 
         </div>
         <div className="pipeline__overview">
@@ -65,7 +67,7 @@ const Pipeline: React.FC<{ pipeline: any, style?: React.CSSProperties }> = ({pip
       </div>
       <div className="pipeline__history">
         {historyBuilds.map((build) => (
-          <BuildHistory build={build} key={build?.node?.id}/>
+          <BuildHistory build={build} key={build?.node?.id} />
         ))}
       </div>
     </div>

@@ -55,6 +55,7 @@ const Grid: React.FC = () => {
 
   const mergedData = mergePipelinesWithResponse(data)
 
+  const organization = mergedData?.organization?.name
   const pipelines = mergedData?.organization?.pipelines?.edges || []
 
   const defaultLayoutProps = {
@@ -87,6 +88,7 @@ const Grid: React.FC = () => {
               <Pipeline
                 style={{ width: `100%` }}
                 pipeline={pipeline}
+                org={organization}
                 key={pipeline.node.name}
               />
             </div>

@@ -11,6 +11,7 @@
   &__current {
     padding: 20px;
     min-height: 100px;
+    height: calc(100% - 40px);
     border: 5px solid #3d3c35;
     position: relative;
 
@@ -63,7 +64,10 @@
 
   &__title {
     text-transform: uppercase;
-    font-size: 2.5em;
+    font-size: 3em;
+    a {
+      color: rgba(0, 0, 0, 0.7);
+    }
   }
 
   &__overview {
@@ -97,7 +101,7 @@
     margin-top: 1em;
 
     & > div:nth-child(1) {
-      font-size: 2em;
+      font-size: 2.5em;
     }
 
     & > div:nth-child(2) {

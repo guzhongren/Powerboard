@@ -1,19 +1,24 @@
 import * as React from 'react'
 import useSWR from 'swr'
-import { buildKiteQuery, fetcher } from '@root/fetcher'
 import { parse } from 'query-string'
+import { useState } from 'react'
+import * as dayjs from 'dayjs'
+import { Responsive, WidthProvider, Layouts } from 'react-grid-layout'
+import { isEqual } from 'lodash'
+import { buildKiteQuery, fetcher } from '@root/fetcher'
 import { mergePipelinesWithResponse } from '@root/help'
 import Pipeline from '@root/Pipline/Pipeline'
 import Titan from '@root/Titan/Titan'
-import { useState } from 'react'
-import * as dayjs from 'dayjs'
 import Auth from '@root/Auth/Auth'
-import { Responsive, WidthProvider } from 'react-grid-layout'
+import { getLayouts, saveLayouts } from '../Utils/LayoutStorage'
+import { DEFAULT_ITEM_LAYOUT } from '../Constants/Grid'
+// import { saveIsFirstRenderStatus, isFirstRender } from '../Utils/SessionStorage'
 
 const ReactGridLayout = WidthProvider(Responsive)
 
 const Grid: React.FC = () => {
   const [lastUpdateTime, setLastUpdateTime] = useState(dayjs())
+  const [layouts, ] = useState(getLayouts() || {})
 
   const params = parse(location.search) as {
     orz: string
@@ -38,7 +43,7 @@ const Grid: React.FC = () => {
   if (error) {
     return (
       <>
-        <div className="global-error">
+        <div className="window-error">
           <pre>
             {JSON.stringify(error?.response.errors, null, 2)}
           </pre>
@@ -52,48 +57,41 @@ const Grid: React.FC = () => {
 
   const pipelines = mergedData?.organization?.pipelines?.edges || []
 
-  // const column = 1
-  // const width = 100 / column - (column > 1 ? 1 : 0)
-  const defaultLayout = {
+  const defaultLayoutProps = {
+    className: 'container',
     cols: { lg: 100, md: 10, sm: 6, xs: 4, xxs: 2 },
-    // tslint:disable-next-line:no-empty
-    onLayoutChange: () => {},
+    rowHeight: 5,
+    onLayoutChange: (layout: any, layoutsParam: Layouts) => {
+      const storedLayout = getLayouts()
+      if (layout.length === 0 && layoutsParam.lg.length <= 0) {
+        // TODO: 初始化
+        console.log('init')
+      } else {
+        if(!isEqual(layoutsParam, storedLayout)) {
+          saveLayouts(layoutsParam)
+        }
+      }
+    },
   }
-
   return (
-    <>
+    <React.Fragment>
       <Titan lastUpdate={lastUpdateTime} />
       {pipelines.length === 0 && data && (
         <Auth message="No pipelines found, Please check your config" />
       )}
-      {/* <div className="container"> */}
-        {/* {chunk(pipelines, column).map((pips: any[], index) => (
-          <div key={index} className="pipelines">
-            {pips.map((pipeline: any) => (
-              <Pipeline
-                style={{width: `${width}%`}}
-                pipeline={pipeline}
-                key={pipeline.node.name}
-              />
-            ))}
+      <ReactGridLayout {...defaultLayoutProps} layouts={layouts}>
+        {pipelines.map((pipeline: any, index: number) => (
+          <div key={index} className="pipelines"
+           data-grid={{ ...DEFAULT_ITEM_LAYOUT, ...layouts?.lg[index], y: index + 1, }}>
+            <Pipeline
+              style={{ width: `100%` }}
+              pipeline={pipeline}
+              key={pipeline.node.name}
+            />
           </div>
-        ))} */}
-        <ReactGridLayout
-          className="container"
-          {...defaultLayout}
-          layouts={{}}>
-          {pipelines.map((pipeline: any, index: number) => (
-            <div key={index} className="pipelines" data-grid={{ w: 100, h: 2, x: 0, y: index+1 }}>
-              <Pipeline
-                style={{ width: `100%` }}
-                pipeline={pipeline}
-                key={pipeline.node.name}
-              />
-            </div>
-          ))}
-        </ReactGridLayout>
-      {/* </div> */}
-    </>
+        ))}
+      </ReactGridLayout>
+    </React.Fragment>
   )
 }
 

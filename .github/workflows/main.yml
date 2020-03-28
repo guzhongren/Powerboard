@@ -30,4 +30,3 @@ jobs:
           publish_branch: gh-pages
           user_name: guzhongren
           user_email: guzhongren@live.cn
-

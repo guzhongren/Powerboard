@@ -18,7 +18,7 @@ const ReactGridLayout = WidthProvider(Responsive)
 
 const Grid: React.FC = () => {
   const [lastUpdateTime, setLastUpdateTime] = useState(dayjs())
-  const [layouts, ] = useState(getLayouts() || {})
+  const [layouts,] = useState(getLayouts() || {})
 
   const params = parse(location.search) as {
     orz: string
@@ -64,10 +64,9 @@ const Grid: React.FC = () => {
     onLayoutChange: (layout: any, layoutsParam: Layouts) => {
       const storedLayout = getLayouts()
       if (layout.length === 0 && layoutsParam.lg.length <= 0) {
-        // TODO: 初始化
         console.log('init')
       } else {
-        if(!isEqual(layoutsParam, storedLayout)) {
+        if (!isEqual(layoutsParam, storedLayout)) {
           saveLayouts(layoutsParam)
         }
       }
@@ -80,16 +79,19 @@ const Grid: React.FC = () => {
         <Auth message="No pipelines found, Please check your config" />
       )}
       <ReactGridLayout {...defaultLayoutProps} layouts={layouts}>
-        {pipelines.map((pipeline: any, index: number) => (
-          <div key={index} className="pipelines"
-           data-grid={{ ...DEFAULT_ITEM_LAYOUT, ...layouts?.lg[index], y: index + 1, }}>
-            <Pipeline
-              style={{ width: `100%` }}
-              pipeline={pipeline}
-              key={pipeline.node.name}
-            />
-          </div>
-        ))}
+        {pipelines.map((pipeline: any, index: number) => {
+          const test = layouts.lg ? layouts.lg[index] : {}
+          return (
+            <div key={index} className="pipelines"
+              data-grid={{ ...DEFAULT_ITEM_LAYOUT, ...test, y: index + 1, }}>
+              <Pipeline
+                style={{ width: `100%` }}
+                pipeline={pipeline}
+                key={pipeline.node.name}
+              />
+            </div>
+          )
+        })}
       </ReactGridLayout>
     </React.Fragment>
   )

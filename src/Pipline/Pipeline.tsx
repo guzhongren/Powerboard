@@ -17,7 +17,7 @@ const BuildHistory: React.FC<{ build: any }> = ({ build }) => {
   )
 }
 
-const Pipeline: React.FC<{ pipeline: any, org: string, style?: React.CSSProperties }> = ({ pipeline, org, style }) => {
+const Pipeline: React.FC<{ pipeline: any, style?: React.CSSProperties }> = ({ pipeline, style }) => {
 
   const builds: any[] = pipeline?.node?.builds?.edges || []
   const lastBuild = first(builds)?.node || {}

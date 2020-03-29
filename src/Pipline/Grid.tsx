@@ -12,7 +12,6 @@ import Titan from '@root/Titan/Titan'
 import Auth from '@root/Auth/Auth'
 import { getLayouts, saveLayouts } from '../Utils/LayoutStorage'
 import { DEFAULT_ITEM_LAYOUT } from '../Constants/Grid'
-// import { saveIsFirstRenderStatus, isFirstRender } from '../Utils/SessionStorage'
 
 const ReactGridLayout = WidthProvider(Responsive)
 
@@ -80,10 +79,10 @@ const Grid: React.FC = () => {
       )}
       <ReactGridLayout {...defaultLayoutProps} layouts={layouts}>
         {pipelines.map((pipeline: any, index: number) => {
-          const test = layouts.lg ? layouts.lg[index] : {}
+          const layoutProps = layouts.lg ? layouts.lg[index] : {}
           return (
             <div key={index} className="pipelines"
-              data-grid={{ ...DEFAULT_ITEM_LAYOUT, ...test, y: index + 1, }}>
+              data-grid={{ ...DEFAULT_ITEM_LAYOUT, ...layoutProps, y: index + 1, }}>
               <Pipeline
                 style={{ width: `100%` }}
                 pipeline={pipeline}

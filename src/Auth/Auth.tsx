@@ -79,7 +79,7 @@ const Auth: React.FC<{message?: string}> = (props) => {
         <label>
           <span>Pipeline Name</span>
           <textarea
-            placeholder={`pipeline-a\npipeline-b\npipeline-c\npipeline-d`}
+            placeholder={`Support multiple projects, like :\npipeline-a\npipeline-b\npipeline-c\npipeline-d`}
             value={search}
             onChange={(event) => {
               setSearch(event.target.value)

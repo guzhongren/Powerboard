@@ -37,7 +37,7 @@ export const buildKiteQuery = (orz: string, team: string, search: string[] | str
                 startedAt
                 finishedAt
                 url
-                jobs(first: 20, order: RECENTLY_ASSIGNED) {
+                jobs(first: 100, order: RECENTLY_ASSIGNED) {
                   edges {
                     node {
                        ... on JobTypeCommand {

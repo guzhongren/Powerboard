@@ -2172,24 +2172,24 @@ crypto-browserify@^3.11.0:
     randombytes "^2.0.0"
     randomfill "^1.0.3"
 
-css-loader@^3.6.0:
-  version "3.6.0"
-  resolved "https://registry.npm.taobao.org/css-loader/download/css-loader-3.6.0.tgz#2e4b2c7e6e2d27f8c8f28f61bffcd2e6c91ef645"
-  integrity sha1-Lkssfm4tJ/jI8o9hv/zS5ske9kU=
+css-loader@^4.2.1:
+  version "4.2.1"
+  resolved "https://registry.npm.taobao.org/css-loader/download/css-loader-4.2.1.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fcss-loader%2Fdownload%2Fcss-loader-4.2.1.tgz#9f48fd7eae1219d629a3f085ba9a9102ca1141a7"
+  integrity sha1-n0j9fq4SGdYpo/CFupqRAsoRQac=
   dependencies:
-    camelcase "^5.3.1"
+    camelcase "^6.0.0"
     cssesc "^3.0.0"
     icss-utils "^4.1.1"
-    loader-utils "^1.2.3"
+    loader-utils "^2.0.0"
     normalize-path "^3.0.0"
     postcss "^7.0.32"
     postcss-modules-extract-imports "^2.0.0"
-    postcss-modules-local-by-default "^3.0.2"
+    postcss-modules-local-by-default "^3.0.3"
     postcss-modules-scope "^2.2.0"
     postcss-modules-values "^3.0.0"
     postcss-value-parser "^4.1.0"
     schema-utils "^2.7.0"
-    semver "^6.3.0"
+    semver "^7.3.2"
 
 css-select@^1.1.0:
   version "1.2.0"
@@ -5954,7 +5954,7 @@ postcss-modules-extract-imports@^2.0.0:
   dependencies:
     postcss "^7.0.5"
 
-postcss-modules-local-by-default@^3.0.2:
+postcss-modules-local-by-default@^3.0.3:
   version "3.0.3"
   resolved "https://registry.npm.taobao.org/postcss-modules-local-by-default/download/postcss-modules-local-by-default-3.0.3.tgz?cache=0&sync_timestamp=1595731970020&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fpostcss-modules-local-by-default%2Fdownload%2Fpostcss-modules-local-by-default-3.0.3.tgz#bb14e0cc78279d504dbdcbfd7e0ca28993ffbbb0"
   integrity sha1-uxTgzHgnnVBNvcv9fgyiiZP/u7A=

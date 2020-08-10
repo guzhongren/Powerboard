@@ -1,4 +1,4 @@
-import { GraphQLClient } from 'graphql-request'
+import { GraphQLClient, gql } from 'graphql-request'
 import { isString, isArray, isNil } from 'lodash'
 const API = 'https://graphql.buildkite.com/v1'
 
@@ -57,7 +57,7 @@ export const buildKiteQuery = (orz: string, team: string, search: string[] | str
     }
     `
 
-  return `
+  return gql`
     {
       organization(slug: "${orz}") {
         name

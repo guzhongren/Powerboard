@@ -2110,13 +2110,12 @@ create-hmac@^1.1.0, create-hmac@^1.1.4, create-hmac@^1.1.7:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
-cross-fetch@2.2.2:
-  version "2.2.2"
-  resolved "https://registry.npm.taobao.org/cross-fetch/download/cross-fetch-2.2.2.tgz#a47ff4f7fc712daba8f6a695a11c948440d45723"
-  integrity sha1-pH/09/xxLauo9qaVoRyUhEDUVyM=
+cross-fetch@^3.0.4:
+  version "3.0.5"
+  resolved "https://registry.npm.taobao.org/cross-fetch/download/cross-fetch-3.0.5.tgz?cache=0&sync_timestamp=1592177883093&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fcross-fetch%2Fdownload%2Fcross-fetch-3.0.5.tgz#2739d2981892e7ab488a7ad03b92df2816e03f4c"
+  integrity sha1-JznSmBiS56tIinrQO5LfKBbgP0w=
   dependencies:
-    node-fetch "2.1.2"
-    whatwg-fetch "2.0.4"
+    node-fetch "2.6.0"
 
 cross-spawn@^3.0.0:
   version "3.0.1"
@@ -3359,12 +3358,17 @@ graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2, graceful-fs@^4.1.6
   resolved "https://registry.npm.taobao.org/graceful-fs/download/graceful-fs-4.2.4.tgz#2256bde14d3632958c465ebc96dc467ca07a29fb"
   integrity sha1-Ila94U02MpWMRl68ltxGfKB6Kfs=
 
-graphql-request@^1.8.2:
-  version "1.8.2"
-  resolved "https://registry.npm.taobao.org/graphql-request/download/graphql-request-1.8.2.tgz#398d10ae15c585676741bde3fc01d5ca948f8fbe"
-  integrity sha1-OY0QrhXFhWdnQb3j/AHVypSPj74=
+graphql-request@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.npm.taobao.org/graphql-request/download/graphql-request-3.0.0.tgz?cache=0&sync_timestamp=1596634368400&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fgraphql-request%2Fdownload%2Fgraphql-request-3.0.0.tgz#942d81bbd621cc2223d35fbf2b42edf8be822b83"
+  integrity sha1-lC2Bu9YhzCIj01+/K0Lt+L6CK4M=
   dependencies:
-    cross-fetch "2.2.2"
+    cross-fetch "^3.0.4"
+
+graphql@^15.3.0:
+  version "15.3.0"
+  resolved "https://registry.npm.taobao.org/graphql/download/graphql-15.3.0.tgz?cache=0&sync_timestamp=1594126561706&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fgraphql%2Fdownload%2Fgraphql-15.3.0.tgz#3ad2b0caab0d110e3be4a5a9b2aa281e362b5278"
+  integrity sha1-OtKwyqsNEQ475KWpsqooHjYrUng=
 
 growly@^1.3.0:
   version "1.3.0"
@@ -5262,10 +5266,10 @@ no-case@^3.0.3:
     lower-case "^2.0.1"
     tslib "^1.10.0"
 
-node-fetch@2.1.2:
-  version "2.1.2"
-  resolved "https://registry.npm.taobao.org/node-fetch/download/node-fetch-2.1.2.tgz?cache=0&sync_timestamp=1591866480128&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fnode-fetch%2Fdownload%2Fnode-fetch-2.1.2.tgz#ab884e8e7e57e38a944753cec706f788d1768bb5"
-  integrity sha1-q4hOjn5X44qUR1POxwb3iNF2i7U=
+node-fetch@2.6.0:
+  version "2.6.0"
+  resolved "https://registry.npm.taobao.org/node-fetch/download/node-fetch-2.6.0.tgz?cache=0&sync_timestamp=1591866530709&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fnode-fetch%2Fdownload%2Fnode-fetch-2.6.0.tgz#e633456386d4aa55863f676a7ab0daa8fdecb0fd"
+  integrity sha1-5jNFY4bUqlWGP2dqerDaqP3ssP0=
 
 node-forge@0.9.0:
   version "0.9.0"
@@ -8100,11 +8104,6 @@ whatwg-encoding@^1.0.5:
   integrity sha1-WrrPd3wyFmpR0IXWtPPn0nET3bA=
   dependencies:
     iconv-lite "0.4.24"
-
-whatwg-fetch@2.0.4:
-  version "2.0.4"
-  resolved "https://registry.npm.taobao.org/whatwg-fetch/download/whatwg-fetch-2.0.4.tgz#dde6a5df315f9d39991aa17621853d720b85566f"
-  integrity sha1-3eal3zFfnTmZGqF2IYU9cguFVm8=
 
 whatwg-mimetype@^2.3.0:
   version "2.3.0"

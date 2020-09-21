@@ -3587,10 +3587,10 @@ html-minifier-terser@^5.0.1:
     relateurl "^0.2.7"
     terser "^4.6.3"
 
-html-webpack-plugin@^4.3.0:
-  version "4.4.1"
-  resolved "https://registry.npm.taobao.org/html-webpack-plugin/download/html-webpack-plugin-4.4.1.tgz#61ab85aa1a84ba181443345ebaead51abbb84149"
-  integrity sha1-YauFqhqEuhgUQzReuurVGru4QUk=
+html-webpack-plugin@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.npm.taobao.org/html-webpack-plugin/download/html-webpack-plugin-4.5.0.tgz?cache=0&sync_timestamp=1600690533404&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fhtml-webpack-plugin%2Fdownload%2Fhtml-webpack-plugin-4.5.0.tgz#625097650886b97ea5dae331c320e3238f6c121c"
+  integrity sha1-YlCXZQiGuX6l2uMxwyDjI49sEhw=
   dependencies:
     "@types/html-minifier-terser" "^5.0.0"
     "@types/tapable" "^1.0.5"
@@ -6000,10 +6000,10 @@ postcss@^7.0.14, postcss@^7.0.32, postcss@^7.0.5, postcss@^7.0.6:
     source-map "^0.6.1"
     supports-color "^6.1.0"
 
-postcss@^8.0.5:
-  version "8.0.5"
-  resolved "https://registry.npm.taobao.org/postcss/download/postcss-8.0.5.tgz?cache=0&sync_timestamp=1600308926059&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fpostcss%2Fdownload%2Fpostcss-8.0.5.tgz#8210e2363f85c35a88a188ce7a0828e93b1088d4"
-  integrity sha1-ghDiNj+Fw1qIoYjOeggo6TsQiNQ=
+postcss@^8.0.6:
+  version "8.0.6"
+  resolved "https://registry.npm.taobao.org/postcss/download/postcss-8.0.6.tgz?cache=0&sync_timestamp=1600619198407&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fpostcss%2Fdownload%2Fpostcss-8.0.6.tgz#1507160d7df320c77f8f4819cf52491f4748b672"
+  integrity sha1-FQcWDX3zIMd/j0gZz1JJH0dItnI=
   dependencies:
     colorette "^1.2.1"
     line-column "^1.0.2"
@@ -7397,10 +7397,10 @@ supports-hyperlinks@^2.0.0:
     has-flag "^4.0.0"
     supports-color "^7.0.0"
 
-swr@^0.3.0:
-  version "0.3.2"
-  resolved "https://registry.npm.taobao.org/swr/download/swr-0.3.2.tgz#1197e06553f71afbc42dba758459f12daea96805"
-  integrity sha1-EZfgZVP3GvvELbp1hFnxLa6paAU=
+swr@^0.3.3:
+  version "0.3.3"
+  resolved "https://registry.npm.taobao.org/swr/download/swr-0.3.3.tgz#8e820360e3fece26df6f30ca09c478f70bf1f880"
+  integrity sha1-joIDYOP+zibfbzDKCcR49wvx+IA=
   dependencies:
     fast-deep-equal "2.0.1"
 

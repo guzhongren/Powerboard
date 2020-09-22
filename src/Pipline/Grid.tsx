@@ -44,7 +44,7 @@ const Grid: React.FC = () => {
       <>
         <div className="window-error">
           <pre>
-            {JSON.stringify(error?.response.errors, null, 2)}
+            {JSON.stringify(error?.response, null, 2)}
           </pre>
         </div>
         <Auth message="API ERROR, Please check your config" />

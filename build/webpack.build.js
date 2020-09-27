@@ -3,6 +3,7 @@ const HTMLWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin")
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const {GenerateSW} = require('workbox-webpack-plugin');
 
 module.exports = {
   entry: '../src/index.tsx',
@@ -90,5 +91,6 @@ module.exports = {
       template: "../src/app.html",
       filename: "index.html",
     }),
+    new GenerateSW(),
   ]
 }

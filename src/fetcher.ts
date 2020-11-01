@@ -1,5 +1,7 @@
 import { GraphQLClient, gql } from 'graphql-request'
 import { isString, isArray, isNil } from 'lodash'
+import { AUTO_RELOAD_PERIOD } from './Constants/Config'
+
 const API = 'https://graphql.buildkite.com/v1'
 
 export const fetcher = (query: string, token: string) => {
@@ -7,7 +9,12 @@ export const fetcher = (query: string, token: string) => {
     headers: {
       authorization: `Bearer ${token}`,
     },
-  }).request(query)
+  }).request(query).catch(err => {
+    console.error(`There are some error when request buildkite, the page will auto reload! ${err}`)
+    setTimeout(() => {
+      window.location.reload()
+    }, AUTO_RELOAD_PERIOD)
+  })
 }
 
 export const buildKiteQuery = (orz: string, team: string, search: string[] | string) => {

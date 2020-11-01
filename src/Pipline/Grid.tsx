@@ -12,6 +12,7 @@ import Titan from '@root/Titan/Titan'
 import Auth from '@root/Auth/Auth'
 import { getLayouts, saveLayouts } from '../Utils/LayoutStorage'
 import { DEFAULT_ITEM_LAYOUT } from '../Constants/Grid'
+import { PIPELINE_AUTO_REFRESH_PERIOD } from '../Constants/Config'
 
 const ReactGridLayout = WidthProvider(Responsive)
 
@@ -32,7 +33,7 @@ const Grid: React.FC = () => {
   ],
     fetcher,
     {
-      refreshInterval: 20 * 1000,
+      refreshInterval: PIPELINE_AUTO_REFRESH_PERIOD,
       onSuccess: () => {
         setLastUpdateTime(dayjs())
       },

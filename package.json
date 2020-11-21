@@ -2,7 +2,6 @@
   "version": "0.0.1",
   "author": "yixi",
   "scripts": {
-    "start": "yarn dev",
     "dev": "webpack-dev-server --config build/webpack.dev.js --progress",
     "build": "webpack --config build/webpack.build.js",
     "test": "jest",

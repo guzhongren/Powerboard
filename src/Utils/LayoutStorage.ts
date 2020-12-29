@@ -6,11 +6,7 @@ export const getLayouts = () => {
     [key: string]: any,
   } = {}
   if (window.localStorage) {
-    try {
-      ls = JSON.parse(window.localStorage.getItem(LOCAL_STORAGE_KEY)) || {}
-    } catch (e) {
-      /*Ignore*/
-    }
+    ls = JSON.parse(window.localStorage.getItem(LOCAL_STORAGE_KEY)) || {}
   }
   return ls[LAYOUT__KEY]
 }

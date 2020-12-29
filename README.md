@@ -11,10 +11,12 @@ Get a buildkite access token first at https://buildkite.com/user/api-access-toke
 
 ## Config app
 
-1. Fill the `access token`
-2. Fill the `organization name`
-3. (Optional) Fill the `team name`
-4. Fill the pipeline of buildkite name which you want to show.
+Open app: [https://guzhongren.github.io/Buildkite-Dashboard/](https://guzhongren.github.io/Buildkite-Dashboard/)
+
+* Fill the `access token`
+* Fill the `organization name`
+* (Optional) Fill the `team name`
+* Fill the pipeline of buildkite name which you want to show.
     * __Single value__: This value supports regex, so you can fill the prefix of pipeline which filtered
     * __Multiple values__: you can fill your value after wrapping line
-5. Click `OK` button
+* Click `OK` button

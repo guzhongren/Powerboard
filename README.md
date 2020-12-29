@@ -17,6 +17,6 @@ Open app: [https://guzhongren.github.io/Buildkite-Dashboard/](https://guzhongren
 * Fill the `organization name`
 * (Optional) Fill the `team name`
 * Fill the pipeline of buildkite name which you want to show.
-    * __Single value__: This value supports regex, so you can fill the prefix of pipeline which filtered
-    * __Multiple values__: you can fill your value after wrapping line
+  * __Single value__: This value supports regex, so you can fill the prefix of pipeline which filtered
+  * __Multiple values__: you can fill your value after wrapping line
 * Click `OK` button

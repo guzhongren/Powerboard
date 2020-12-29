@@ -64,7 +64,7 @@ const Grid: React.FC = () => {
     onLayoutChange: (layout: any, layoutsParam: Layouts) => {
       const storedLayout = getLayouts()
       if (layout.length === 0 && layoutsParam.lg.length <= 0) {
-        console.log('init')
+        console.info('init')
       } else {
         if (!isEqual(layoutsParam, storedLayout)) {
           saveLayouts(layoutsParam)

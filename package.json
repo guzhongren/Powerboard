@@ -2,7 +2,7 @@
   "version": "0.0.1",
   "author": "yixi",
   "scripts": {
-    "dev": "webpack-dev-server --config build/webpack.dev.js --progress",
+    "dev": "webpack serve --config build/webpack.dev.js --progress",
     "build": "webpack --config build/webpack.build.js",
     "test": "jest",
     "lint": "yarn tslint --project tsconfig.json",
@@ -73,9 +73,9 @@
     "tslint-react-hooks": "^2.2.1",
     "typescript": "^4.0.3",
     "url-loader": "^4.1.0",
-    "webpack": "^4.44.1",
-    "webpack-cli": "^3.3.12",
+    "webpack": "^5.11.1",
+    "webpack-cli": "^4.3.0",
     "webpack-dev-server": "^3.11.1",
-    "workbox-webpack-plugin": "^5.1.4"
+    "workbox-webpack-plugin": "^6.0.2"
   }
 }

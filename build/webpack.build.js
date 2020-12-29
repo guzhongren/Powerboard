@@ -8,7 +8,7 @@ const {GenerateSW} = require('workbox-webpack-plugin');
 module.exports = {
   entry: '../src/index.tsx',
   output: {
-    filename: "[name]-[hash:7].js",
+    filename: "[name]-[fullhash:7].js",
     path: path.resolve(__dirname, "../dist"),
     chunkFilename: "[chunkhash].js",
     publicPath: "",
@@ -37,7 +37,7 @@ module.exports = {
             options: {
               modules: {
                 mode: 'global',
-                localIdentName: '[name]__[local]--[hash:base64:5]',
+                localIdentName: '[name]__[local]--[fullhash:base64:5]',
               },
               importLoaders: 2,
             }
@@ -84,8 +84,8 @@ module.exports = {
     }),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
-      filename: "[name].[hash:7].css",
-      chunkFilename: "[id].[hash:7].css"
+      filename: "[name].[fullhash:7].css",
+      chunkFilename: "[id].[fullhash:7].css"
     }),
     new HTMLWebpackPlugin({
       template: "../src/app.html",

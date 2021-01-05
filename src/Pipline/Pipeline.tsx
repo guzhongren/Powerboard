@@ -27,8 +27,12 @@ const Pipeline: React.FC<{ pipeline: any, style?: React.CSSProperties }> = ({ pi
   const finishAt = dayjs(lastBuild.finishedAt)
   const jobs = lastBuild.jobs?.edges || []
 
+  const openHandler = () => {
+    window.open(lastBuild.url)
+  }
+
   return (
-    <div className="pipeline" style={style}>
+    <div className="pipeline" style={style} onClick={openHandler}>
       <div className={`pipeline__current ${lastBuild.state}`}>
         <div className="pipeline__title">
           <a target="_blank"

@@ -85,7 +85,7 @@ const Grid: React.FC = () => {
             <div key={index} className="pipelines"
               data-grid={{ ...DEFAULT_ITEM_LAYOUT, ...layoutProps, y: index + 1, }}>
               <Pipeline
-                style={{ width: `100%` }}
+                style={{ width: `100%`, cursor: 'pointer' }}
                 pipeline={pipeline}
                 key={pipeline.node.name}
               />

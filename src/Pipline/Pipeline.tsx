@@ -32,8 +32,8 @@ const Pipeline: React.FC<{ pipeline: any, style?: React.CSSProperties }> = ({ pi
   }
 
   return (
-    <div className="pipeline" style={style} onClick={openHandler}>
-      <div className={`pipeline__current ${lastBuild.state}`}>
+    <div className="pipeline" style={style}>
+      <div className={`pipeline__current ${lastBuild.state}`} onClick={openHandler}>
         <div className="pipeline__title">
           <a target="_blank"
            href={lastBuild?.url}>

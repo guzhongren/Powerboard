@@ -16,6 +16,7 @@
     height: calc(100% - 40px);
     border: 5px solid #3d3c35;
     position: relative;
+    cursor: pointer;
 
     &.FAILED {
       animation: blinkRed 1s linear infinite;
@@ -124,6 +125,7 @@
       color: rgba(255,255,255, .8);
       text-align: center;
       line-height: 30px;
+      cursor: pointer;
     }
   }
 

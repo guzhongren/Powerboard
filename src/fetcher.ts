@@ -25,6 +25,15 @@ export const buildKiteQuery = (orz: string, team: string, search: string[] | str
         node {
           name
           slug
+          metrics {
+            edges {
+              node {
+                id,
+                label,
+                value
+              }
+            }
+          }
           builds(first:11) {
             edges {
               node {

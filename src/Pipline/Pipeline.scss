@@ -3,18 +3,21 @@
 .pipelines {
   display: flex;
   justify-content: space-between;
-  // & + & {
-  //   margin-top: 15px;
-  // }
 }
 
 .pipeline {
+  &__metrics {
+    &-reliability {
+      height: 1rem;
+      background-color: $metrics-reliability-color;
+    }
+  }
 
   &__current {
     padding: 20px;
     min-height: 100px;
     height: calc(100% - 40px);
-    border: 5px solid #3d3c35;
+    border: 5px solid $border-color;
     position: relative;
     cursor: pointer;
 
@@ -148,9 +151,9 @@
 }
 
 .global-error {
-  background-color: #f37051;
+  background-color: $alert-color;
   padding: 20px;
-  border: 5px solid #3d3c35;
+  border: 5px solid $border-color;
   margin: 20px;
 
   pre {

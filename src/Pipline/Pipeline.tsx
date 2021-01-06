@@ -21,6 +21,8 @@ const BuildHistory: React.FC<{ build: any }> = ({ build }) => {
 const Pipeline: React.FC<{ pipeline: any, style?: React.CSSProperties }> = ({ pipeline, style }) => {
 
   const builds: any[] = pipeline?.node?.builds?.edges || []
+  const metrics: any[] = pipeline?.node?.metrics?.edges || []
+  const reliability = metrics[1]?.node?.value || 0
   const lastBuild = first(builds)?.node || {}
   const historyBuilds = tail(builds)
 
@@ -34,11 +36,14 @@ const Pipeline: React.FC<{ pipeline: any, style?: React.CSSProperties }> = ({ pi
 
   return (
     <div className="pipeline" style={style}>
+      <div className={'pipeline__metrics'}>
+        <div className={'pipeline__metrics-reliability'} style={{width: reliability}}/>
+      </div>
       <div className={`pipeline__current ${lastBuild.state}`} onClick={openHandler}>
         <div className="pipeline__title">
           <a target="_blank"
-           href={lastBuild?.url}>
-             {pipeline?.node?.name}</a>
+            href={lastBuild?.url}>
+            {pipeline?.node?.name}</a>
         </div>
         <div className="pipeline__commit-info">
           [{startAt.format('MM-DD HH:mm')}] [{lastBuild.branch}] {lastBuild.message}

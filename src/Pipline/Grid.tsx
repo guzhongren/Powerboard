@@ -83,9 +83,8 @@ const Grid: React.FC = () => {
           const layoutProps = layouts.lg ? layouts.lg[index] : {}
           return (
             <div key={index} className="pipelines"
-              data-grid={{ ...DEFAULT_ITEM_LAYOUT, ...layoutProps, y: index + 1, }}>
+              data-grid={{ ...DEFAULT_ITEM_LAYOUT, ...layoutProps, y: index + 10, }}>
               <Pipeline
-                style={{ width: `100%` }}
                 pipeline={pipeline}
                 key={pipeline.node.name}
               />

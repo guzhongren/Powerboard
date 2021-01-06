@@ -6,7 +6,10 @@
 }
 
 .pipeline {
+  width: 100%;
+  height: 97%;
   &__metrics {
+    padding-top: 5px;
     &-reliability {
       height: 1rem;
       background-color: $metrics-reliability-color;

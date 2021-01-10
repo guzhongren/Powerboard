@@ -5,7 +5,7 @@ interface IObj {
 export const LAYOUT__KEY: string = 'LAYOUT__KEY'
 export const DEFAULT_ITEM_LAYOUT: IObj = {
   w: 100,
-  h: 19,
+  h: 190,
   x: 0,
   y: 0,
   i: '0',

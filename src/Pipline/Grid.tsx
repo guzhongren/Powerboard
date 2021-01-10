@@ -60,7 +60,7 @@ const Grid: React.FC = () => {
   const defaultLayoutProps = {
     className: 'container',
     cols: { lg: 100, md: 10, sm: 6, xs: 4, xxs: 2 },
-    rowHeight: 5,
+    rowHeight: 6,
     onLayoutChange: (layout: any, layoutsParam: Layouts) => {
       const storedLayout = getLayouts()
       if (layout.length === 0 && layoutsParam.lg.length <= 0) {

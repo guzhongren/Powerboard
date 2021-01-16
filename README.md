@@ -1,5 +1,7 @@
 # A buildKite CI monitor for show on TV
 
+![Test and deploy](https://github.com/guzhongren/Buildkite-Dashboard/workflows/Test%20and%20deploy/badge.svg)
+
 
 ![Buildkite-Dashboard](./src/assets/Buildkite-dashboard.gif)
 

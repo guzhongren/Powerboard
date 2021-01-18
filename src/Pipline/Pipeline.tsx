@@ -37,13 +37,11 @@ const Pipeline: React.FC<{ pipeline: any, style?: React.CSSProperties }> = ({ pi
   return (
     <div className="pipeline" style={style}>
       <div className={'pipeline__metrics'}>
-        <div className={'pipeline__metrics-reliability'} style={{width: reliability}}/>
+        <div className={'pipeline__metrics-reliability'} style={{ width: reliability }} />
       </div>
       <div className={`pipeline__current ${lastBuild.state}`} >
-        <div className="pipeline__title">
-          <a target="_blank"
-            onClick={openHandler}
-            href={lastBuild?.url}>
+        <div className="pipeline__title" onClick={openHandler}>
+          <a target="_blank" >
             {pipeline?.node?.name}</a>
         </div>
         <div className="pipeline__commit-info">

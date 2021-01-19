@@ -73,8 +73,9 @@
   &__title {
     text-transform: uppercase;
     font-size: 3em;
-    a {
+    &-content {
       color: $font-color;
+      cursor: pointer;
     }
   }
 

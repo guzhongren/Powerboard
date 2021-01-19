@@ -41,8 +41,8 @@ const Pipeline: React.FC<{ pipeline: any, style?: React.CSSProperties }> = ({ pi
       </div>
       <div className={`pipeline__current ${lastBuild.state}`} >
         <div className="pipeline__title" onClick={openHandler}>
-          <a target="_blank" >
-            {pipeline?.node?.name}</a>
+          <span className="pipeline__title-content">
+            {pipeline?.node?.name}</span>
         </div>
         <div className="pipeline__commit-info">
           [{startAt.format('MM-DD HH:mm')}] [{lastBuild.branch}] {lastBuild.message}

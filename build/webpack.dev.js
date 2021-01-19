@@ -4,7 +4,7 @@ const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin")
 const webpack = require('webpack')
 
 const PORT = 4321
-const _HOST = '0.0.0.0'
+const _HOST = 'localhost'
 const HOST = `http://${_HOST}`
 const URL = `${HOST}:${PORT}`
 

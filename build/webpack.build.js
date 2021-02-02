@@ -95,6 +95,7 @@ module.exports = {
     new CopyPlugin({
       patterns: [
         { from: "../public/manifest.json", to: "manifest.json" },
+        { from: "../public/robots.txt", to: "robots.txt" },
       ],
     }),
   ]

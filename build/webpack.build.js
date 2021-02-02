@@ -4,6 +4,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin")
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const {GenerateSW} = require('workbox-webpack-plugin');
+const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   entry: '../src/index.tsx',
@@ -14,7 +15,6 @@ module.exports = {
     publicPath: "",
   },
   context: path.resolve(__dirname, "../src"),
-  devtool: "nosources-source-map",
   bail: true,
   mode: "production",
   module: {
@@ -88,9 +88,14 @@ module.exports = {
       chunkFilename: "[id].[fullhash:7].css"
     }),
     new HTMLWebpackPlugin({
-      template: "../src/app.html",
+      template: "../public/index.html",
       filename: "index.html",
     }),
     new GenerateSW(),
+    new CopyPlugin({
+      patterns: [
+        { from: "../public/manifest.json", to: "manifest.json" },
+      ],
+    }),
   ]
 }

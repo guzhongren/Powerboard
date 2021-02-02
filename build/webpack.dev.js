@@ -94,7 +94,7 @@ module.exports = {
       },
     }),
     new HTMLWebpackPlugin({
-      template: "../src/app.html",
+      template: "../public/index.html",
       filename: "index.html",
     }),
     new webpack.HotModuleReplacementPlugin(),

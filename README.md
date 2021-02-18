@@ -1,6 +1,7 @@
 # A buildKite CI monitor for show on TV
 
 ![Test and deploy](https://github.com/guzhongren/Buildkite-Dashboard/workflows/Test%20and%20deploy/badge.svg)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fguzhongren%2FBuildkite-Dashboard.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fguzhongren%2FBuildkite-Dashboard?ref=badge_shield)
 
 
 ![Buildkite-Dashboard](./src/assets/Buildkite-dashboard.gif)
@@ -22,3 +23,7 @@ Open app: [https://guzhongren.github.io/Buildkite-Dashboard/](https://guzhongren
   * __Single value__: This value supports regex, so you can fill the prefix of pipeline which filtered
   * __Multiple values__: you can fill your value after wrapping line
 * Click `OK` button
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fguzhongren%2FBuildkite-Dashboard.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fguzhongren%2FBuildkite-Dashboard?ref=badge_large)

@@ -5,19 +5,12 @@
     "dev": "webpack serve --config build/webpack.dev.js --progress",
     "build": "webpack --config build/webpack.build.js",
     "test": "jest",
-    "lint": "yarn tslint --project tsconfig.json",
+    "lint": "lint-staged && yarn tslint --project tsconfig.json",
     "typecheck": "tsc --noEmit",
     "release": "standard-version --release-as patch",
     "minorRelease": "standard-version --release-as minor",
-    "majorRelease": "standard-version --release-as major",
-    "prepublishOnly": "pinst --disable",
-    "postinstall": "husky install"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "pre-push": "yarn lint && yarn typecheck"
-    }
+    "majorRelease": "standard-version --release-as major"
+
   },
   "lint-staged": {
     "./src/**/*.{js,jsx,ts,tsx,json,md}": [

@@ -24,6 +24,14 @@ Open app: [https://guzhongren.github.io/Buildkite-Dashboard/](https://guzhongren
   * __Multiple values__: you can fill your value after wrapping line
 * Click `OK` button
 
+## build & Run
+
+```shell
+yarn --production=true
+live-server ./build/index.html
+```
+
+
 
 ## License
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fguzhongren%2FBuildkite-Dashboard.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fguzhongren%2FBuildkite-Dashboard?ref=badge_large)

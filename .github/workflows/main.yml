@@ -9,7 +9,7 @@ on:
 
 jobs:
   deployToGitHubPages:
-    name: test and deploy Y-BuildKite-Monitor
+    name: test and deploy BuildKite-Monitor
     runs-on: ubuntu-latest
 
     steps:

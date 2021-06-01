@@ -27,8 +27,8 @@ Open app: [https://guzhongren.github.io/Buildkite-Dashboard/](https://guzhongren
 ## build & Run
 
 ```shell
-yarn --production=true
-live-server ./build/index.html
+yarn
+live-server ./dist/index.html
 ```
 
 

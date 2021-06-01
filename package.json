@@ -9,7 +9,9 @@
     "typecheck": "tsc --noEmit",
     "release": "standard-version --release-as patch",
     "minorRelease": "standard-version --release-as minor",
-    "majorRelease": "standard-version --release-as major"
+    "majorRelease": "standard-version --release-as major",
+    "prepublishOnly": "pinst --disable",
+    "postinstall": "husky install"
   },
   "husky": {
     "hooks": {

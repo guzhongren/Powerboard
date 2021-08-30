@@ -17,6 +17,6 @@
  */
 // eslint-disable-next-line no-unused-vars
 module.exports = (on, config) => {
-  // `on` is used to hook into various events Cypress emits
-  // `config` is the resolved Cypress config
+  config.env.url = process.env.ENV === 'production' ? config.env.prod : config.env.local
+  return config
 }

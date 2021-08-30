@@ -9,10 +9,9 @@ describe('show pipeline', () => {
   const orgName = dashboardConfig.orgName
   const pipelines = dashboardConfig.pipelines
 
-  const url = process.env.NODE_ENV === 'production' ? dashboardConfig.url.prod : dashboardConfig.url.local
 
   beforeEach(() => {
-    cy.visit(url)
+    cy.visit(Cypress.env('url'))
   })
 
 

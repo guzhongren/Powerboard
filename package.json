@@ -10,7 +10,7 @@
     "release": "standard-version --release-as patch",
     "minorRelease": "standard-version --release-as minor",
     "majorRelease": "standard-version --release-as major",
-    "cy:run": "cross-env NODE_ENV=production cypress run --spec 'cypress/integration/dashboard.spec.js'",
+    "cy:run": "cross-env ENV=production cypress run --spec 'cypress/integration/dashboard.spec.js'",
     "cy:open": "cypress open"
   },
   "lint-staged": {

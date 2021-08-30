@@ -1,1 +1,6 @@
-{}
+{
+  "env": {
+    "local": "http://localhost:4321/",
+    "prod": "https://guzhongren.github.io/Buildkite-Dashboard/"
+  }
+}

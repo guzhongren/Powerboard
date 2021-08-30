@@ -32,6 +32,8 @@ jobs:
           publish_branch: gh-pages
           user_name: guzhongren
           user_email: guzhongren@live.cn
+      - name: UI Automation Test
+        run: yarn cy:run
       - name: Build images
         run: |
           docker build -t dashboard:${{ github.sha }} .

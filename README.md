@@ -31,6 +31,16 @@ yarn
 live-server ./dist/index.html
 ```
 
+## Tech list
+
+* [React 17](https://reactjs.org/)
+* [Graphql](https://graphql.org/)
+* [TypeScript](https://www.typescriptlang.org/)
+* [Testing-library](https://testing-library.com/docs/react-testing-library/intro/)
+* [Webpack](https://webpack.js.org/)
+* [Cypress](https://www.cypress.io/)
+
+
 
 
 ## License

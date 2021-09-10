@@ -12,14 +12,19 @@ const BuildHistory: React.FC<{ build: any }> = ({ build }) => {
   const info = build?.node || {}
   const openHistoryHandler = () => window.open(info?.url)
   return (
-    <div className={`pipeline__history-build ${info.state}`} onClick={openHistoryHandler}>
+    <div
+      className={`pipeline__history-build ${info.state}`}
+      onClick={openHistoryHandler}
+    >
       #{info.number}
     </div>
   )
 }
 
-const Pipeline: React.FC<{ pipeline: any, style?: React.CSSProperties }> = ({ pipeline, style }) => {
-
+const Pipeline: React.FC<{ pipeline: any; style?: React.CSSProperties }> = ({
+  pipeline,
+  style,
+}) => {
   const builds: any[] = pipeline?.node?.builds?.edges || []
   const metrics: any[] = pipeline?.node?.metrics?.edges || []
   const reliability = metrics[1]?.node?.value || 0
@@ -30,22 +35,27 @@ const Pipeline: React.FC<{ pipeline: any, style?: React.CSSProperties }> = ({ pi
   const finishAt = dayjs(lastBuild.finishedAt)
   const jobs = lastBuild.jobs?.edges || []
 
-  const openHandler = () => {
-    window.open(lastBuild.url)
-  }
-
   return (
     <div className="pipeline" style={style}>
       <div className={'pipeline__metrics'}>
-        <div className={'pipeline__metrics-reliability'} style={{ width: reliability }} />
+        <div
+          className={'pipeline__metrics-reliability'}
+          style={{ width: reliability }}
+        />
       </div>
-      <div className={`pipeline__current ${lastBuild.state}`} >
-        <div className="pipeline__title" onClick={openHandler}>
-          <span className="pipeline__title-content">
-            {pipeline?.node?.name}</span>
+      <div className={`pipeline__current ${lastBuild.state}`}>
+        <div className="pipeline__title">
+          <a
+            href={lastBuild.url}
+            target="_blank"
+            className="pipeline__title-content"
+          >
+            {pipeline?.node?.name}
+          </a>
         </div>
         <div className="pipeline__commit-info">
-          [{startAt.format('MM-DD HH:mm')}] [{lastBuild.branch}] {lastBuild.message}
+          [{startAt.format('MM-DD HH:mm')}] [{lastBuild.branch}]{' '}
+          {lastBuild.message}
         </div>
 
         <Jobs jobs={jobs} />
@@ -55,19 +65,17 @@ const Pipeline: React.FC<{ pipeline: any, style?: React.CSSProperties }> = ({ pi
 
           {['PASSED', 'FAILED'].includes(lastBuild.state) && (
             <div>
-              Finished at <i>{dayjs().from(finishAt)}</i> and ran for <i>{finishAt.diff(startAt, 'minute')}</i> minutes
+              Finished at <i>{dayjs().from(finishAt)}</i> and ran for{' '}
+              <i>{finishAt.diff(startAt, 'minute')}</i> minutes
             </div>
           )}
-          {
-            ['BLOCKED'].includes(lastBuild.state) && (
-              <div>
-                Trigger at <i>{dayjs().from(startAt)}</i>
-              </div>
-            )
-          }
+          {['BLOCKED'].includes(lastBuild.state) && (
+            <div>
+              Trigger at <i>{dayjs().from(startAt)}</i>
+            </div>
+          )}
 
           {['RUNNING'].includes(lastBuild.state) && <Timer startAt={startAt} />}
-
         </div>
         <div className="pipeline__overview">
           <div>#{lastBuild.number}</div>

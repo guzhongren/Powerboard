@@ -1,5 +1,7 @@
 @import '~react-grid-layout/css/styles.css';
 @import '~react-resizable/css/styles.css';
+@import './root.scss';
+
 * {
   padding: 0;
   margin: 0;
@@ -9,9 +11,9 @@
 
 body {
   background-color: #29261d;
-  font-family: "Helvetica Neue", Helvetica,
-  "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei",
-  "Hiragino Sans GB", "Hiragino Sans GB W3", Arial, sans-serif;
+  font-family: 'Helvetica Neue', Helvetica, 'Microsoft YaHei', FreeSans, Arimo,
+    'Droid Sans', 'wenquanyi micro hei', 'Hiragino Sans GB',
+    'Hiragino Sans GB W3', Arial, sans-serif;
   font-size: 14px;
 }
 
@@ -21,9 +23,9 @@ a {
 }
 
 .btn {
-  background-color: #4CAF50;
+  background-color: $metrics-reliability-color;
   border: none;
-  color: #FFFFFF;
+  color: $font-color;
   padding: 15px 32px;
   text-align: center;
   -webkit-transition-duration: 0.4s;
@@ -125,8 +127,13 @@ a {
 }
 
 @keyframes blinkRed {
-  from {background-color: #f37051}
-  50% {background-color: #ff0000
+  from {
+    background-color: #f37051;
   }
-  to {background-color: #f37051}
+  50% {
+    background-color: #ff0000;
+  }
+  to {
+    background-color: #f37051;
+  }
 }

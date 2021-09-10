@@ -1,6 +1,6 @@
 const path = require('path')
 const HTMLWebpackPlugin = require('html-webpack-plugin')
-const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin")
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 const webpack = require('webpack')
 
 const PORT = 4321
@@ -12,15 +12,15 @@ module.exports = {
   entry: [
     `webpack-dev-server/client?${URL}`,
     'webpack/hot/only-dev-server',
-    '../src/index.tsx'
+    '../src/index.tsx',
   ],
   output: {
-    filename: "app.js",
-    path: path.join(__dirname, "../dist"),
-    publicPath: "/",
+    filename: 'app.js',
+    path: path.join(__dirname, '../dist'),
+    publicPath: '/',
   },
-  context: path.resolve(__dirname, "../src"),
-  devtool: "cheap-module-source-map",
+  context: path.resolve(__dirname, '../src'),
+  devtool: 'cheap-module-source-map',
   devServer: {
     hot: true,
     // enable HMR on the server
@@ -30,17 +30,17 @@ module.exports = {
     host: _HOST,
     historyApiFallback: true,
   },
-  mode: "development",
+  mode: 'development',
   module: {
     rules: [
       {
         test: /\.tsx?$/,
         use: {
-          loader: "ts-loader",
+          loader: 'ts-loader',
           options: {
-            transpileOnly: true
-          }
-        }
+            transpileOnly: true,
+          },
+        },
       },
       {
         test: /\.scss$/i,
@@ -54,40 +54,40 @@ module.exports = {
                 localIdentName: '[name]__[local]--[hash:base64:5]',
               },
               importLoaders: 2,
-            }
+            },
           },
-          "postcss-loader",
+          'postcss-loader',
           'sass-loader',
         ],
       },
       {
         test: /\.(jpe?g|png|gif|ogg|mp3)$/,
-        use: ["url-loader"],
+        use: ['url-loader'],
       },
       {
         test: /\.(svg?)(\?[a-z0-9]+)?$/,
-        use: ["url-loader"],
+        use: ['url-loader'],
       },
-    ]
+    ],
   },
   resolve: {
     alias: {
-      "@root": path.resolve(__dirname, "../src"),
+      '@root': path.resolve(__dirname, '../src'),
     },
-    extensions: [".ts", ".tsx", ".js", ".json"],
+    extensions: ['.ts', '.tsx', '.js', '.json'],
   },
   plugins: [
     new ForkTsCheckerWebpackPlugin({
       typescript: {
         enabled: true,
-        configFile: path.resolve(__dirname, "../tsconfig.json"),
-        tslint: path.resolve(__dirname, "../tslint.json"),
+        configFile: path.resolve(__dirname, '../tsconfig.json'),
+        tslint: path.resolve(__dirname, '../tslint.json'),
       },
     }),
     new HTMLWebpackPlugin({
-      template: "../public/index.html",
-      filename: "index.html",
+      template: '../public/index.html',
+      filename: 'index.html',
     }),
     new webpack.HotModuleReplacementPlugin(),
-  ]
+  ],
 }

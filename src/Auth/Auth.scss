@@ -13,7 +13,6 @@
   }
 
   & > div {
-
     & > label > span {
       display: block;
       margin-bottom: 7px;
@@ -42,4 +41,8 @@
     color: red;
   }
 
+  .operation {
+    display: flex;
+    justify-content: space-between;
+  }
 }

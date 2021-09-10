@@ -7,18 +7,13 @@
     "outDir": "./dist/",
     "sourceMap": true,
     "noImplicitAny": true,
-    "lib": [
-      "es6",
-      "es7",
-      "dom"
-    ],
+    "lib": ["es6", "es7", "dom"],
     "target": "es5",
     "jsx": "react",
     "allowJs": true,
     "experimentalDecorators": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "types": ["cypress", "cypress-file-upload"]
   },
-  "include": [
-    "./src"
-  ]
+  "include": ["./src"]
 }

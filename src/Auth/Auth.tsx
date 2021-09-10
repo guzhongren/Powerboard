@@ -1,77 +1,128 @@
 import * as React from 'react'
 import { useState } from 'react'
 import './Auth.scss'
-import { parse, stringify } from 'query-string'
-import { compact, union, isArray } from 'lodash'
+import { saveValue, getValueByKey } from '../Utils/LocalStorageUtils'
+import { saveLayouts, getLayouts } from '../Utils/LayoutStorageUtils'
+import { DASHBOARD_AUTH, IAuth } from '../Constants/Auth'
+import { importJsonFile, downloadConfig } from '../Utils/JsonFileProcessor'
+import { convertToString } from '../Utils/ConvertUtils'
 
-const Auth: React.FC<{message?: string}> = (props) => {
+const Auth: React.FC<{
+  message?: string
+  onConfigChanged?: (auth: IAuth) => void
+}> = ({ message, onConfigChanged }) => {
+  const downloadFileName = 'dashboardConfig.json'
+  const [token, setToken] = useState(getValueByKey(DASHBOARD_AUTH.TOKEN))
+  const [team, setTeam] = useState(getValueByKey(DASHBOARD_AUTH.TEAM))
+  const [search, setSearch] = useState(
+    getValueByKey(DASHBOARD_AUTH.SEARCH) as any
+  )
+  const [oncall, setOncall] = useState(getValueByKey(DASHBOARD_AUTH.ONCALL))
+  const [orz, setOrz] = useState(getValueByKey(DASHBOARD_AUTH.ORG))
 
-  const params = parse(location.search) as {
-    orz: string
-    team: string
-    search: string
-    token: string
+  const storeConfig = () => {
+    saveValue(DASHBOARD_AUTH.ORG, orz)
+    saveValue(DASHBOARD_AUTH.TEAM, team)
+    saveValue(DASHBOARD_AUTH.SEARCH, search)
+    saveValue(DASHBOARD_AUTH.TOKEN, token)
+    saveValue(DASHBOARD_AUTH.ONCALL, oncall)
   }
 
-  const searchQuery = isArray(params.search) ? params.search.join('\n') : params.search
-
-  const [token, setToken] = useState(params.token)
-  const [team, setTeam] = useState(params.team)
-  const [search, setSearch] = useState(searchQuery)
-  const [orz, setOrz] = useState(params.orz)
-
   const submit = () => {
-
-    const parsedSearch = search ? union(compact(search.split(/\n/))) : ''
-
-    location.search = stringify({
-      token, team, search: parsedSearch, orz: orz.toLowerCase(),
+    storeConfig()
+    onConfigChanged({
+      org: orz,
+      team,
+      search,
+      token,
+      oncall,
     })
+  }
+
+  const importConfig = (evt: any) => {
+    if (evt.target.files.length > 0) {
+      const file = evt.target.files[0]
+      importJsonFile(file).then(
+        (data: any) => {
+          console.log(data)
+          setToken(data.token || 'Invalided access token!')
+          setOrz(data.org || 'Invalided organization name!')
+          setTeam(data.team || '')
+          setSearch(data?.search || '')
+          setOncall(convertToString(data.oncall))
+          saveLayouts(data.layout || {})
+          console.log('successfully imported')
+        },
+        (err) => {
+          console.error(err)
+        }
+      )
+    }
+  }
+
+  const exportConfigHandler = () => {
+    const dlAnchorElem = document.getElementById('downloadAnchorElem')
+    const config: IAuth = {
+      org: orz,
+      team,
+      search,
+      token,
+      oncall,
+    }
+    downloadConfig(
+      dlAnchorElem,
+      { ...config, layout: getLayouts() },
+      downloadFileName
+    )
   }
 
   return (
     <div className="auth">
-      {props.message && (
-        <div className="auth__message">
-          {props.message}
-        </div>
-      )}
+      {message && <div className="auth__message">{message}</div>}
       <div>
         <label>
           <span>* Access Token</span>
           <div>
             make sure your access token can access pipelines you filling.
-            <a href="https://buildkite.com/user/api-access-tokens" target="_blank">generate a Token </a>
+            <a
+              href="https://buildkite.com/user/api-access-tokens"
+              target="_blank"
+            >
+              generate a Token{' '}
+            </a>
           </div>
-          <input type="text"
-                 value={token}
-                 onChange={(event) => {
-                   setToken(event.target.value)
-                 }}
-                 required={true}
+          <input
+            type="text"
+            value={token}
+            onChange={(event) => {
+              setToken(event.target.value)
+            }}
+            required={true}
           />
         </label>
       </div>
       <div>
         <label>
           <span>* Organization Name</span>
-          <input type="text"
-                 value={orz}
-                 onChange={(event) => {
-                   setOrz(event.target.value)
-                 }}
-                 required={true}
+          <input
+            type="text"
+            value={orz}
+            onChange={(event) => {
+              setOrz(event.target.value)
+            }}
+            required={true}
           />
         </label>
       </div>
       <div>
         <label>
           <span>Team Name</span>
-          <input type="text"
-                 value={team}
-                 onChange={(event) => {
-                   setTeam(event.target.value)
-                 }}
+          <input
+            type="text"
+            value={team}
+            onChange={(event) => {
+              setTeam(event.target.value)
+            }}
           />
         </label>
       </div>
@@ -79,6 +130,7 @@ const Auth: React.FC<{message?: string}> = (props) => {
         <label>
           <span>Pipeline Name</span>
           <textarea
+            id="pipelines"
             placeholder={`Support multiple projects, like :\npipeline-a\npipeline-b\npipeline-c\npipeline-d`}
             value={search}
             onChange={(event) => {
@@ -88,7 +140,41 @@ const Auth: React.FC<{message?: string}> = (props) => {
         </label>
       </div>
       <div>
-        <div className="btn" onClick={submit}>Go!</div>
+        <label>
+          <span>Oncall List</span>
+          <textarea
+            id="oncallList"
+            placeholder={`{\n"startDate": "2021-09-15", \n"names":["PengChong","FengWen","YiChen","Lina","ZhongRen","XuDong","Zhang Yu"]\n}`}
+            value={oncall}
+            onChange={(event) => {
+              setOncall(event.target.value)
+            }}
+          />
+        </label>
+      </div>
+      <div className="operation">
+        <div>
+          <label htmlFor="import">Import config</label>
+          <input
+            className="import"
+            onChange={importConfig}
+            type="file"
+            id="import"
+            name="import"
+            multiple={false}
+          />
+        </div>
+        <div>
+          <a id="downloadAnchorElem" style={{ display: 'none' }} />
+          <button id="download" onClick={exportConfigHandler}>
+            Export config
+          </button>
+        </div>
+      </div>
+      <div>
+        <div className="btn" onClick={submit}>
+          Go!
+        </div>
       </div>
     </div>
   )

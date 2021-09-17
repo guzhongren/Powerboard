@@ -42,9 +42,16 @@ describe('show pipeline', () => {
       .type(orgName)
 
     cy.get('textarea')
-      .type(`${pipelines[0]}{enter}`)
+      .type(`${pipelines[0]}`)
 
-    cy.get('.btn').click()
+    cy.get('.btn')
+      .click()
+      .then(() => {
+        expect(localStorage.getItem('org')).to.equal(orgName)
+        expect(localStorage.getItem('team')).to.equal('')
+        expect(localStorage.getItem('search')).to.equal(pipelines[0])
+        expect(localStorage.getItem('token')).to.equal(token)
+      })
 
     cy.get(pipelineTitle)
       .first()
@@ -65,9 +72,16 @@ describe('show pipeline', () => {
       .should('have.value', `${pipelines[0]}`)
 
     cy.get('textarea')
-      .type(`{enter}${pipelines[1]}{enter}`)
+      .type(`{enter}${pipelines[1]}`)
 
-    cy.get('.btn').click()
+    cy.get('.btn')
+      .click()
+      .then(() => {
+        expect(localStorage.getItem('org')).to.equal(orgName)
+        expect(localStorage.getItem('team')).to.equal('')
+        expect(localStorage.getItem('search')).to.equal(pipelines.join('\n'))
+        expect(localStorage.getItem('token')).to.equal(token)
+      })
 
     cy.get(pipelineTitle)
       .should('have.length', 2)

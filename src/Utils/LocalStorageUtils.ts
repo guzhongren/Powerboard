@@ -6,6 +6,7 @@ export const getValueByKey = (key: string) => {
 
 export const saveValue = (key: string, value: string) => {
   if (window.localStorage) {
+    value = value || ''
     window.localStorage.setItem(key, value);
   }
 };

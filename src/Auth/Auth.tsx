@@ -1,9 +1,9 @@
 import * as React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./Auth.scss";
 import { parse, stringify } from "query-string";
 import { compact, union, isArray } from "lodash";
-import { saveValue } from "../Utils/LocalStorageUtils";
+import { saveValue, getValueByKey } from "../Utils/LocalStorageUtils";
 import { DASHBOARD_AUTH } from "../Constants/Auth";
 
 const Auth: React.FC<{ message?: string }> = (props) => {
@@ -30,6 +30,14 @@ const Auth: React.FC<{ message?: string }> = (props) => {
     saveValue(DASHBOARD_AUTH.TOKEN, token);
   };
 
+  useEffect(() => {
+    console.log("Restore config from localStorage");
+    setOrz(getValueByKey(DASHBOARD_AUTH.ORG));
+    setTeam(getValueByKey(DASHBOARD_AUTH.TEAM));
+    setSearch(getValueByKey(DASHBOARD_AUTH.SEARCH));
+    setToken(getValueByKey(DASHBOARD_AUTH.TOKEN));
+  }, [orz, team, search, token]);
+
   const submit = () => {
     const parsedSearch = search ? union(compact(search.split(/\n/))) : "";
 
@@ -39,7 +47,7 @@ const Auth: React.FC<{ message?: string }> = (props) => {
       search: parsedSearch,
       orz: orz.toLowerCase(),
     });
-    storeConfig()
+    storeConfig();
   };
 
   return (

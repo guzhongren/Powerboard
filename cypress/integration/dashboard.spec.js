@@ -25,8 +25,6 @@ describe("show pipeline", () => {
   const accessTokenTitle = "Access Token";
   const pipelineTitle = ".pipeline__title-content";
   it("should can add pipeline, and update pipeline settings", () => {
-    // We'll store our item text in a variable so we can reuse it
-
     cy.contains(accessTokenTitle).parent().find("input[type=text]").type(token);
 
     cy.contains(orgNameTitle).parent().find("input[type=text]").type(orgName);

@@ -8,15 +8,12 @@ export const mergePipelinesWithResponse: any = (resData: any) => {
     i++;
   }
 
-  if (!isArray(resData?.organization?.pipelines?.edges)) {
-    set(resData, ["organization", "pipelines", "edges"], []);
-  }
+  set(resData, ["organization", "pipelines", "edges"], []);
 
   pipelines.forEach((pipeline) => {
     resData.organization.pipelines.edges =
       resData.organization.pipelines.edges.concat(pipeline.edges);
   });
 
-  console.log("resData: ", resData);
   return resData;
 };

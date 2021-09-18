@@ -17,8 +17,6 @@ function App() {
   };
   const [auth, setAuth] = useState(authConfig);
 
-  console.log("app: ", auth);
-
   if (auth.org && auth.token) {
     return <Grid authConfig={auth} />;
   } else {

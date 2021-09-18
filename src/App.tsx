@@ -22,10 +22,7 @@ function App() {
   } else {
     return (
       <Auth
-        onConfigChanged={(auth) => {
-          console.log("onConfigChanged:", auth);
-          setAuth(auth);
-        }}
+        onConfigChanged={(auth) => setAuth(auth)}
       />
     );
   }

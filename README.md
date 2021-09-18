@@ -39,6 +39,7 @@ live-server ./dist/index.html
 * [Testing-library](https://testing-library.com/docs/react-testing-library/intro/)
 * [Webpack](https://webpack.js.org/)
 * [Cypress](https://www.cypress.io/)
+* [SCSS](https://sass-lang.com/)
 
 
 

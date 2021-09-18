@@ -1,89 +1,78 @@
 /// <reference types='cypress' />
-import dashboardConfig from '../fixtures/dashboard.json'
+import dashboardConfig from "../fixtures/dashboard.json";
 
-describe('show pipeline', () => {
-
-  const inputLabel = 'input'
-  const pipelineAreaLabel = 'textarea'
-  const token = dashboardConfig.token
-  const orgName = dashboardConfig.orgName
-  const pipelines = dashboardConfig.pipelines
-
+describe("show pipeline", () => {
+  const inputLabel = "input";
+  const pipelineAreaLabel = "textarea";
+  const token = dashboardConfig.token;
+  const orgName = dashboardConfig.orgName;
+  const pipelines = dashboardConfig.pipelines;
 
   beforeEach(() => {
-    cy.visit(Cypress.env('url'))
-  })
+    cy.visit(Cypress.env("url"));
+  });
 
+  it("displays buildKite info dialog", () => {
+    cy.get(inputLabel).should("have.length", 3);
 
-  it('displays buildKite info dialog', () => {
-    cy.get(inputLabel).should('have.length', 3)
+    cy.get(inputLabel).first().should("have.text", "");
+    cy.get(inputLabel).last().should("have.text", "");
 
-    cy.get(inputLabel).first().should('have.text', '')
-    cy.get(inputLabel).last().should('have.text', '')
+    cy.get(pipelineAreaLabel).should("have.length", 1);
+  });
 
-    cy.get(pipelineAreaLabel).should('have.length', 1)
-  })
-
-  const orgNameTitle = 'Organization Name'
-  const accessTokenTitle = 'Access Token'
-  const pipelineTitle = '.pipeline__title-content'
-  it('should can add pipeline, and update pipeline settings', () => {
+  const orgNameTitle = "Organization Name";
+  const accessTokenTitle = "Access Token";
+  const pipelineTitle = ".pipeline__title-content";
+  it("should can add pipeline, and update pipeline settings", () => {
     // We'll store our item text in a variable so we can reuse it
 
+    cy.contains(accessTokenTitle).parent().find("input[type=text]").type(token);
 
-    cy.contains(accessTokenTitle)
-      .parent()
-      .find('input[type=text]')
-      .type(token)
+    cy.contains(orgNameTitle).parent().find("input[type=text]").type(orgName);
 
-    cy.contains(orgNameTitle)
-      .parent()
-      .find('input[type=text]')
-      .type(orgName)
+    cy.get("textarea").type(`${pipelines[0]}`);
 
-    cy.get('textarea')
-      .type(`${pipelines[0]}`)
-
-    cy.get('.btn')
+    cy.get(".btn")
       .click()
       .then(() => {
-        expect(localStorage.getItem('org')).to.equal(orgName)
-        expect(localStorage.getItem('team')).to.equal('')
-        expect(localStorage.getItem('search')).to.equal(pipelines[0])
-        expect(localStorage.getItem('token')).to.equal(token)
+        expect(localStorage.getItem("org")).to.equal(orgName);
+        expect(localStorage.getItem("team")).to.equal("");
+        expect(localStorage.getItem("search")).to.equal(pipelines[0]);
+        expect(localStorage.getItem("token")).to.equal(token);
       })
-
-    cy.get(pipelineTitle)
-      .first()
-      .should('have.text', pipelines[0])
-
+      .then(() => {
+        cy.get(pipelineTitle).first().should("have.text", pipelines[0]);
+      });
 
     // should update the pipeline settings
 
-    cy.get('.icon.setting').click()
+    cy.get(".icon.setting").click();
     cy.contains(accessTokenTitle)
       .parent()
-      .find('input[type=text]').should('have.value', token)
+      .find("input[type=text]")
+      .should("have.value", token);
     cy.contains(orgNameTitle)
       .parent()
-      .find('input[type=text]').should('have.value', orgName)
+      .find("input[type=text]")
+      .should("have.value", orgName);
 
-    cy.get('textarea')
-      .should('have.value', `${pipelines[0]}`)
+    cy.get("textarea").should("have.value", `${pipelines[0]}`);
 
-    cy.get('textarea')
-      .type(`{enter}${pipelines[1]}`)
+    cy.get("textarea").type(`{enter}${pipelines[1]}`);
 
-    cy.get('.btn')
+    cy.get(".btn")
       .click()
       .then(() => {
-        expect(localStorage.getItem('org')).to.equal(orgName)
-        expect(localStorage.getItem('team')).to.equal('')
-        expect(localStorage.getItem('search')).to.equal(pipelines.join('\n'))
-        expect(localStorage.getItem('token')).to.equal(token)
+        expect(localStorage.getItem("org")).to.equal(orgName);
+        expect(localStorage.getItem("team")).to.equal("");
+        expect(localStorage.getItem("search")).to.equal(pipelines.join("\n"));
+        expect(localStorage.getItem("token")).to.equal(token);
       })
+      .then(() => {
+        cy.get(pipelineTitle).should("have.length", 2);
+      });
+  });
 
-    cy.get(pipelineTitle)
-      .should('have.length', 2)
-  })
-})
+  it("should use new localStoreValue when updated pipeline names", () => {});
+});

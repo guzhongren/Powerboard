@@ -1,27 +1,19 @@
 import * as React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./Auth.scss";
-import { parse, stringify } from "query-string";
 import { compact, union, isArray } from "lodash";
 import { saveValue, getValueByKey } from "../Utils/LocalStorageUtils";
-import { DASHBOARD_AUTH } from "../Constants/Auth";
+import { DASHBOARD_AUTH, IAuth } from "../Constants/Auth";
+import {splitSearch} from '../Utils/StringUtils'
 
-const Auth: React.FC<{ message?: string }> = (props) => {
-  const params = parse(location.search) as {
-    orz: string;
-    team: string;
-    search: string;
-    token: string;
-  };
-
-  const searchQuery = isArray(params.search)
-    ? params.search.join("\n")
-    : params.search;
-
-  const [token, setToken] = useState(params.token);
-  const [team, setTeam] = useState(params.team);
-  const [search, setSearch] = useState(searchQuery);
-  const [orz, setOrz] = useState(params.orz);
+const Auth: React.FC<{
+  message?: string;
+  onConfigChanged?: (auth: IAuth) => void;
+}> = ({message, onConfigChanged}) => {
+  const [token, setToken] = useState(getValueByKey(DASHBOARD_AUTH.TOKEN));
+  const [team, setTeam] = useState(getValueByKey(DASHBOARD_AUTH.TEAM));
+  const [search, setSearch] = useState(getValueByKey(DASHBOARD_AUTH.SEARCH));
+  const [orz, setOrz] = useState(getValueByKey(DASHBOARD_AUTH.ORG));
 
   const storeConfig = () => {
     saveValue(DASHBOARD_AUTH.ORG, orz);
@@ -30,29 +22,19 @@ const Auth: React.FC<{ message?: string }> = (props) => {
     saveValue(DASHBOARD_AUTH.TOKEN, token);
   };
 
-  useEffect(() => {
-    console.log("Restore config from localStorage");
-    setOrz(getValueByKey(DASHBOARD_AUTH.ORG));
-    setTeam(getValueByKey(DASHBOARD_AUTH.TEAM));
-    setSearch(getValueByKey(DASHBOARD_AUTH.SEARCH));
-    setToken(getValueByKey(DASHBOARD_AUTH.TOKEN));
-  }, [orz, team, search, token]);
-
   const submit = () => {
-    const parsedSearch = search ? union(compact(search.split(/\n/))) : "";
-
-    location.search = stringify({
-      token,
-      team,
-      search: parsedSearch,
-      orz: orz.toLowerCase(),
-    });
     storeConfig();
+    onConfigChanged({
+      org: orz,
+      team,
+      search: splitSearch(search),
+      token,
+    });
   };
 
   return (
     <div className="auth">
-      {props.message && <div className="auth__message">{props.message}</div>}
+      {message && <div className="auth__message">{message}</div>}
       <div>
         <label>
           <span>* Access Token</span>

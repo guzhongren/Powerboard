@@ -4,3 +4,10 @@ export const DASHBOARD_AUTH = {
   SEARCH: "search",
   TOKEN: "token",
 };
+
+export interface IAuth {
+  org: string;
+  team: string;
+  search: string | string[];
+  token: string;
+}

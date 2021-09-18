@@ -4,6 +4,7 @@ import dashboardConfig from "../fixtures/dashboard.json";
 describe("show pipeline", () => {
   const inputLabel = "input";
   const pipelineAreaLabel = "textarea";
+  const goButton = ".btn";
   const token = dashboardConfig.token;
   const orgName = dashboardConfig.orgName;
   const pipelines = dashboardConfig.pipelines;
@@ -20,7 +21,7 @@ describe("show pipeline", () => {
   });
 
   it("displays buildKite info dialog", () => {
-    cy.get(inputLabel).should("have.length", 3);
+    cy.get(inputLabel).should("have.length", 4);
 
     cy.get(inputLabel).first().should("have.text", "");
     cy.get(inputLabel).last().should("have.text", "");
@@ -38,7 +39,7 @@ describe("show pipeline", () => {
 
     cy.get("textarea").type(`${pipelines[0]}`);
 
-    cy.get(".btn")
+    cy.get(goButton)
       .click()
       .then(() => {
         expect(localStorage.getItem(DASHBOARD_AUTH.ORG)).to.equal(orgName);
@@ -68,7 +69,7 @@ describe("show pipeline", () => {
 
     cy.get("textarea").type(`{enter}${pipelines[1]}`);
 
-    cy.get(".btn")
+    cy.get(goButton)
       .click()
       .then(() => {
         expect(localStorage.getItem(DASHBOARD_AUTH.ORG)).to.equal(orgName);
@@ -84,16 +85,20 @@ describe("show pipeline", () => {
   });
 
   it("should import auth config json file into app", () => {
-    cy.clearLocalStorage()
+    cy.clearLocalStorage();
 
-    cy.get(".import").attachFile("mockedImportAuth.json");
-
-    expect(localStorage.getItem(DASHBOARD_AUTH.ORG)).to.equal('elastic');
-    expect(localStorage.getItem(DASHBOARD_AUTH.TEAM)).to.equal("");
-    expect(localStorage.getItem(DASHBOARD_AUTH.SEARCH)).to.equal(
-      ["apm-onweek-alerts-as-code", "kibana / on merge"].join("\n")
-    );
-    expect(localStorage.getItem(DASHBOARD_AUTH.TOKEN)).to.equal('1d03bce0997fa7376600db8819a5b64a612afe61');
-
+    cy.get("#import").attachFile("mockedImportAuth.json");
+    cy.get(goButton)
+      .click()
+      .then(() => {
+        expect(localStorage.getItem(DASHBOARD_AUTH.ORG)).to.equal("elastic");
+        expect(localStorage.getItem(DASHBOARD_AUTH.TEAM)).to.equal("");
+        expect(localStorage.getItem(DASHBOARD_AUTH.SEARCH)).to.equal(
+          ["apm-onweek-alerts-as-code", "kibana / on merge"].join("\n")
+        );
+        expect(localStorage.getItem(DASHBOARD_AUTH.TOKEN)).to.equal(
+          "1d03bce0997fa7376600db8819a5b64a612afe61"
+        );
+      });
   });
 });

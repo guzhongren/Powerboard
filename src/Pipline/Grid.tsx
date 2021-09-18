@@ -60,7 +60,7 @@ const Grid: React.FC<{
     rowHeight: 6,
     onLayoutChange: (layout: any, layoutsParam: Layouts) => {
       const storedLayout = getLayouts();
-      if (layout.length === 0 && layoutsParam.lg.length <= 0) {
+      if (layout.length === 0 && layoutsParam.md.length <= 0) {
         console.info("init");
       } else {
         if (!isEqual(layoutsParam, storedLayout)) {

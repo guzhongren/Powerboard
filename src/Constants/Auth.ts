@@ -6,8 +6,8 @@ export const DASHBOARD_AUTH = {
 };
 
 export interface IAuth {
-  org: string;
-  team: string;
-  search: string | string[];
-  token: string;
+  org?: string;
+  team?: string;
+  search?: string;
+  token?: string;
 }

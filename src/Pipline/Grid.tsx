@@ -14,11 +14,13 @@ import { getLayouts, saveLayouts } from "../Utils/LayoutStorageUtils";
 import { DEFAULT_ITEM_LAYOUT } from "../Constants/Grid";
 import { PIPELINE_AUTO_REFRESH_PERIOD } from "../Constants/Config";
 import { IAuth } from "../Constants/Auth";
+import {updateAuth} from '../Utils/ConvertAuth'
+
 
 const ReactGridLayout = WidthProvider(Responsive);
 
 const Grid: React.FC<{
-  authConfig?: IAuth;
+  authConfig?: any;
 }> = ({ authConfig }) => {
   const [lastUpdateTime, setLastUpdateTime] = useState(dayjs());
   const [layouts] = useState(getLayouts() || {});
@@ -43,7 +45,7 @@ const Grid: React.FC<{
         <Auth
           message="API ERROR, Please check your config"
           onConfigChanged={(auth: IAuth) => {
-            setAuth(auth);
+            setAuth(updateAuth(auth));
           }}
         />
       </>
@@ -60,7 +62,10 @@ const Grid: React.FC<{
     rowHeight: 6,
     onLayoutChange: (layout: any, layoutsParam: Layouts) => {
       const storedLayout = getLayouts();
-      if (layout.length === 0 && layoutsParam.md.length <= 0) {
+      if (
+        layout.length === 0 &&
+        (layoutsParam.md?.length <= 0 || layoutsParam.lg?.length <= 0)
+      ) {
         console.info("init");
       } else {
         if (!isEqual(layoutsParam, storedLayout)) {
@@ -73,12 +78,12 @@ const Grid: React.FC<{
     <React.Fragment>
       <Titan
         lastUpdate={lastUpdateTime}
-        onConfigChanged={(auth) => setAuth(auth)}
+        onConfigChanged={(auth) => setAuth(updateAuth(auth))}
       />
       {pipelines.length === 0 && data && (
         <Auth
           message="No pipelines found, Please check your config"
-          onConfigChanged={(auth: IAuth) => setAuth(auth)}
+          onConfigChanged={(auth: IAuth) => setAuth(updateAuth(auth))}
         />
       )}
       <ReactGridLayout {...defaultLayoutProps} layouts={layouts}>

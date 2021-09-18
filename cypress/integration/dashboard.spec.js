@@ -8,6 +8,13 @@ describe("show pipeline", () => {
   const orgName = dashboardConfig.orgName;
   const pipelines = dashboardConfig.pipelines;
 
+  const DASHBOARD_AUTH = {
+    ORG: "org",
+    TEAM: "team",
+    SEARCH: "search",
+    TOKEN: "token",
+  };
+
   beforeEach(() => {
     cy.visit(Cypress.env("url"));
   });
@@ -34,10 +41,12 @@ describe("show pipeline", () => {
     cy.get(".btn")
       .click()
       .then(() => {
-        expect(localStorage.getItem("org")).to.equal(orgName);
-        expect(localStorage.getItem("team")).to.equal("");
-        expect(localStorage.getItem("search")).to.equal(pipelines[0]);
-        expect(localStorage.getItem("token")).to.equal(token);
+        expect(localStorage.getItem(DASHBOARD_AUTH.ORG)).to.equal(orgName);
+        expect(localStorage.getItem(DASHBOARD_AUTH.TEAM)).to.equal("");
+        expect(localStorage.getItem(DASHBOARD_AUTH.SEARCH)).to.equal(
+          pipelines[0]
+        );
+        expect(localStorage.getItem(DASHBOARD_AUTH.TOKEN)).to.equal(token);
       })
       .then(() => {
         cy.get(pipelineTitle).first().should("have.text", pipelines[0]);
@@ -62,15 +71,29 @@ describe("show pipeline", () => {
     cy.get(".btn")
       .click()
       .then(() => {
-        expect(localStorage.getItem("org")).to.equal(orgName);
-        expect(localStorage.getItem("team")).to.equal("");
-        expect(localStorage.getItem("search")).to.equal(pipelines.join("\n"));
-        expect(localStorage.getItem("token")).to.equal(token);
+        expect(localStorage.getItem(DASHBOARD_AUTH.ORG)).to.equal(orgName);
+        expect(localStorage.getItem(DASHBOARD_AUTH.TEAM)).to.equal("");
+        expect(localStorage.getItem(DASHBOARD_AUTH.SEARCH)).to.equal(
+          pipelines.join("\n")
+        );
+        expect(localStorage.getItem(DASHBOARD_AUTH.TOKEN)).to.equal(token);
       })
       .then(() => {
         cy.get(pipelineTitle).should("have.length", 2);
       });
   });
 
-  it("should use new localStoreValue when updated pipeline names", () => {});
+  it("should import auth config json file into app", () => {
+    cy.clearLocalStorage()
+
+    cy.get(".import").attachFile("mockedImportAuth.json");
+
+    expect(localStorage.getItem(DASHBOARD_AUTH.ORG)).to.equal('elastic');
+    expect(localStorage.getItem(DASHBOARD_AUTH.TEAM)).to.equal("");
+    expect(localStorage.getItem(DASHBOARD_AUTH.SEARCH)).to.equal(
+      ["apm-onweek-alerts-as-code", "kibana / on merge"].join("\n")
+    );
+    expect(localStorage.getItem(DASHBOARD_AUTH.TOKEN)).to.equal('1d03bce0997fa7376600db8819a5b64a612afe61');
+
+  });
 });

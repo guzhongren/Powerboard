@@ -7,9 +7,10 @@ import Grid from "./Pipline/Grid";
 import { getValueByKey } from "./Utils/LocalStorageUtils";
 import { DASHBOARD_AUTH, IAuth } from "./Constants/Auth";
 import { splitSearch } from "./Utils/StringUtils";
+import {updateAuth} from './Utils/ConvertAuth'
 
 function App() {
-  const authConfig: IAuth = {
+  const authConfig: any = {
     org: getValueByKey(DASHBOARD_AUTH.ORG),
     team: getValueByKey(DASHBOARD_AUTH.TEAM),
     search: splitSearch(getValueByKey(DASHBOARD_AUTH.SEARCH)),
@@ -22,7 +23,7 @@ function App() {
   } else {
     return (
       <Auth
-        onConfigChanged={(auth) => setAuth(auth)}
+        onConfigChanged={(auth) => setAuth(updateAuth(auth))}
       />
     );
   }

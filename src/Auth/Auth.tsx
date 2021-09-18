@@ -4,12 +4,13 @@ import "./Auth.scss";
 import { compact, union, isArray } from "lodash";
 import { saveValue, getValueByKey } from "../Utils/LocalStorageUtils";
 import { DASHBOARD_AUTH, IAuth } from "../Constants/Auth";
-import {splitSearch} from '../Utils/StringUtils'
+import { splitSearch } from "../Utils/StringUtils";
+import { importJsonFile } from "../Utils/JsonFileProcessor";
 
 const Auth: React.FC<{
   message?: string;
   onConfigChanged?: (auth: IAuth) => void;
-}> = ({message, onConfigChanged}) => {
+}> = ({ message, onConfigChanged }) => {
   const [token, setToken] = useState(getValueByKey(DASHBOARD_AUTH.TOKEN));
   const [team, setTeam] = useState(getValueByKey(DASHBOARD_AUTH.TEAM));
   const [search, setSearch] = useState(getValueByKey(DASHBOARD_AUTH.SEARCH));
@@ -27,9 +28,27 @@ const Auth: React.FC<{
     onConfigChanged({
       org: orz,
       team,
-      search: splitSearch(search),
+      search,
       token,
     });
+  };
+
+  const importConfig = (evt: any) => {
+    if (evt.target.files.length > 0) {
+      const file = evt.target.files[0];
+      importJsonFile(file).then(
+        (data: any) => {
+          setToken(data.token || "");
+          setOrz(data.org || "");
+          setTeam(data.team || "");
+          setSearch(data?.search?.join("\n") || "");
+          console.log("successfully imported");
+        },
+        (err) => {
+          console.error(err);
+        }
+      );
+    }
   };
 
   return (
@@ -93,6 +112,19 @@ const Auth: React.FC<{
             }}
           />
         </label>
+      </div>
+      <div>
+        <div>
+          <label htmlFor="import">Import config</label>
+          <input
+            className="import"
+            onChange={importConfig}
+            type="file"
+            id="import"
+            name="import"
+            multiple={false}
+          />
+        </div>
       </div>
       <div>
         <div className="btn" onClick={submit}>

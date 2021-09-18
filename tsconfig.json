@@ -16,7 +16,8 @@
     "jsx": "react",
     "allowJs": true,
     "experimentalDecorators": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "types": ["cypress", "cypress-file-upload"]
   },
   "include": [
     "./src"

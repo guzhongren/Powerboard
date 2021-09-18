@@ -3155,6 +3155,11 @@ currently-unhandled@^0.4.1:
   dependencies:
     array-find-index "^1.0.1"
 
+cypress-file-upload@^5.0.8:
+  version "5.0.8"
+  resolved "https://registry.nlark.com/cypress-file-upload/download/cypress-file-upload-5.0.8.tgz#d8824cbeaab798e44be8009769f9a6c9daa1b4a1"
+  integrity sha1-2IJMvqq3mORL6ACXafmmydqhtKE=
+
 cypress@^8.3.1:
   version "8.3.1"
   resolved "https://registry.npmjs.org/cypress/-/cypress-8.3.1.tgz"

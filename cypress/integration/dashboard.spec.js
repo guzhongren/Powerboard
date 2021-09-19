@@ -101,4 +101,21 @@ describe("show pipeline", () => {
         );
       });
   });
+  it("should download the latest auth config when click download button", () => {
+    cy.clearLocalStorage();
+
+    cy.get("#import").attachFile("mockedImportAuth.json");
+
+    cy.get("#download")
+      .click()
+      .then(() => {
+        setTimeout(() => {
+          cy.readFile("cypress/fixtures/downloads/dashboardConfig.json")
+            .should("contain", dashboardConfig.token)
+            .should("contain", dashboardConfig.orgName)
+            .should("contain", dashboardConfig.pipelines[0])
+            .should("contain", dashboardConfig.pipelines[1]);
+        }, 2000);
+      });
+  });
 });

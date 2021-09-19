@@ -17,6 +17,7 @@
  */
 // eslint-disable-next-line no-unused-vars
 module.exports = (on, config) => {
-  config.env.url = process.env.ENV === 'production' ? config.env.prod : config.env.local
-  return config
-}
+  config.env.url =
+    process.env.ENV === "production" ? config.env.prod : config.env.local;
+  return config;
+};

@@ -5,15 +5,16 @@ import { compact, union, isArray } from "lodash";
 import { saveValue, getValueByKey } from "../Utils/LocalStorageUtils";
 import { DASHBOARD_AUTH, IAuth } from "../Constants/Auth";
 import { splitSearch } from "../Utils/StringUtils";
-import { importJsonFile } from "../Utils/JsonFileProcessor";
+import { importJsonFile, downloadConfig } from "../Utils/JsonFileProcessor";
 
 const Auth: React.FC<{
   message?: string;
   onConfigChanged?: (auth: IAuth) => void;
 }> = ({ message, onConfigChanged }) => {
+  const downloadFileName = "dashboardConfig.json";
   const [token, setToken] = useState(getValueByKey(DASHBOARD_AUTH.TOKEN));
   const [team, setTeam] = useState(getValueByKey(DASHBOARD_AUTH.TEAM));
-  const [search, setSearch] = useState(getValueByKey(DASHBOARD_AUTH.SEARCH));
+  const [search, setSearch] = useState(getValueByKey(DASHBOARD_AUTH.SEARCH) as any);
   const [orz, setOrz] = useState(getValueByKey(DASHBOARD_AUTH.ORG));
 
   const storeConfig = () => {
@@ -41,7 +42,7 @@ const Auth: React.FC<{
           setToken(data.token || "");
           setOrz(data.org || "");
           setTeam(data.team || "");
-          setSearch(data?.search?.join("\n") || "");
+          setSearch(data?.search?.join('\n') || "");
           console.log("successfully imported");
         },
         (err) => {
@@ -49,6 +50,17 @@ const Auth: React.FC<{
         }
       );
     }
+  };
+
+  const exportConfigHandler = () => {
+    let dlAnchorElem = document.getElementById("downloadAnchorElem");
+    const config: IAuth = {
+      org: orz,
+      team,
+      search,
+      token,
+    };
+    downloadConfig(dlAnchorElem, config, downloadFileName);
   };
 
   return (
@@ -113,7 +125,7 @@ const Auth: React.FC<{
           />
         </label>
       </div>
-      <div>
+      <div className="operation">
         <div>
           <label htmlFor="import">Import config</label>
           <input
@@ -124,6 +136,12 @@ const Auth: React.FC<{
             name="import"
             multiple={false}
           />
+        </div>
+        <div>
+          <a id="downloadAnchorElem" style={{ display: "none" }}></a>
+          <button id="download" onClick={exportConfigHandler}>
+            Download config
+          </button>
         </div>
       </div>
       <div>

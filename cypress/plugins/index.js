@@ -21,8 +21,3 @@ module.exports = (on, config) => {
     process.env.ENV === "production" ? config.env.prod : config.env.local;
   return config;
 };
-
-const { downloadFile } = require("cypress-downloadfile/lib/addPlugin");
-module.exports = (on, config) => {
-  on("task", { downloadFile });
-};

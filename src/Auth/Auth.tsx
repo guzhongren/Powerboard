@@ -39,10 +39,10 @@ const Auth: React.FC<{
       const file = evt.target.files[0];
       importJsonFile(file).then(
         (data: any) => {
-          setToken(data.token || "");
-          setOrz(data.org || "");
+          setToken(data.token || "Invalided access token!");
+          setOrz(data.org || "Invalided organization name!");
           setTeam(data.team || "");
-          setSearch(data?.search?.join('\n') || "");
+          setSearch(data?.search || "");
           console.log("successfully imported");
         },
         (err) => {
@@ -140,7 +140,7 @@ const Auth: React.FC<{
         <div>
           <a id="downloadAnchorElem" style={{ display: "none" }}></a>
           <button id="download" onClick={exportConfigHandler}>
-            Download config
+            Export config
           </button>
         </div>
       </div>

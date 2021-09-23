@@ -27,8 +27,10 @@ Open app: [https://guzhongren.github.io/Buildkite-Dashboard/](https://guzhongren
 ## build & Run
 
 ```shell
+npm install -g yarn
 yarn
-live-server ./dist/index.html
+yarn dev
+yarn cy:open
 ```
 
 ## Tech list

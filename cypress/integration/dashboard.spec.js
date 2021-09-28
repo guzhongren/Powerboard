@@ -117,5 +117,6 @@ describe("show pipeline", () => {
             .should("contain", dashboardConfig.pipelines[1]);
         }, 2000);
       });
+    cy.get(goButton).click();
   });
 });

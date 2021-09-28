@@ -3,10 +3,10 @@ export const importJsonFile = (file: File) => {
     let reader = new FileReader();
     reader.readAsText(file);
     reader.onload = function () {
-      try{
-        resolve(JSON.parse(reader.result as string))
-      } catch(err) {
-        reject("Parse json error: " + err.toString())
+      try {
+        resolve(JSON.parse(reader.result as string));
+      } catch (err) {
+        reject("Parse json error: " + err.toString());
       }
     };
     reader.onerror = function () {

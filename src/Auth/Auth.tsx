@@ -1,10 +1,9 @@
 import * as React from "react";
 import { useState } from "react";
 import "./Auth.scss";
-import { compact, union, isArray } from "lodash";
 import { saveValue, getValueByKey } from "../Utils/LocalStorageUtils";
+import {saveLayouts, getLayouts} from '../Utils/LayoutStorageUtils'
 import { DASHBOARD_AUTH, IAuth } from "../Constants/Auth";
-import { splitSearch } from "../Utils/StringUtils";
 import { importJsonFile, downloadConfig } from "../Utils/JsonFileProcessor";
 
 const Auth: React.FC<{
@@ -39,10 +38,11 @@ const Auth: React.FC<{
       const file = evt.target.files[0];
       importJsonFile(file).then(
         (data: any) => {
-          setToken(data.token || "");
-          setOrz(data.org || "");
+          setToken(data.token || "Invalided access token!");
+          setOrz(data.org || "Invalided organization name!");
           setTeam(data.team || "");
-          setSearch(data?.search?.join('\n') || "");
+          setSearch(data?.search || "");
+          saveLayouts(data.layout || {});
           console.log("successfully imported");
         },
         (err) => {
@@ -60,7 +60,7 @@ const Auth: React.FC<{
       search,
       token,
     };
-    downloadConfig(dlAnchorElem, config, downloadFileName);
+    downloadConfig(dlAnchorElem, {...config, layout: getLayouts(),}, downloadFileName);
   };
 
   return (
@@ -140,7 +140,7 @@ const Auth: React.FC<{
         <div>
           <a id="downloadAnchorElem" style={{ display: "none" }}></a>
           <button id="download" onClick={exportConfigHandler}>
-            Download config
+            Export config
           </button>
         </div>
       </div>

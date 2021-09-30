@@ -15,6 +15,7 @@ function App() {
     team: getValueByKey(DASHBOARD_AUTH.TEAM),
     search: splitSearch(getValueByKey(DASHBOARD_AUTH.SEARCH)),
     token: getValueByKey(DASHBOARD_AUTH.TOKEN),
+    oncall: getValueByKey(DASHBOARD_AUTH.ONCALL),
   };
   const [auth, setAuth] = useState(authConfig);
 

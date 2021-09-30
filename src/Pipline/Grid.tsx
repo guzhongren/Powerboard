@@ -85,10 +85,12 @@ const Grid: React.FC<{
       {pipelines.length === 0 && data && (
         <Auth
           message="No pipelines found, Please check your config"
-          onConfigChanged={(auth: IAuth) => setAuth(updateAuth(auth))}
+          onConfigChanged={(auth: IAuth) => {
+            setAuth(updateAuth(auth))
+          }}
         />
       )}
-      <OncallPannel message={oncall}/>
+      {auth.oncall && <OncallPannel message={auth.oncall}/>}
       <ReactGridLayout {...defaultLayoutProps} layouts={layouts}>
         {pipelines.map((pipeline: any, index: number) => {
           const layoutProps = layouts.lg ? layouts.lg[index] : {};

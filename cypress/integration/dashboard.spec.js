@@ -66,9 +66,9 @@ describe("show pipeline", () => {
       .find("input[type=text]")
       .should("have.value", orgName);
 
-    cy.get("textarea").should("have.value", `${pipelines[0]}`);
+    cy.get("textarea").first().should("have.value", `${pipelines[0]}`);
 
-    cy.get("textarea").type(`{enter}${pipelines[1]}`);
+    cy.get("textarea").first().type(`{enter}${pipelines[1]}`);
 
     cy.get(goButton)
       .click()

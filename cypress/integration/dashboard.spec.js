@@ -38,7 +38,7 @@ describe("show pipeline", () => {
 
     cy.contains(orgNameTitle).parent().find("input[type=text]").type(orgName);
 
-    cy.get("textarea")[0].type(`${pipelines[0]}`);
+    cy.get("textarea").first().type(`${pipelines[0]}`);
 
     cy.get(goButton)
       .click()

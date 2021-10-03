@@ -2,5 +2,6 @@
   "token" : "1d03bce0997fa7376600db8819a5b64a612afe61",
   "org" : "elastic",
   "search" : "apm-onweek-alerts-as-code\nkibana / on merge",
-  "team": ""
+  "team": "",
+  "oncall": ""
 }

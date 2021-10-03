@@ -14,6 +14,7 @@ describe("show pipeline", () => {
     TEAM: "team",
     SEARCH: "search",
     TOKEN: "token",
+    ONCALL: "oncall",
   };
 
   beforeEach(() => {
@@ -26,7 +27,7 @@ describe("show pipeline", () => {
     cy.get(inputLabel).first().should("have.text", "");
     cy.get(inputLabel).last().should("have.text", "");
 
-    cy.get(pipelineAreaLabel).should("have.length", 1);
+    cy.get(pipelineAreaLabel).should("have.length", 2);
   });
 
   const orgNameTitle = "Organization Name";
@@ -37,7 +38,7 @@ describe("show pipeline", () => {
 
     cy.contains(orgNameTitle).parent().find("input[type=text]").type(orgName);
 
-    cy.get("textarea").type(`${pipelines[0]}`);
+    cy.get("textarea")[0].type(`${pipelines[0]}`);
 
     cy.get(goButton)
       .click()
@@ -98,6 +99,9 @@ describe("show pipeline", () => {
         );
         expect(localStorage.getItem(DASHBOARD_AUTH.TOKEN)).to.equal(
           "1d03bce0997fa7376600db8819a5b64a612afe61"
+        );
+        expect(localStorage.getItem(DASHBOARD_AUTH.ONCALL)).to.equal(
+          ""
         );
       });
   });

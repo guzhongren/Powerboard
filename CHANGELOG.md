@@ -2,6 +2,32 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/guzhongren/Buildkite-Dashboard/compare/v1.0.0...v2.0.0) (2021-10-06)
+
+
+### Features
+
+* **cypress:** add intergration test ([62a0a56](https://github.com/guzhongren/Buildkite-Dashboard/commit/62a0a56e3acd8da0a8a8ff3da6643bddafd9a711))
+* **husky:** update husky ([5e27370](https://github.com/guzhongren/Buildkite-Dashboard/commit/5e27370f4dd79d849eaab9ffa51e18144b27b6ff))
+* **trivy:** add trivy to scanner ([406be91](https://github.com/guzhongren/Buildkite-Dashboard/commit/406be91ef915de42dcb66214b7984beb83a4c230))
+
+
+### Bug Fixes
+
+* **ci:** fix ci ([1b90eae](https://github.com/guzhongren/Buildkite-Dashboard/commit/1b90eaeb53713cbae58b21b4c560ec9e819785d6))
+* **ci:** fix trivy ([1c4f6e1](https://github.com/guzhongren/Buildkite-Dashboard/commit/1c4f6e1b63fbf3a8e388e9a997111ea11141b93d))
+* **ci:** update host ([7be9d87](https://github.com/guzhongren/Buildkite-Dashboard/commit/7be9d871fb6e91d878854ea9712385f50a1d2a86))
+* **ci:** update UI test to correct url ([ab3260c](https://github.com/guzhongren/Buildkite-Dashboard/commit/ab3260c30f010bd266074fe0c5a9bff70770b752))
+* **click:** fix mult click ([0f78d6e](https://github.com/guzhongren/Buildkite-Dashboard/commit/0f78d6e06870cc7bf1a5e741df7f2042acd44c72))
+* **cypress:** fix e2e test ([5a9be54](https://github.com/guzhongren/Buildkite-Dashboard/commit/5a9be543a58fcc9b717cbea7762d2d4259e724fe))
+* **security:** ignore trivy issu ([85c8d78](https://github.com/guzhongren/Buildkite-Dashboard/commit/85c8d78616b24e2800e4c56bbde3448d19d7fe8e))
+* **security:** update base image & igonre unfixed issues ([90182b9](https://github.com/guzhongren/Buildkite-Dashboard/commit/90182b9b3770aeb28a6e566208334dd0c6f8f725))
+* **trivy:** fix error ([9646640](https://github.com/guzhongren/Buildkite-Dashboard/commit/9646640c3000050b4baef7789026e2d5b12b9a02))
+* **trivy:** revert & add trivy ignore ([d71a837](https://github.com/guzhongren/Buildkite-Dashboard/commit/d71a8374a6843faca40d05e0f2979efddc1d6bc9))
+* **trivy:** test for founding error ([51589e4](https://github.com/guzhongren/Buildkite-Dashboard/commit/51589e40ec27230249f8a51f0845fa8180847265))
+* **trivy:** use alpine as base image to fix trivy issue ([e926fae](https://github.com/guzhongren/Buildkite-Dashboard/commit/e926fae13b2bda5fae44578ff9ae02c874876031))
+* **typo:** fix typo for e2e ([34fc5c1](https://github.com/guzhongren/Buildkite-Dashboard/commit/34fc5c13040109ee5bc6204e20a93d2aa77adb57))
+
 ## 1.0.0 (2021-01-06)
 
 

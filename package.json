@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "2.0.0",
   "author": "yixi",
   "scripts": {
     "dev": "webpack serve --config build/webpack.dev.js --progress",

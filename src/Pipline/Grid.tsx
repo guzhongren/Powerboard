@@ -15,6 +15,7 @@ import { DEFAULT_ITEM_LAYOUT } from "../Constants/Grid";
 import { PIPELINE_AUTO_REFRESH_PERIOD } from "../Constants/Config";
 import { IAuth } from "../Constants/Auth";
 import {updateAuth} from '../Utils/ConvertAuth'
+import OncallPannel from "@root/Components/OncallPannel";
 
 
 const ReactGridLayout = WidthProvider(Responsive);
@@ -36,6 +37,7 @@ const Grid: React.FC<{
       },
     }
   );
+  const oncall = auth?.oncall
   if (error) {
     return (
       <>
@@ -83,9 +85,12 @@ const Grid: React.FC<{
       {pipelines.length === 0 && data && (
         <Auth
           message="No pipelines found, Please check your config"
-          onConfigChanged={(auth: IAuth) => setAuth(updateAuth(auth))}
+          onConfigChanged={(auth: IAuth) => {
+            setAuth(updateAuth(auth))
+          }}
         />
       )}
+      {auth.oncall && <OncallPannel oncallListJSONString={auth.oncall}/>}
       <ReactGridLayout {...defaultLayoutProps} layouts={layouts}>
         {pipelines.map((pipeline: any, index: number) => {
           const layoutProps = layouts.lg ? layouts.lg[index] : {};

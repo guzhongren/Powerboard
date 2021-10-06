@@ -3,6 +3,7 @@ export const DASHBOARD_AUTH = {
   TEAM: "team",
   SEARCH: "search",
   TOKEN: "token",
+  ONCALL: "oncall"
 };
 
 export interface IAuth {
@@ -10,4 +11,5 @@ export interface IAuth {
   team?: string;
   search?: string;
   token?: string;
+  oncall?: string;
 }

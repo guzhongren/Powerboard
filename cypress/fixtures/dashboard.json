@@ -1,5 +1,6 @@
 {
   "token" : "1d03bce0997fa7376600db8819a5b64a612afe61",
   "orgName" : "elastic",
-  "pipelines" : ["apm-onweek-alerts-as-code", "kibana / on merge"]
+  "pipelines" : ["apm-onweek-alerts-as-code", "kibana / on merge"],
+  "oncall": "{\"startDate\":\"2021-09-15\",\"names\":[\"PengChong\",\"FengWen\",\"YiChen\",\"Lina\",\"ZhongRen\",\"XuDong\",\"Zhang Yu\"]}"
 }

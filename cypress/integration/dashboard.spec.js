@@ -2,6 +2,8 @@
 import dashboardConfig from "../fixtures/dashboard.json";
 
 describe("show pipeline", () => {
+  const pipelinesId = "#pipelines";
+  const importId = "#import";
   const inputLabel = "input";
   const pipelineAreaLabel = "textarea";
   const goButton = ".btn";
@@ -14,6 +16,7 @@ describe("show pipeline", () => {
     TEAM: "team",
     SEARCH: "search",
     TOKEN: "token",
+    ONCALL: "oncall",
   };
 
   beforeEach(() => {
@@ -25,8 +28,10 @@ describe("show pipeline", () => {
 
     cy.get(inputLabel).first().should("have.text", "");
     cy.get(inputLabel).last().should("have.text", "");
+    cy.get(pipelinesId).should("have.text", "");
+    cy.get(pipelinesId).should("have.text", "");
 
-    cy.get(pipelineAreaLabel).should("have.length", 1);
+    cy.get(pipelineAreaLabel).should("have.length", 2);
   });
 
   const orgNameTitle = "Organization Name";
@@ -37,7 +42,7 @@ describe("show pipeline", () => {
 
     cy.contains(orgNameTitle).parent().find("input[type=text]").type(orgName);
 
-    cy.get("textarea").type(`${pipelines[0]}`);
+    cy.get(pipelinesId).type(`${pipelines[0]}`);
 
     cy.get(goButton)
       .click()
@@ -65,9 +70,9 @@ describe("show pipeline", () => {
       .find("input[type=text]")
       .should("have.value", orgName);
 
-    cy.get("textarea").should("have.value", `${pipelines[0]}`);
+    cy.get(pipelinesId).should("have.value", `${pipelines[0]}`);
 
-    cy.get("textarea").type(`{enter}${pipelines[1]}`);
+    cy.get(pipelinesId).type(`{enter}${pipelines[1]}`);
 
     cy.get(goButton)
       .click()
@@ -87,24 +92,46 @@ describe("show pipeline", () => {
   it("should import auth config json file into app", () => {
     cy.clearLocalStorage();
 
-    cy.get("#import").attachFile("mockedImportAuth.json");
+    cy.get(importId)
+      .attachFile("mockedImportAuth.json")
+      .then(() => {
+        setTimeout(() => {
+          cy.get(pipelinesId).contains(dashboardConfig.pipelines.join("\n"));
+          cy.get("#oncallList").contains(dashboardConfig.oncall);
+        }, 4000);
+      });
+
     cy.get(goButton)
       .click()
       .then(() => {
         expect(localStorage.getItem(DASHBOARD_AUTH.ORG)).to.equal("elastic");
         expect(localStorage.getItem(DASHBOARD_AUTH.TEAM)).to.equal("");
         expect(localStorage.getItem(DASHBOARD_AUTH.SEARCH)).to.equal(
-          ["apm-onweek-alerts-as-code", "kibana / on merge"].join("\n")
+          dashboardConfig.pipelines.join("\n")
         );
         expect(localStorage.getItem(DASHBOARD_AUTH.TOKEN)).to.equal(
           "1d03bce0997fa7376600db8819a5b64a612afe61"
+        );
+        expect(localStorage.getItem(DASHBOARD_AUTH.ONCALL)).to.equal(
+          JSON.stringify({
+            startDate: "2021-09-15",
+            names: [
+              "PengChong",
+              "FengWen",
+              "YiChen",
+              "Lina",
+              "ZhongRen",
+              "XuDong",
+              "Zhang Yu",
+            ],
+          })
         );
       });
   });
   it("should download the latest auth config when click download button", () => {
     cy.clearLocalStorage();
 
-    cy.get("#import").attachFile("mockedImportAuth.json");
+    cy.get(importId).attachFile("mockedImportAuth.json");
 
     cy.get("#download")
       .click()
@@ -115,6 +142,24 @@ describe("show pipeline", () => {
             .should("contain", dashboardConfig.orgName)
             .should("contain", dashboardConfig.pipelines[0])
             .should("contain", dashboardConfig.pipelines[1]);
+        }, 2000);
+      });
+    cy.get(goButton).click();
+  });
+
+  it("should contain oncall list when click download button", () => {
+    cy.clearLocalStorage();
+
+    cy.get(importId).attachFile("mockedImportAuth.json");
+
+    cy.get("#download")
+      .click()
+      .then(() => {
+        setTimeout(() => {
+          cy.readFile("cypress/fixtures/downloads/dashboardConfig.json").should(
+            "contain",
+            dashboardConfig.oncall
+          );
         }, 2000);
       });
     cy.get(goButton).click();

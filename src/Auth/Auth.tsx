@@ -14,6 +14,7 @@ const Auth: React.FC<{
   const [token, setToken] = useState(getValueByKey(DASHBOARD_AUTH.TOKEN));
   const [team, setTeam] = useState(getValueByKey(DASHBOARD_AUTH.TEAM));
   const [search, setSearch] = useState(getValueByKey(DASHBOARD_AUTH.SEARCH) as any);
+  const [oncall, setOncall] = useState(getValueByKey(DASHBOARD_AUTH.ONCALL));
   const [orz, setOrz] = useState(getValueByKey(DASHBOARD_AUTH.ORG));
 
   const storeConfig = () => {
@@ -21,6 +22,7 @@ const Auth: React.FC<{
     saveValue(DASHBOARD_AUTH.TEAM, team);
     saveValue(DASHBOARD_AUTH.SEARCH, search);
     saveValue(DASHBOARD_AUTH.TOKEN, token);
+    saveValue(DASHBOARD_AUTH.ONCALL, oncall);
   };
 
   const submit = () => {
@@ -30,6 +32,7 @@ const Auth: React.FC<{
       team,
       search,
       token,
+      oncall,
     });
   };
 
@@ -42,6 +45,7 @@ const Auth: React.FC<{
           setOrz(data.org || "Invalided organization name!");
           setTeam(data.team || "");
           setSearch(data?.search || "");
+          setOncall(data.oncall)
           saveLayouts(data.layout || {});
           console.log("successfully imported");
         },
@@ -117,10 +121,24 @@ const Auth: React.FC<{
         <label>
           <span>Pipeline Name</span>
           <textarea
+            id="pipelines"
             placeholder={`Support multiple projects, like :\npipeline-a\npipeline-b\npipeline-c\npipeline-d`}
             value={search}
             onChange={(event) => {
               setSearch(event.target.value);
+            }}
+          />
+        </label>
+      </div>
+      <div>
+        <label>
+          <span>Oncall List</span>
+          <textarea
+            id="oncallList"
+            placeholder={`{\n"startDate": "2021-09-15", \n"names":["PengChong","FengWen","YiChen","Lina","ZhongRen","XuDong","Zhang Yu"]\n}`}
+            value={oncall}
+            onChange={(event) => {
+              setOncall(event.target.value);
             }}
           />
         </label>

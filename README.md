@@ -24,13 +24,20 @@ Open app: [https://guzhongren.github.io/Buildkite-Dashboard/](https://guzhongren
   * __Multiple values__: you can fill your value after wrapping line
 * Click `OK` button
 
-## build & Run
+## Build & Run
 
 ```shell
 npm install -g yarn
 yarn
 yarn dev
 yarn cy:open
+```
+
+## Release
+
+```shell
+yarn [minor|major]release
+git push origin v2.0.0
 ```
 
 ## Tech list

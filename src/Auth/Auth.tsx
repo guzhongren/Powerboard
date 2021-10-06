@@ -45,6 +45,7 @@ const Auth: React.FC<{
           setOrz(data.org || "Invalided organization name!");
           setTeam(data.team || "");
           setSearch(data?.search || "");
+          setOncall(data.oncall)
           saveLayouts(data.layout || {});
           console.log("successfully imported");
         },
@@ -120,6 +121,7 @@ const Auth: React.FC<{
         <label>
           <span>Pipeline Name</span>
           <textarea
+            id="pipelines"
             placeholder={`Support multiple projects, like :\npipeline-a\npipeline-b\npipeline-c\npipeline-d`}
             value={search}
             onChange={(event) => {
@@ -132,6 +134,7 @@ const Auth: React.FC<{
         <label>
           <span>Oncall List</span>
           <textarea
+            id="oncallList"
             placeholder={`{\n"startDate": "2021-09-15", \n"names":["PengChong","FengWen","YiChen","Lina","ZhongRen","XuDong","Zhang Yu"]\n}`}
             value={oncall}
             onChange={(event) => {

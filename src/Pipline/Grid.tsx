@@ -90,7 +90,7 @@ const Grid: React.FC<{
           }}
         />
       )}
-      {auth.oncall && <OncallPannel message={auth.oncall}/>}
+      {auth.oncall && <OncallPannel oncallListJSONString={auth.oncall}/>}
       <ReactGridLayout {...defaultLayoutProps} layouts={layouts}>
         {pipelines.map((pipeline: any, index: number) => {
           const layoutProps = layouts.lg ? layouts.lg[index] : {};

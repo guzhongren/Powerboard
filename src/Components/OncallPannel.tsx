@@ -1,45 +1,51 @@
-import * as React from 'react'
-import {useState} from 'react'
-import * as dayjs from 'dayjs'
-import {useEffect} from 'react'
+import * as React from "react";
+import { useState } from "react";
+import * as dayjs from "dayjs";
+import { useEffect } from "react";
 import "./OncallPannel.scss";
 import * as relativeTime from "dayjs/plugin/relativeTime";
+import { isMemberName } from "typescript";
 
-dayjs.extend(relativeTime)
+dayjs.extend(relativeTime);
 
-const OncallPannel: React.FC<{ message?: string; }> = ({message}) => {
-  const jsonInput = '{"startDate": "2021-09-15", "names":["PengChong","FengWen","YiChen","Lina","ZhongRen","XuDong","Zhang Yu"]}'
-  const data = message ? JSON.parse(message) :jsonInput
-  const startDate = dayjs(data.startDate)
-  const names = data.names
-  console.log("names: ", names)
-  console.log("this is start Date: ", startDate)
-  const diffDays = dayjs().diff(startDate, 'day')
-  const index = (Math.floor(diffDays / 7)) % names.length
-  const nextIndex = index + 1 >= names.length ? 0 : index + 1
-  console.log("index: ", index)
+const OncallPannel: React.FC<{ oncallListJSONString?: string }> = ({
+  oncallListJSONString,
+}) => {
+  const [isEmptyString, setIsEmptyString] = useState(
+    oncallListJSONString.length === 0 || !oncallListJSONString
+  );
+  let startDate;
+  let names;
+  let index;
+  let nextIndex;
+
+  if (!isEmptyString) {
+    const data = JSON.parse(oncallListJSONString);
+    startDate = dayjs(data.startDate);
+    names = data.names;
+    const diffDays = dayjs().diff(startDate, "day");
+    index = Math.floor(diffDays / 7) % names.length;
+    nextIndex = index + 1 >= names.length ? 0 : index + 1;
+  }
+
   return (
-    <>
-      <div className="oncall">
-        <div className="oncall_item">
-          <span className="oncall_title">
-            Primary On-call
-          </span>
-          <span className="oncall_name">
-            {names[index]}
-          </span>
+    <React.Fragment>
+      {!isEmptyString && (
+        <div className="notice">
+          <div className="oncall">
+            <div className="oncall__item">
+              <span className="oncall__item-title">Primary On-call</span>
+              <span className="oncall__item-name">{names[index]}</span>
+            </div>
+            <div className="oncall__item">
+              <span className="oncall__item-title">Secondary On-call</span>
+              <span className="oncall__item-name">{names[nextIndex]}</span>
+            </div>
+          </div>
         </div>
-        <div className="oncall_item">
-          <span className="oncall_title">
-            Secondary On-call
-          </span>
-          <span className="oncall_name">
-            {names[nextIndex]}
-          </span>
-        </div>
-      </div>
-    </>
-  )
-}
+      )}
+    </React.Fragment>
+  );
+};
 
 export default OncallPannel;

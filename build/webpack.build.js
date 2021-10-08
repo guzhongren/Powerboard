@@ -91,7 +91,9 @@ module.exports = {
       template: "../public/index.html",
       filename: "index.html",
     }),
-    new GenerateSW(),
+    new GenerateSW({
+      skipWaiting: true,
+    }),
     new CopyPlugin({
       patterns: [
         { from: "../public/manifest.json", to: "manifest.json" },

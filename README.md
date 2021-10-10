@@ -4,7 +4,7 @@
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fguzhongren%2FBuildkite-Dashboard.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fguzhongren%2FBuildkite-Dashboard?ref=badge_shield)
 
 
-![Buildkite-Dashboard](./src/assets/Buildkite-dashboard.gif)
+![Buildkite-Dashboard](https://cdn.jsdelivr.net/gh/guzhongren/data-hosting@main/Buildkite-Dashboard2021-10-10-222918.6j7mi2nsatk0.gif)
 
 ## Get access token
 

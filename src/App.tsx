@@ -1,7 +1,6 @@
 import * as React from "react";
 import { useState } from "react";
 import "./App.scss";
-import { parse } from "query-string";
 import Auth from "@root/Auth/Auth";
 import Grid from "./Pipline/Grid";
 import { getValueByKey } from "./Utils/LocalStorageUtils";

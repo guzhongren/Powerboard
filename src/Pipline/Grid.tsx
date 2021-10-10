@@ -1,7 +1,6 @@
 import * as React from "react";
 import useSWR from "swr";
-import { parse } from "query-string";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import * as dayjs from "dayjs";
 import { Responsive, WidthProvider, Layouts } from "react-grid-layout";
 import { isEqual } from "lodash";
@@ -37,7 +36,6 @@ const Grid: React.FC<{
       },
     }
   );
-  const oncall = auth?.oncall
   if (error) {
     return (
       <>

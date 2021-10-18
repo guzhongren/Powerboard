@@ -1,5 +1,6 @@
 @import "../root.scss";
 .notice {
+  display: flex;
   .oncall {
     height: 5rem;
     background-color: #009eff;
@@ -19,6 +20,19 @@
       &-name {
         font-size: 3em;
         align-self: center;
+      }
+    }
+  }
+  .commit-count {
+    background-color: #009eff;
+    display: flex;
+    color: $font-color;
+    div {
+      border: #4caf50 solid 0.1rem;
+      display: flex;
+      flex-direction: column;
+      span{
+        border: #4caf50 solid 0.1rem;
       }
     }
   }

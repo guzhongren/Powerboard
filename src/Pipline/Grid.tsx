@@ -1,19 +1,18 @@
 import * as React from "react";
+import {useState} from "react";
 import useSWR from "swr";
-import { parse } from "query-string";
-import { useState, useEffect } from "react";
 import * as dayjs from "dayjs";
-import { Responsive, WidthProvider, Layouts } from "react-grid-layout";
-import { isEqual } from "lodash";
-import { buildKiteQuery, fetcher } from "@root/fetcher";
-import { mergePipelinesWithResponse } from "@root/help";
+import {Layouts, Responsive, WidthProvider} from "react-grid-layout";
+import {isEqual} from "lodash";
+import {buildKiteQuery, fetcher} from "@root/fetcher";
+import {mergePipelinesWithResponse} from "@root/help";
 import Pipeline from "@root/Pipline/Pipeline";
 import Titan from "@root/Titan/Titan";
 import Auth from "@root/Auth/Auth";
-import { getLayouts, saveLayouts } from "../Utils/LayoutStorageUtils";
-import { DEFAULT_ITEM_LAYOUT } from "../Constants/Grid";
-import { PIPELINE_AUTO_REFRESH_PERIOD } from "../Constants/Config";
-import { IAuth } from "../Constants/Auth";
+import {getLayouts, saveLayouts} from "../Utils/LayoutStorageUtils";
+import {DEFAULT_ITEM_LAYOUT} from "../Constants/Grid";
+import {PIPELINE_AUTO_REFRESH_PERIOD} from "../Constants/Config";
+import {IAuth} from "../Constants/Auth";
 import {updateAuth} from '../Utils/ConvertAuth'
 import OncallPannel from "@root/Components/OncallPannel";
 
@@ -22,12 +21,12 @@ const ReactGridLayout = WidthProvider(Responsive);
 
 const Grid: React.FC<{
   authConfig?: any;
-}> = ({ authConfig }) => {
+}> = ({authConfig}) => {
   const [lastUpdateTime, setLastUpdateTime] = useState(dayjs());
   const [layouts] = useState(getLayouts() || {});
   const [auth, setAuth] = useState(authConfig);
 
-  const { data, error } = useSWR(
+  const {data, error} = useSWR(
     [buildKiteQuery(auth?.org, auth?.team, auth?.search), auth?.token],
     fetcher,
     {
@@ -60,7 +59,7 @@ const Grid: React.FC<{
 
   const defaultLayoutProps = {
     className: "container",
-    cols: { lg: 100, md: 10, sm: 6, xs: 4, xxs: 2 },
+    cols: {lg: 100, md: 10, sm: 6, xs: 4, xxs: 2},
     rowHeight: 6,
     onLayoutChange: (layout: any, layoutsParam: Layouts) => {
       const storedLayout = getLayouts();
@@ -90,7 +89,7 @@ const Grid: React.FC<{
           }}
         />
       )}
-      {auth.oncall && <OncallPannel oncallListJSONString={auth.oncall}/>}
+      {auth.oncall && <OncallPannel oncallListJSONString={auth.oncall} pipelines={pipelines}/>}
       <ReactGridLayout {...defaultLayoutProps} layouts={layouts}>
         {pipelines.map((pipeline: any, index: number) => {
           const layoutProps = layouts.lg ? layouts.lg[index] : {};
@@ -104,7 +103,7 @@ const Grid: React.FC<{
                 y: index + 10,
               }}
             >
-              <Pipeline pipeline={pipeline} key={pipeline.node.name} />
+              <Pipeline pipeline={pipeline} key={pipeline.node.name}/>
             </div>
           );
         })}

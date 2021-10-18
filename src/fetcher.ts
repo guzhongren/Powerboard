@@ -9,18 +9,27 @@ export const fetcher = (query: string, token: string) => {
     headers: {
       authorization: `Bearer ${token}`,
     },
-  }).request(query).catch(err => {
-    console.error(`There are some error when request buildkite, the page will auto reload! ${err}`)
-    setTimeout(() => {
-      window.location.reload()
-    }, AUTO_RELOAD_PERIOD)
   })
+    .request(query)
+    .catch((err) => {
+      console.error(
+        `There are some error when request buildkite, the page will auto reload! ${err}`
+      )
+      setTimeout(() => {
+        window.location.reload()
+      }, AUTO_RELOAD_PERIOD)
+    })
 }
 
-export const buildKiteQuery = (orz: string, team: string, search: string[] | string) => {
-
+export const buildKiteQuery = (
+  orz: string,
+  team: string,
+  search: string[] | string
+) => {
   const buildPipelineQuery = (pipeline: string, index?: number) => `
-    pipelines${isNil(index) ? '' : index}: pipelines(first:10 ${team ? `,team: "${team}"` : ''} ${pipeline ? `,search: "${pipeline}"` : ''}) {
+    pipelines${isNil(index) ? '' : index}: pipelines(first:10 ${
+    team ? `,team: "${team}"` : ''
+  } ${pipeline ? `,search: "${pipeline}"` : ''}) {
       edges {
         node {
           name
@@ -75,7 +84,7 @@ export const buildKiteQuery = (orz: string, team: string, search: string[] | str
 
   return gql`
     {
-      organization(slug: "${orz}") {
+      organization(slug: "${orz.toLowerCase()}") {
         name
         ${isString(search) ? buildPipelineQuery(search) : ''}
         ${isArray(search) ? search.map(buildPipelineQuery) : ''}

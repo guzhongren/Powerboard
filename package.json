@@ -1,21 +1,23 @@
 {
   "version": "1.0.0",
-  "author": "yixi",
+  "author": "guhzongren",
+  "name": "Powerboard",
   "scripts": {
     "dev": "webpack serve --config build/webpack.dev.js --progress",
     "build": "webpack --config build/webpack.build.js",
     "test": "jest",
-    "lint": "lint-staged && yarn tslint --project tsconfig.json",
-    "typecheck": "tsc --noEmit",
+    "fix": "prettier -w .",
+    "lint": "prettier -c .",
     "release": "standard-version --release-as patch",
     "minorRelease": "standard-version --release-as minor",
     "majorRelease": "standard-version --release-as major",
     "cy:run": "cross-env ENV=production cypress run --spec 'cypress/integration/dashboard.spec.js'",
+    "cy:docker": "cross-env ENV=docker cypress run --spec 'cypress/integration/dashboard.spec.js'",
     "cy:open": "cypress open"
   },
   "lint-staged": {
-    "./src/**/*.{js,jsx,ts,tsx,json,md}": [
-      "yarn lint --fix"
+    "src/**/*{.ts,.tsx}": [
+      "yarn prettier -c"
     ]
   },
   "browserslist": {
@@ -69,12 +71,12 @@
     "pinst": "^2.1.6",
     "postcss": "^8.2.10",
     "postcss-loader": "^6.1.0",
+    "prettier": "^2.5.1",
     "sass-loader": "^12.1.0",
     "standard-version": "^9.1.0",
     "style-loader": "^3.0.0",
     "ts-jest": "^27.0.2",
     "ts-loader": "^9.2.2",
-    "tslint": "^6.1.3",
     "tslint-react": "^5.0.0",
     "tslint-react-hooks": "^2.2.1",
     "typescript": "^4.0.3",

@@ -5,7 +5,7 @@ on:
     branches:
       - master
   schedule:
-    - cron: "0 0 * * *"
+    - cron: '0 0 * * *'
 
 jobs:
   deployToGitHubPages:
@@ -18,9 +18,12 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12.13.0
-      - name: yarn install
+      - name: install & lint
         run: |
-          yarn
+          yarn install && yarn lint
+      - name: E2E
+        run: |
+          docker-compose up --build e2e
       - name: build project
         run: |
           yarn build
@@ -34,19 +37,15 @@ jobs:
           user_email: guzhongren@live.cn
       - name: UI Automation Test
         run: sleep 60 && yarn cy:run
-      - name: Build images
-        run: |
-          docker build -t dashboard:${{ github.sha }} .
       - name: Trivy scanner
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: 'dashboard:${{ github.sha }}'
+          image-ref: 'powerboard_web'
           format: 'table'
           exit-code: '1'
           ignore-unfixed: true
           severity: 'CRITICAL,HIGH'
       # - name: Trivy scanner
-        # run: |Trivy scanner for images
-        #   docker run --rm -v /var/run/docker.sock:/var/run/docker.sock \
-        #     aquasec/trivy image --severity HIGH,CRITICAL --exit-code 1 dashboard:${{ github.sha }}
-
+      # run: |Trivy scanner for images
+      #   docker run --rm -v /var/run/docker.sock:/var/run/docker.sock \
+      #     aquasec/trivy image --severity HIGH,CRITICAL --exit-code 1 dashboard:${{ github.sha }}

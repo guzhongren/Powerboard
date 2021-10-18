@@ -1,19 +1,19 @@
-import * as React from "react";
-import "./Titan.scss";
-import Modal from "@root/Modal/Modal";
-import Auth from "@root/Auth/Auth";
-import { useState } from "react";
-import { IAuth } from "../Constants/Auth";
+import * as React from 'react'
+import './Titan.scss'
+import Modal from '@root/Modal/Modal'
+import Auth from '@root/Auth/Auth'
+import { useState } from 'react'
+import { IAuth } from '../Constants/Auth'
 
 const Titan: React.FC<{
-  lastUpdate: any;
-  onConfigChanged?: (auth: IAuth) => void;
+  lastUpdate: any
+  onConfigChanged?: (auth: IAuth) => void
 }> = ({ lastUpdate, onConfigChanged }) => {
-  const [settingVisible, setSettingVisible] = useState(false);
+  const [settingVisible, setSettingVisible] = useState(false)
   const configChangeHandler = (auth: IAuth) => {
-    onConfigChanged(auth);
-    setSettingVisible(false);
-  };
+    onConfigChanged(auth)
+    setSettingVisible(false)
+  }
 
   return (
     <>
@@ -22,24 +22,24 @@ const Titan: React.FC<{
           <i
             className="icon setting"
             onClick={() => {
-              setSettingVisible(true);
+              setSettingVisible(true)
             }}
           />
         </div>
         <div className="titan__info">
-          Last updated at {lastUpdate.format("MM-DD HH:mm")}
+          Last updated at {lastUpdate.format('MM-DD HH:mm')}
         </div>
       </div>
       <Modal
         visible={settingVisible}
         onClose={() => {
-          setSettingVisible(false);
+          setSettingVisible(false)
         }}
       >
         <Auth onConfigChanged={configChangeHandler} />
       </Modal>
     </>
-  );
-};
+  )
+}
 
-export default Titan;
+export default Titan

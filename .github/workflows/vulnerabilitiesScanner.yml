@@ -1,4 +1,4 @@
-name: Test and deploy
+name: Vulnerabilities Scanner
 
 on:
   push:
@@ -22,7 +22,7 @@ jobs:
           format: 'template'
           template: '@/contrib/sarif.tpl'
           output: 'trivy-results.sarif'
-          severity: 'CRITICAL'
+          severity: '*'
 
       - name: Upload Trivy scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v1

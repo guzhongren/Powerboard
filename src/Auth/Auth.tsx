@@ -63,6 +63,7 @@ const Auth: React.FC<{
       team,
       search,
       token,
+      oncall,
     };
     downloadConfig(dlAnchorElem, {...config, layout: getLayouts(),}, downloadFileName);
   };

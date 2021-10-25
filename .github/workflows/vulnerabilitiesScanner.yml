@@ -1,11 +1,7 @@
 name: Vulnerabilities Scanner
 
 on:
-  push:
-    branches:
-      - main
-  schedule:
-    - cron: "0 0 * * *"
+  push
 
 jobs:
   deployToGitHubPages:

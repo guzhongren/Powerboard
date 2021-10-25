@@ -1,6 +1,7 @@
 {
   "version": "1.0.0",
   "author": "yixi",
+  "name": "Powerboard",
   "scripts": {
     "dev": "webpack serve --config build/webpack.dev.js --progress",
     "build": "webpack --config build/webpack.build.js",

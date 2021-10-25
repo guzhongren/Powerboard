@@ -1,10 +1,8 @@
-# A BuildKite CI Monitor for showing on TV
+# **Powerboard** A BuildKite CI monitor and utils.
 
-![Test and deploy](https://github.com/guzhongren/Buildkite-Dashboard/workflows/Test%20and%20deploy/badge.svg)
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fguzhongren%2FBuildkite-Dashboard.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fguzhongren%2FBuildkite-Dashboard?ref=badge_shield)
+[![Test and deploy](https://github.com/Apollo-for-fun/Buildkite-Dashboard/actions/workflows/main.yml/badge.svg)](https://github.com/Apollo-for-fun/Buildkite-Dashboard/actions/workflows/main.yml)
 
-
-![Buildkite-Dashboard](./src/assets/Buildkite-dashboard.gif)
+![Powerboard](./src/assets/Buildkite-dashboard.gif)
 
 ## Get access token
 
@@ -14,7 +12,7 @@ Get a buildkite access token first at https://buildkite.com/user/api-access-toke
 
 ## Config app
 
-Open app: [https://guzhongren.github.io/Buildkite-Dashboard/](https://guzhongren.github.io/Buildkite-Dashboard/)
+Open app: [https://apollo-for-fun.github.io/powerboard/](https://apollo-for-fun.github.io/powerboard/)
 
 * Fill the `access token`
 * Fill the `organization name`
@@ -42,9 +40,3 @@ yarn cy:open
 * [Webpack](https://webpack.js.org/)
 * [Cypress](https://www.cypress.io/)
 * [SCSS](https://sass-lang.com/)
-
-
-
-
-## License
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fguzhongren%2FBuildkite-Dashboard.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fguzhongren%2FBuildkite-Dashboard?ref=badge_large)

@@ -34,7 +34,7 @@ export const buildKiteQuery = (orz: string, team: string, search: string[] | str
               }
             }
           }
-          builds(first:11) {
+          builds(first:100) {
             edges {
               node {
                 id

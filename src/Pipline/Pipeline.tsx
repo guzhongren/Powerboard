@@ -75,7 +75,7 @@ const Pipeline: React.FC<{ pipeline: any, style?: React.CSSProperties }> = ({ pi
         </div>
       </div>
       <div className="pipeline__history">
-        {historyBuilds.map((build) => (
+        {historyBuilds.slice(0, 10).map((build) => (
           <BuildHistory build={build} key={build?.node?.id} />
         ))}
       </div>

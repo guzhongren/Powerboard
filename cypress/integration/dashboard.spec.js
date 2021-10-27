@@ -164,4 +164,14 @@ describe("show pipeline", () => {
       });
     cy.get(goButton).click();
   });
+  it.only("display commit count ", () => {
+    cy.clearLocalStorage();
+
+    cy.get(importId).attachFile("mockedImportAuth.json");
+
+    cy.get(goButton).click();
+
+    cy.get(".person__count span").first().next().should("not.be.empty")
+
+  })
 });

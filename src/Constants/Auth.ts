@@ -12,4 +12,5 @@ export interface IAuth {
   search?: string;
   token?: string;
   oncall?: string;
+
 }

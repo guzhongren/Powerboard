@@ -19,7 +19,7 @@ jobs:
             ./
       - name: Scan repo
         run: |
-          docker run --rm \
+          docker run --rm -v\
               /var/run/docker.sock:/var/run/docker.sock \
               aquasec/trivy repo \
              --severity HIGH,CRITICAL \

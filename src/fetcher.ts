@@ -75,7 +75,7 @@ export const buildKiteQuery = (orz: string, team: string, search: string[] | str
 
   return gql`
     {
-      organization(slug: "${orz}") {
+      organization(slug: "${orz.toLowerCase()}") {
         name
         ${isString(search) ? buildPipelineQuery(search) : ''}
         ${isArray(search) ? search.map(buildPipelineQuery) : ''}

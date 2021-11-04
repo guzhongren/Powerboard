@@ -37,7 +37,6 @@ const Grid: React.FC<{
       },
     }
   );
-  const oncall = auth?.oncall
   if (error) {
     return (
       <>

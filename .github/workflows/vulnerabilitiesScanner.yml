@@ -29,9 +29,10 @@ jobs:
       - name: Scan config
         run: |
          docker run --rm -v /var/run/docker.sock:/var/run/docker.sock \
+            -v $pwd/:/tmp \
             aquasec/trivy config \
             --severity HIGH,CRITICAL \
-            ../Buildkite-Dashboard
+            /tmp
        
 #       - name: Run Trivy vulnerability scanner in repo mode
 #         uses: aquasecurity/trivy-action@master

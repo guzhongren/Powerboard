@@ -24,10 +24,8 @@ jobs:
               aquasec/trivy repo \
              --severity HIGH,CRITICAL \
              https://github.com/guzhongren/Buildkite-Dashboard
-      - name: ls
-        run: echo $HOME
       - name: pwd
-        run: echo $pwd
+        run: ls ../
       - name: Scan config
         run: |
          docker run --rm -v /var/run/docker.sock:/var/run/docker.sock \

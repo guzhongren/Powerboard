@@ -48,5 +48,9 @@ jobs:
       - name: Trivy scanner
         run: |
           docker run --rm -v /var/run/docker.sock:/var/run/docker.sock \
-            aquasec/trivy image --severity HIGH,CRITICAL --exit-code 1 dashboard:${{ github.sha }}
+            aquasec/trivy image --severity HIGH,CRITICAL dashboard:${{ github.sha }}
+      - name: Trivy scanner
+        run: |
+          docker run --rm -v /var/run/docker.sock:/var/run/docker.sock \
+            aquasec/trivy config --severity HIGH,CRITICAL --exit-code 1 dashboard:${{ github.sha }}
 

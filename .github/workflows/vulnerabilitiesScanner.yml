@@ -24,12 +24,13 @@ jobs:
               aquasec/trivy repo \
              --severity HIGH,CRITICAL \
              https://github.com/guzhongren/Buildkite-Dashboard
+      - name: ls
+        run: ls -a
       - name: Scan config
         run: |
          docker run --rm -v /var/run/docker.sock:/var/run/docker.sock \
             aquasec/trivy config \
-            --severity HIGH,CRITICAL \
-            home/runner/work/Buildkite-Dashboard/Buildkite-Dashboard
+            --severity HIGH,CRITICAL
        
 #       - name: Run Trivy vulnerability scanner in repo mode
 #         uses: aquasecurity/trivy-action@master

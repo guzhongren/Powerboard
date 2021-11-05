@@ -26,11 +26,14 @@ jobs:
              https://github.com/guzhongren/Buildkite-Dashboard
       - name: ls
         run: echo $HOME
+      - name: pwd
+        run: echo $pwd
       - name: Scan config
         run: |
          docker run --rm -v /var/run/docker.sock:/var/run/docker.sock \
             aquasec/trivy config \
-            --severity HIGH,CRITICAL
+            --severity HIGH,CRITICAL \
+            $pwd
        
 #       - name: Run Trivy vulnerability scanner in repo mode
 #         uses: aquasecurity/trivy-action@master

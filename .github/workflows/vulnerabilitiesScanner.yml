@@ -29,10 +29,10 @@ jobs:
       - name: Scan config
         run: |
          docker run --rm -v /var/run/docker.sock:/var/run/docker.sock \
-            -v $pwd/:/root/.cache/ \
-            aquasec/trivy config \
+            aquasec/trivy fs \
+            --security-checks vuln,config \
             --severity HIGH,CRITICAL \
-            /root/.cache/
+          ./
        
 #       - name: Run Trivy vulnerability scanner in repo mode
 #         uses: aquasecurity/trivy-action@master

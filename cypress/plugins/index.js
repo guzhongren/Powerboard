@@ -1,4 +1,7 @@
 /// <reference types="cypress" />
+
+const { config } = require("bluebird");
+
 // ***********************************************************
 // This example plugins/index.js can be used to load plugins
 //
@@ -17,7 +20,17 @@
  */
 // eslint-disable-next-line no-unused-vars
 module.exports = (on, config) => {
-  config.env.url =
-    process.env.ENV === "production" ? config.env.prod : config.env.local;
+  config.env.url =getUrl(config)
   return config;
 };
+
+function getUrl(config) {
+  const env = process.env.ENV
+  if (env === "production") {
+    return config.env.prod
+  }
+  if (env === "docker") {
+    return config.env.docker
+  }
+  return config.env.local
+}

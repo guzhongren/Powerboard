@@ -18,6 +18,9 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12.13.0
+      - name: E2E
+        run: |
+          docker-compose up --build e2e
       - name: yarn install
         run: |
           yarn

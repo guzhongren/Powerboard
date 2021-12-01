@@ -20,17 +20,14 @@ const { config } = require("bluebird");
  */
 // eslint-disable-next-line no-unused-vars
 module.exports = (on, config) => {
-  config.env.url =getUrl(config)
+  const env = process.env.ENV;
+  console.log(env)
+  if (env === "production") {
+    config.env.url = config.env.prod;
+  } else if (env === "docker") {
+    config.env.url = config.env.docker;
+  } else {
+    config.env.url = config.env.local;
+  }
   return config;
 };
-
-function getUrl(config) {
-  const env = process.env.ENV
-  if (env === "production") {
-    return config.env.prod
-  }
-  if (env === "docker") {
-    return config.env.docker
-  }
-  return config.env.local
-}

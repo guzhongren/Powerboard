@@ -13,3 +13,14 @@ if ('serviceWorker' in navigator) {
         })
     })
 }
+
+console.log(`
+🚀🚀🚀🚀🚀🚀🚀🚀🚀Porerboard🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
+New feature! You can use query parameters to config your app:
+
+Rule: ${window.location.origin}?token=TOKEN&config=http://test.json
+
+e.g.: ${window.location.origin}?token=TOKEN&config=https://gist.githubusercontent.com/guzhongren/a98dab4ec912c801cd7a55922f34edf5/raw/ef603c3c57e6369eda61bccb74a3a19c7d747df1/apollo-config-test.json
+
+🚀🚀🚀🚀🚀🚀🚀🚀🚀Porerboard🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
+`)

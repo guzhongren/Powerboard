@@ -166,4 +166,12 @@ describe("show pipeline", () => {
       cy.get(goButton).click();
     });
   })
+
+  describe('Config in pipeline', () => {
+    it.only('should show pipeline given config(token & configPath) in url', () => {
+      cy.visit(`http://localhost:4321?token=${token}&config=${dashboardConfig.configPath}`);
+
+      cy.get('.pipeline__title-content').should("have.length", 2);
+    })
+  })
 });

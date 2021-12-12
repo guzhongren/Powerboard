@@ -1,28 +1,25 @@
 import * as React from "react";
 import { useState } from "react";
 import * as dayjs from "dayjs";
-import { useEffect } from "react";
 import "./OncallPannel.scss";
 import * as relativeTime from "dayjs/plugin/relativeTime";
-import { isMemberName } from "typescript";
 
 dayjs.extend(relativeTime);
 
-const OncallPannel: React.FC<{ oncallListJSONString?: string }> = ({
-  oncallListJSONString,
+const OncallPannel: React.FC<{ oncallListJSON?: any }> = ({
+  oncallListJSON,
 }) => {
-  const [isEmptyString, setIsEmptyString] = useState(
-    oncallListJSONString.length === 0 || !oncallListJSONString
+  const [isEmpty, setIsEmpty] = useState(
+    !oncallListJSON || oncallListJSON.names.length === 0
   );
   let startDate;
   let names;
   let index;
   let nextIndex;
 
-  if (!isEmptyString) {
-    const data = JSON.parse(oncallListJSONString);
-    startDate = dayjs(data.startDate);
-    names = data.names;
+  if (!isEmpty) {
+    startDate = dayjs(oncallListJSON.startDate);
+    names = oncallListJSON.names;
     const diffDays = dayjs().diff(startDate, "day");
     index = Math.floor(diffDays / 7) % names.length;
     nextIndex = index + 1 >= names.length ? 0 : index + 1;
@@ -30,7 +27,7 @@ const OncallPannel: React.FC<{ oncallListJSONString?: string }> = ({
 
   return (
     <React.Fragment>
-      {!isEmptyString && (
+      {!isEmpty && (
         <div className="notice">
           <div className="oncall">
             <div className="oncall__item">

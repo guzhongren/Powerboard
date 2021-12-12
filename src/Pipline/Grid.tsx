@@ -75,6 +75,12 @@ const Grid: React.FC<{
       }
     },
   };
+  const convertToJSON = (config: any) => {
+    if (typeof(config) === 'string') {
+      return JSON.parse(config)
+    }
+    return config
+  }
   return (
     <React.Fragment>
       <Titan
@@ -89,7 +95,7 @@ const Grid: React.FC<{
           }}
         />
       )}
-      {auth.oncall && <OncallPannel oncallListJSONString={auth.oncall}/>}
+      {auth.oncall && <OncallPannel oncallListJSON={convertToJSON(auth.oncall)}/>}
       <ReactGridLayout {...defaultLayoutProps} layouts={layouts}>
         {pipelines.map((pipeline: any, index: number) => {
           const layoutProps = layouts.lg ? layouts.lg[index] : {};

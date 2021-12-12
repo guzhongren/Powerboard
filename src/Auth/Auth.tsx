@@ -5,6 +5,7 @@ import { saveValue, getValueByKey } from "../Utils/LocalStorageUtils";
 import {saveLayouts, getLayouts} from '../Utils/LayoutStorageUtils'
 import { DASHBOARD_AUTH, IAuth } from "../Constants/Auth";
 import { importJsonFile, downloadConfig } from "../Utils/JsonFileProcessor";
+import  {convertToString} from '../Utils/ConvertUtils'
 
 const Auth: React.FC<{
   message?: string;
@@ -41,11 +42,12 @@ const Auth: React.FC<{
       const file = evt.target.files[0];
       importJsonFile(file).then(
         (data: any) => {
+          console.log(data)
           setToken(data.token || "Invalided access token!");
           setOrz(data.org || "Invalided organization name!");
           setTeam(data.team || "");
           setSearch(data?.search || "");
-          setOncall(data.oncall)
+          setOncall(convertToString(data.oncall))
           saveLayouts(data.layout || {});
           console.log("successfully imported");
         },

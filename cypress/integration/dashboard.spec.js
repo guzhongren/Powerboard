@@ -168,10 +168,12 @@ describe("show pipeline", () => {
   })
 
   describe('Config in pipeline', () => {
-    it.only('should show pipeline given config(token & configPath) in url', () => {
-      cy.visit(`http://localhost:4321?token=${token}&config=${dashboardConfig.configPath}`);
+    it('should show pipeline given config(token & configPath) in url', () => {
+      cy.visit(`${Cypress.env("url")}?token=${token}&config=${dashboardConfig.configPath}`);
+      setTimeout(() => {
+        cy.get('.pipeline__title-content').should("have.length", 2);
+      }, 5000)
 
-      cy.get('.pipeline__title-content').should("have.length", 2);
     })
   })
 });

@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState } from "react";
 import useSWR from "swr";
 import "./App.scss";
 import { parse } from "query-string";
@@ -6,6 +7,8 @@ import Grid from "./Pipline/Grid";
 import { getValueByKey } from "./Utils/LocalStorageUtils";
 import { DASHBOARD_AUTH, IAuth } from "./Constants/Auth";
 import { splitSearch } from "./Utils/StringUtils";
+import Auth from "./Auth/Auth";
+import { updateAuth } from "./Utils/ConvertUtils";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 function App() {
@@ -17,6 +20,8 @@ function App() {
     oncall: getValueByKey(DASHBOARD_AUTH.ONCALL),
   };
 
+  const [auth, setAuth] = useState(authConfig);
+
   const parsed = parse(window.location.search) as any;
 
   const { data, error } = useSWR(parsed?.config, fetcher);
@@ -25,8 +30,8 @@ function App() {
     console.log("no config in URL");
   }
 
-  if (data) {
-    const {org, team, search, oncall} = data
+  if (data && data.org && parsed.token) {
+    const { org, team, search, oncall } = data;
     const authConfig = {
       org,
       team,
@@ -34,22 +39,14 @@ function App() {
       token: parsed.token,
       oncall,
     };
-    if (data.org && parsed.token) {
-      return <Grid authConfig={authConfig} />;
-    } else {
-      return <div>Error config schema</div>
-    }
+    return <Grid authConfig={authConfig} />;
   } else {
-      return <div>Wait for config</div>
+    if (auth.org && auth.token) {
+      return <Grid authConfig={auth} />;
+    } else {
+      return <Auth onConfigChanged={(auth) => setAuth(updateAuth(auth))} />;
+    }
   }
-
-  // const [auth, setAuth] = useState(authConfig);
-
-  // if (auth.org && auth.token) {
-  //   return <Grid authConfig={auth} />;
-  // } else {
-  //   return <Auth onConfigChanged={(auth) => setAuth(updateAuth(auth))} />;
-  // }
 }
 
 export default App;

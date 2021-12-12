@@ -14,8 +14,9 @@ import { getLayouts, saveLayouts } from "../Utils/LayoutStorageUtils";
 import { DEFAULT_ITEM_LAYOUT } from "../Constants/Grid";
 import { PIPELINE_AUTO_REFRESH_PERIOD } from "../Constants/Config";
 import { IAuth } from "../Constants/Auth";
-import {updateAuth} from '../Utils/ConvertAuth'
+import {updateAuth} from '../Utils/ConvertUtils'
 import OncallPannel from "@root/Components/OncallPannel";
+import {convertToJSON} from '../Utils/ConvertUtils'
 
 
 const ReactGridLayout = WidthProvider(Responsive);
@@ -75,12 +76,6 @@ const Grid: React.FC<{
       }
     },
   };
-  const convertToJSON = (config: any) => {
-    if (typeof(config) === 'string') {
-      return JSON.parse(config)
-    }
-    return config
-  }
   return (
     <React.Fragment>
       <Titan

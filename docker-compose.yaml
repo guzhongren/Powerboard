@@ -25,7 +25,7 @@ services:
     environment:
       - CYPRESS_baseUrl=http://web
       - ENV=docker
-    command: npx cy:docker
+    command: npm ci && npx cy:docker
     # mount the host directory e2e/cypress and the file e2e/cypress.json as
     # volumes within the container
     # this means that:

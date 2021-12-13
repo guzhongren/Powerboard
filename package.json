@@ -6,7 +6,7 @@
     "dev": "webpack serve --config build/webpack.dev.js --progress",
     "build": "webpack --config build/webpack.build.js",
     "test": "jest",
-    "lint": "lint-staged && yarn tslint --project tsconfig.json",
+    "lint": "lint-staged",
     "typecheck": "tsc --noEmit",
     "release": "standard-version --release-as patch",
     "minorRelease": "standard-version --release-as minor",
@@ -16,8 +16,8 @@
     "cy:open": "cypress open"
   },
   "lint-staged": {
-    "./src/**/*.{js,jsx,ts,tsx,json,md}": [
-      "yarn lint --fix"
+    "src/**/*{.ts,.tsx}": [
+      "yarn tslint -c ./tslint.json --fix"
     ]
   },
   "browserslist": {

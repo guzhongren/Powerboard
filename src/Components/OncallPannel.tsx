@@ -1,28 +1,28 @@
-import * as React from "react";
-import { useState } from "react";
-import * as dayjs from "dayjs";
-import "./OncallPannel.scss";
-import * as relativeTime from "dayjs/plugin/relativeTime";
+import * as React from 'react'
+import { useState } from 'react'
+import * as dayjs from 'dayjs'
+import './OncallPannel.scss'
+import * as relativeTime from 'dayjs/plugin/relativeTime'
 
-dayjs.extend(relativeTime);
+dayjs.extend(relativeTime)
 
 const OncallPannel: React.FC<{ oncallListJSON?: any }> = ({
   oncallListJSON,
 }) => {
   const [isEmpty, setIsEmpty] = useState(
     !oncallListJSON || oncallListJSON.names.length === 0
-  );
-  let startDate;
-  let names;
-  let index;
-  let nextIndex;
+  )
+  let startDate
+  let names
+  let index
+  let nextIndex
 
   if (!isEmpty) {
-    startDate = dayjs(oncallListJSON.startDate);
-    names = oncallListJSON.names;
-    const diffDays = dayjs().diff(startDate, "day");
-    index = Math.floor(diffDays / 7) % names.length;
-    nextIndex = index + 1 >= names.length ? 0 : index + 1;
+    startDate = dayjs(oncallListJSON.startDate)
+    names = oncallListJSON.names
+    const diffDays = dayjs().diff(startDate, 'day')
+    index = Math.floor(diffDays / 7) % names.length
+    nextIndex = index + 1 >= names.length ? 0 : index + 1
   }
 
   return (
@@ -42,7 +42,7 @@ const OncallPannel: React.FC<{ oncallListJSON?: any }> = ({
         </div>
       )}
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default OncallPannel;
+export default OncallPannel

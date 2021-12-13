@@ -1,12 +1,12 @@
-import {IAuth} from '../Constants/Auth'
-import { splitSearch } from "./StringUtils";
+import { IAuth } from '../Constants/Auth'
+import { splitSearch } from './StringUtils'
 
 export const updateAuth = (auth: IAuth) => {
   return {
     ...auth,
     search: splitSearch(auth.search),
-  };
-};
+  }
+}
 
 export const convertToJSON = (config: any) => {
   if (typeof(config) === 'string') {

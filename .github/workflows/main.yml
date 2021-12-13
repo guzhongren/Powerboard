@@ -18,12 +18,12 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12.13.0
+      - name: install & codeCheck
+        run: |
+          yarn & yarn lint
       - name: E2E
         run: |
           docker-compose up --build e2e
-      - name: yarn install
-        run: |
-          yarn
       - name: build project
         run: |
           yarn build

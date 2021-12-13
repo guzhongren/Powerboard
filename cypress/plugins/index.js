@@ -1,7 +1,5 @@
 /// <reference types="cypress" />
 
-const { config } = require("bluebird");
-
 // ***********************************************************
 // This example plugins/index.js can be used to load plugins
 //

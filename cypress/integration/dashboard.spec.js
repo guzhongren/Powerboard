@@ -177,7 +177,7 @@ describe("show pipeline", () => {
     })
   })
   describe('Feature alert', () => {
-    it.only('should show feature alert', () => {
+    it('should show feature alert', () => {
       cy.visit(`${Cypress.env("url")}?token=${token}&config=${dashboardConfig.configPath}`);
 
       console.log(cy.get('.feature-alert span'))

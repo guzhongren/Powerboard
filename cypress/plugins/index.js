@@ -21,7 +21,7 @@ const { config } = require("bluebird");
 // eslint-disable-next-line no-unused-vars
 module.exports = (on, config) => {
   const env = process.env.ENV;
-  console.log(env)
+  console.log(env);
   if (env === "production") {
     config.env.url = config.env.prod;
   } else if (env === "docker") {

@@ -176,4 +176,20 @@ describe("show pipeline", () => {
 
     })
   })
+  describe('Feature alert', () => {
+    it.only('should show feature alert', () => {
+      cy.visit(`${Cypress.env("url")}?token=${token}&config=${dashboardConfig.configPath}`);
+
+      console.log(cy.get('.feature-alert span'))
+      cy.get('.feature-alert span').should("contain", '🚀 Feature released! Please update your config according to');
+      cy.get('.feature-alert a').should(
+        'have.attr',
+        'target'
+      , '_blank');
+      cy.get('.feature-alert a').should(
+        'have.attr',
+        'href'
+      , 'https://github.com/Apollo-for-fun/Powerboard#how-to-use');
+    })
+  })
 });

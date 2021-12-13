@@ -20,7 +20,7 @@ jobs:
           node-version: 12.13.0
       - name: install & codeCheck
         run: |
-          yarn install && yarn lint
+          yarn install && yarn codeCheck
       - name: E2E
         run: |
           docker-compose up --build e2e

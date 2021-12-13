@@ -27,5 +27,10 @@ module.exports = (on, config) => {
   } else {
     config.env.url = config.env.local;
   }
+
+  if (['production', 'docker'].includes(env)) {
+    config.video = false
+  }
+
   return config;
 };

@@ -35,10 +35,6 @@ const Pipeline: React.FC<{ pipeline: any; style?: React.CSSProperties }> = ({
   const finishAt = dayjs(lastBuild.finishedAt)
   const jobs = lastBuild.jobs?.edges || []
 
-  const openHandler = () => {
-    window.open(lastBuild.url)
-  }
-
   return (
     <div className="pipeline" style={style}>
       <div className={'pipeline__metrics'}>
@@ -48,10 +44,14 @@ const Pipeline: React.FC<{ pipeline: any; style?: React.CSSProperties }> = ({
         />
       </div>
       <div className={`pipeline__current ${lastBuild.state}`}>
-        <div className="pipeline__title" onClick={openHandler}>
-          <span className="pipeline__title-content">
+        <div className="pipeline__title">
+          <a
+            href={lastBuild.url}
+            target="_blank"
+            className="pipeline__title-content"
+          >
             {pipeline?.node?.name}
-          </span>
+          </a>
         </div>
         <div className="pipeline__commit-info">
           [{startAt.format('MM-DD HH:mm')}] [{lastBuild.branch}]{' '}

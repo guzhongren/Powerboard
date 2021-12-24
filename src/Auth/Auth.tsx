@@ -5,16 +5,18 @@ import { saveValue, getValueByKey } from '../Utils/LocalStorageUtils'
 import { saveLayouts, getLayouts } from '../Utils/LayoutStorageUtils'
 import { DASHBOARD_AUTH, IAuth } from '../Constants/Auth'
 import { importJsonFile, downloadConfig } from '../Utils/JsonFileProcessor'
-import  { convertToString } from '../Utils/ConvertUtils'
+import { convertToString } from '../Utils/ConvertUtils'
 
 const Auth: React.FC<{
-  message?: string;
-  onConfigChanged?: (auth: IAuth) => void;
+  message?: string
+  onConfigChanged?: (auth: IAuth) => void
 }> = ({ message, onConfigChanged }) => {
   const downloadFileName = 'dashboardConfig.json'
   const [token, setToken] = useState(getValueByKey(DASHBOARD_AUTH.TOKEN))
   const [team, setTeam] = useState(getValueByKey(DASHBOARD_AUTH.TEAM))
-  const [search, setSearch] = useState(getValueByKey(DASHBOARD_AUTH.SEARCH) as any)
+  const [search, setSearch] = useState(
+    getValueByKey(DASHBOARD_AUTH.SEARCH) as any
+  )
   const [oncall, setOncall] = useState(getValueByKey(DASHBOARD_AUTH.ONCALL))
   const [orz, setOrz] = useState(getValueByKey(DASHBOARD_AUTH.ORG))
 
@@ -67,7 +69,11 @@ const Auth: React.FC<{
       token,
       oncall,
     }
-    downloadConfig(dlAnchorElem, {...config, layout: getLayouts(),}, downloadFileName)
+    downloadConfig(
+      dlAnchorElem,
+      { ...config, layout: getLayouts() },
+      downloadFileName
+    )
   }
 
   return (
@@ -159,7 +165,7 @@ const Auth: React.FC<{
           />
         </div>
         <div>
-          <a id="downloadAnchorElem" style={{ display: 'none' }}/>
+          <a id="downloadAnchorElem" style={{ display: 'none' }} />
           <button id="download" onClick={exportConfigHandler}>
             Export config
           </button>

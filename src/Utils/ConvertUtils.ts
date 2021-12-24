@@ -9,16 +9,15 @@ export const updateAuth = (auth: IAuth) => {
 }
 
 export const convertToJSON = (config: any) => {
-  if (typeof(config) === 'string') {
+  if (typeof config === 'string') {
     return JSON.parse(config)
   }
   return config
 }
 
 export const convertToString = (info: any) => {
-  if (typeof(info) === 'object') {
+  if (typeof info === 'object') {
     return JSON.stringify(info)
   }
   return info
 }
-

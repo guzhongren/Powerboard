@@ -8,8 +8,9 @@
 
 URL schema: `https://apollo-for-fun.github.io/Powerboard/?token={TOKEN}&config={CONFIG}`
 
-* TOKEN: refer to `Get access token`
-* CONFIG: refer to `Config schema`
+- TOKEN: refer to `Get access token`
+- CONFIG: refer to `Config schema`
+
 ### Get access token
 
 Get a buildkite access token first at https://buildkite.com/user/api-access-tokens
@@ -18,8 +19,8 @@ Get a buildkite access token first at https://buildkite.com/user/api-access-toke
 
 ### Config schema
 
-* Store your config in any server which this app can access, we recommend [Gist](https://gist.github.com/)
-* Schema like below, you can refer to this [demo](https://gist.github.com/guzhongren/1bff33e4ee8e0d3b397ac2d4f8612a05)
+- Store your config in any server which this app can access, we recommend [Gist](https://gist.github.com/)
+- Schema like below, you can refer to this [demo](https://gist.github.com/guzhongren/1bff33e4ee8e0d3b397ac2d4f8612a05)
 
   ```json
   {
@@ -44,10 +45,10 @@ yarn cy:open
 
 ## Tech list
 
-* [React 17](https://reactjs.org/)
-* [Graphql](https://graphql.org/)
-* [TypeScript](https://www.typescriptlang.org/)
-* [Testing-library](https://testing-library.com/docs/react-testing-library/intro/)
-* [Webpack](https://webpack.js.org/)
-* [Cypress](https://www.cypress.io/)
-* [SCSS](https://sass-lang.com/)
+- [React 17](https://reactjs.org/)
+- [Graphql](https://graphql.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Testing-library](https://testing-library.com/docs/react-testing-library/intro/)
+- [Webpack](https://webpack.js.org/)
+- [Cypress](https://www.cypress.io/)
+- [SCSS](https://sass-lang.com/)

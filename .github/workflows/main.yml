@@ -5,7 +5,7 @@ on:
     branches:
       - master
   schedule:
-    - cron: "0 0 * * *"
+    - cron: '0 0 * * *'
 
 jobs:
   deployToGitHubPages:
@@ -49,7 +49,6 @@ jobs:
           ignore-unfixed: true
           severity: 'CRITICAL,HIGH'
       # - name: Trivy scanner
-        # run: |Trivy scanner for images
-        #   docker run --rm -v /var/run/docker.sock:/var/run/docker.sock \
-        #     aquasec/trivy image --severity HIGH,CRITICAL --exit-code 1 dashboard:${{ github.sha }}
-
+      # run: |Trivy scanner for images
+      #   docker run --rm -v /var/run/docker.sock:/var/run/docker.sock \
+      #     aquasec/trivy image --severity HIGH,CRITICAL --exit-code 1 dashboard:${{ github.sha }}

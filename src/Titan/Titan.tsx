@@ -6,8 +6,8 @@ import { useState } from 'react'
 import { IAuth } from '../Constants/Auth'
 
 const Titan: React.FC<{
-  lastUpdate: any;
-  onConfigChanged?: (auth: IAuth) => void;
+  lastUpdate: any
+  onConfigChanged?: (auth: IAuth) => void
 }> = ({ lastUpdate, onConfigChanged }) => {
   const [settingVisible, setSettingVisible] = useState(false)
   const configChangeHandler = (auth: IAuth) => {

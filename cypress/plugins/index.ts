@@ -18,19 +18,19 @@
  */
 // eslint-disable-next-line no-unused-vars
 module.exports = (on, config) => {
-  const env = process.env.ENV;
-  console.log(env);
-  if (env === "production") {
-    config.env.url = config.env.prod;
-  } else if (env === "docker") {
-    config.env.url = config.env.docker;
+  const env = process.env.ENV
+  console.log(env)
+  if (env === 'production') {
+    config.env.url = config.env.prod
+  } else if (env === 'docker') {
+    config.env.url = config.env.docker
   } else {
-    config.env.url = config.env.local;
+    config.env.url = config.env.local
   }
 
   if (['production', 'docker'].includes(env)) {
     config.video = false
   }
 
-  return config;
-};
+  return config
+}

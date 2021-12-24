@@ -18,11 +18,10 @@ import { updateAuth } from '../Utils/ConvertUtils'
 import OncallPannel from '@root/Components/OncallPannel'
 import { convertToJSON } from '../Utils/ConvertUtils'
 
-
 const ReactGridLayout = WidthProvider(Responsive)
 
 const Grid: React.FC<{
-  authConfig?: any;
+  authConfig?: any
 }> = ({ authConfig }) => {
   const [lastUpdateTime, setLastUpdateTime] = useState(dayjs())
   const [layouts] = useState(getLayouts() || {})
@@ -90,7 +89,9 @@ const Grid: React.FC<{
           }}
         />
       )}
-      {auth.oncall && <OncallPannel oncallListJSON={convertToJSON(auth.oncall)}/>}
+      {auth.oncall && (
+        <OncallPannel oncallListJSON={convertToJSON(auth.oncall)} />
+      )}
       <ReactGridLayout {...defaultLayoutProps} layouts={layouts}>
         {pipelines.map((pipeline: any, index: number) => {
           const layoutProps = layouts.lg ? layouts.lg[index] : {}

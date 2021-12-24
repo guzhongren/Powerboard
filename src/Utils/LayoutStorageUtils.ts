@@ -4,7 +4,7 @@ import { getValueByKey, saveValue } from './LocalStorageUtils'
 
 export const getLayouts = () => {
   let ls: {
-    [key: string]: any;
+    [key: string]: any
   } = {}
   ls = JSON.parse(getValueByKey(LOCAL_STORAGE_KEY)) || {}
   return ls[LAYOUT__KEY]
@@ -18,4 +18,3 @@ export const saveLayouts = (value: any) => {
     })
   )
 }
-

@@ -24,7 +24,9 @@ function App() {
 
   const parsed = parse(window.location.search) as any
 
-  const { data, error } = useSWR(parsed?.config, fetcher)
+  const { data, error } = useSWR(parsed?.config, fetcher, {
+    refreshInterval: 1000 * 60 * 60,
+  })
 
   if (error) {
     console.log('no config in URL')

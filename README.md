@@ -1,12 +1,13 @@
-# **Powerboard** A BuildKite CI monitor and utils.
+# A BuildKite CI Monitor for showing on TV
 
-[![Test and deploy](https://github.com/Apollo-for-fun/Buildkite-Dashboard/actions/workflows/main.yml/badge.svg)](https://github.com/Apollo-for-fun/Buildkite-Dashboard/actions/workflows/main.yml)
+![Test and deploy](https://github.com/guzhongren/Buildkite-Dashboard/workflows/Test%20and%20deploy/badge.svg)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fguzhongren%2FBuildkite-Dashboard.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fguzhongren%2FBuildkite-Dashboard?ref=badge_shield)
 
-![Powerboard](./src/assets/Buildkite-dashboard.gif)
+![Buildkite-dashboard](./src/assets/Buildkite-dashboard.gif)
 
 ## How to use
 
-URL schema: `https://apollo-for-fun.github.io/Powerboard/?token={TOKEN}&config={CONFIG}`
+URL schema: `https://guzhongren.github.io/Powerboard/?token={TOKEN}&config={CONFIG}`
 
 - TOKEN: refer to `Get access token`
 - CONFIG: refer to `Config schema`

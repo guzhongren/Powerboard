@@ -1,28 +1,61 @@
-# A BuildKite CI Monitor for showing on TV
+# **Powerboard** A BuildKite CI monitor and utils.
 
-![Test and deploy](https://github.com/guzhongren/Buildkite-Dashboard/workflows/Test%20and%20deploy/badge.svg)
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fguzhongren%2FBuildkite-Dashboard.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fguzhongren%2FBuildkite-Dashboard?ref=badge_shield)
+[![Test and deploy](https://github.com/Apollo-for-fun/Buildkite-Dashboard/actions/workflows/main.yml/badge.svg)](https://github.com/Apollo-for-fun/Buildkite-Dashboard/actions/workflows/main.yml)
 
+![Powerboard](./src/assets/Buildkite-dashboard.gif)
 
-![Buildkite-Dashboard](https://cdn.jsdelivr.net/gh/guzhongren/data-hosting@main/Buildkite-Dashboard2021-10-10-222918.6j7mi2nsatk0.gif)
+## How to use
 
-## Get access token
+URL schema: `https://apollo-for-fun.github.io/Powerboard/?token={TOKEN}&config={CONFIG}`
+
+- TOKEN: refer to `Get access token`
+- CONFIG: refer to `Config schema`
+
+### Get access token
 
 Get a buildkite access token first at https://buildkite.com/user/api-access-tokens
 
 > Need all _read permissions_ and _Enable GraphQL API Access_
 
-## Config app
+### Config schema
 
-Open app: [https://guzhongren.github.io/Buildkite-Dashboard/](https://guzhongren.github.io/Buildkite-Dashboard/)
+- Store your config in any server which this app can access, we recommend [GitHub repo](https://github.com/), and proxy the URL of GitHub file
+- Schema like below, you can refer to this [demo](https://github.com/Apollo-for-fun/team-config/blob/main/powerboard.json)
 
-* Fill the `access token`
-* Fill the `organization name`
-* (Optional) Fill the `team name`
-* Fill the pipeline of buildkite name which you want to show.
-  * __Single value__: This value supports regex, so you can fill the prefix of pipeline which filtered
-  * __Multiple values__: you can fill your value after wrapping line
-* Click `OK` button
+  ```json
+  {
+    "org": String,
+    "search": Array<String>,
+    "team": String,
+    "oncall": {
+        "startDate": String,
+        "names": Array<String>
+    }
+  }
+  ```
+
+  | Field            | Mandatory | Description                                                                             |
+  | ---------------- | --------- | --------------------------------------------------------------------------------------- |
+  | org              | true      | The name of your buildkit account                                                       |
+  | team             | false     | Team name                                                                               |
+  | search           | false     | The collection of pipelines under your org                                              |
+  | oncall           | false     | On-call config                                                                          |
+  | oncall.startDate | true      | The start date, app will use it as start date, Poll every seven days to the next person |
+  | oncall.names     | true      | On-call list                                                                            |
+
+  #### Demo
+
+  ```json
+  {
+    "org": "elastic",
+    "team": "",
+    "search": ["kibana / on merge", "apm-onweek-alerts-as-code"],
+    "oncall": {
+      "startDate": "2021-11-10",
+      "names": ["Chen", "Adame"]
+    }
+  }
+  ```
 
 ## Build & Run
 
@@ -33,25 +66,12 @@ yarn dev
 yarn cy:open
 ```
 
-## Release
-
-```shell
-yarn [minor|major]release
-git push origin v2.0.0
-```
-
 ## Tech list
 
-* [React 17](https://reactjs.org/)
-* [Graphql](https://graphql.org/)
-* [TypeScript](https://www.typescriptlang.org/)
-* [Testing-library](https://testing-library.com/docs/react-testing-library/intro/)
-* [Webpack](https://webpack.js.org/)
-* [Cypress](https://www.cypress.io/)
-* [SCSS](https://sass-lang.com/)
-
-
-
-
-## License
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fguzhongren%2FBuildkite-Dashboard.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fguzhongren%2FBuildkite-Dashboard?ref=badge_large)
+- [React 17](https://reactjs.org/)
+- [Graphql](https://graphql.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Testing-library](https://testing-library.com/docs/react-testing-library/intro/)
+- [Webpack](https://webpack.js.org/)
+- [Cypress](https://www.cypress.io/)
+- [SCSS](https://sass-lang.com/)

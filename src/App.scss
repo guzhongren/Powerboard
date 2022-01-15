@@ -11,9 +11,9 @@
 
 body {
   background-color: #29261d;
-  font-family: "Helvetica Neue", Helvetica,
-  "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei",
-  "Hiragino Sans GB", "Hiragino Sans GB W3", Arial, sans-serif;
+  font-family: 'Helvetica Neue', Helvetica, 'Microsoft YaHei', FreeSans, Arimo,
+    'Droid Sans', 'wenquanyi micro hei', 'Hiragino Sans GB',
+    'Hiragino Sans GB W3', Arial, sans-serif;
   font-size: 14px;
 }
 
@@ -127,8 +127,13 @@ a {
 }
 
 @keyframes blinkRed {
-  from {background-color: #f37051}
-  50% {background-color: #ff0000
+  from {
+    background-color: #f37051;
   }
-  to {background-color: #f37051}
+  50% {
+    background-color: #ff0000;
+  }
+  to {
+    background-color: #f37051;
+  }
 }

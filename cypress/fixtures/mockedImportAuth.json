@@ -3,5 +3,16 @@
   "org": "elastic",
   "search": "apm-onweek-alerts-as-code\nkibana / on merge",
   "team": "",
-  "oncall": "{\"startDate\":\"2021-09-15\",\"names\":[\"PengChong\",\"FengWen\",\"YiChen\",\"Lina\",\"ZhongRen\",\"XuDong\",\"Zhang Yu\"]}"
+  "oncall": {
+    "startDate": "2021-09-15",
+    "names": [
+      "PengChong",
+      "FengWen",
+      "YiChen",
+      "Lina",
+      "ZhongRen",
+      "XuDong",
+      "Zhang Yu"
+    ]
+  }
 }

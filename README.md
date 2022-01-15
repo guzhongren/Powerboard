@@ -34,14 +34,14 @@ Get a buildkite access token first at https://buildkite.com/user/api-access-toke
   }
   ```
 
-  |Field|Mandatory|Description|
-  |--|--|--|
-  |org|true|The name of your buildkit account|
-  |team|false|Team name|
-  |search|false|The collection of pipelines under your org|
-  |oncall|false|On-call config|
-  |oncall.startDate|true|The start date, app will use it as start date, Poll every seven days to the next person |
-  |oncall.names|true|On-call list|
+  | Field            | Mandatory | Description                                                                             |
+  | ---------------- | --------- | --------------------------------------------------------------------------------------- |
+  | org              | true      | The name of your buildkit account                                                       |
+  | team             | false     | Team name                                                                               |
+  | search           | false     | The collection of pipelines under your org                                              |
+  | oncall           | false     | On-call config                                                                          |
+  | oncall.startDate | true      | The start date, app will use it as start date, Poll every seven days to the next person |
+  | oncall.names     | true      | On-call list                                                                            |
 
   #### Demo
 
@@ -49,16 +49,10 @@ Get a buildkite access token first at https://buildkite.com/user/api-access-toke
   {
     "org": "elastic",
     "team": "",
-    "search": [
-      "kibana / on merge",
-      "apm-onweek-alerts-as-code"
-    ],
+    "search": ["kibana / on merge", "apm-onweek-alerts-as-code"],
     "oncall": {
       "startDate": "2021-11-10",
-      "names": [
-        "Chen",
-        "Adame"
-      ]
+      "names": ["Chen", "Adame"]
     }
   }
   ```

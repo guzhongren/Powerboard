@@ -2,6 +2,6 @@
   "env": {
     "local": "http://localhost:4321/",
     "docker": "http://web",
-    "prod": "https://guzhongren.github.io//Buildkite-Dashboard/"
+    "prod": "https://apollo-for-fun.github.io/Powerboard/"
   }
 }

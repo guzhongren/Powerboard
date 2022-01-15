@@ -1,30 +1,31 @@
-import * as React from "react";
-import useSWR from "swr";
-import { useState } from "react";
-import * as dayjs from "dayjs";
-import { Responsive, WidthProvider, Layouts } from "react-grid-layout";
-import { isEqual } from "lodash";
-import { buildKiteQuery, fetcher } from "@root/fetcher";
-import { mergePipelinesWithResponse } from "@root/help";
-import Pipeline from "@root/Pipline/Pipeline";
-import Titan from "@root/Titan/Titan";
-import Auth from "@root/Auth/Auth";
-import { getLayouts, saveLayouts } from "../Utils/LayoutStorageUtils";
-import { DEFAULT_ITEM_LAYOUT } from "../Constants/Grid";
-import { PIPELINE_AUTO_REFRESH_PERIOD } from "../Constants/Config";
-import { IAuth } from "../Constants/Auth";
-import {updateAuth} from '../Utils/ConvertAuth'
-import OncallPannel from "@root/Components/OncallPannel";
+import * as React from 'react'
+import useSWR from 'swr'
+import { parse } from 'query-string'
+import { useState, useEffect } from 'react'
+import * as dayjs from 'dayjs'
+import { Responsive, WidthProvider, Layouts } from 'react-grid-layout'
+import { isEqual } from 'lodash'
+import { buildKiteQuery, fetcher } from '@root/fetcher'
+import { mergePipelinesWithResponse } from '@root/help'
+import Pipeline from '@root/Pipline/Pipeline'
+import Titan from '@root/Titan/Titan'
+import Auth from '@root/Auth/Auth'
+import { getLayouts, saveLayouts } from '../Utils/LayoutStorageUtils'
+import { DEFAULT_ITEM_LAYOUT } from '../Constants/Grid'
+import { PIPELINE_AUTO_REFRESH_PERIOD } from '../Constants/Config'
+import { IAuth } from '../Constants/Auth'
+import { updateAuth } from '../Utils/ConvertUtils'
+import OncallPannel from '@root/Components/OncallPannel'
+import { convertToJSON } from '../Utils/ConvertUtils'
 
-
-const ReactGridLayout = WidthProvider(Responsive);
+const ReactGridLayout = WidthProvider(Responsive)
 
 const Grid: React.FC<{
-  authConfig?: any;
+  authConfig?: any
 }> = ({ authConfig }) => {
-  const [lastUpdateTime, setLastUpdateTime] = useState(dayjs());
-  const [layouts] = useState(getLayouts() || {});
-  const [auth, setAuth] = useState(authConfig);
+  const [lastUpdateTime, setLastUpdateTime] = useState(dayjs())
+  const [layouts] = useState(getLayouts() || {})
+  const [auth, setAuth] = useState(authConfig)
 
   const { data, error } = useSWR(
     [buildKiteQuery(auth?.org, auth?.team, auth?.search), auth?.token],
@@ -32,10 +33,10 @@ const Grid: React.FC<{
     {
       refreshInterval: PIPELINE_AUTO_REFRESH_PERIOD,
       onSuccess: () => {
-        setLastUpdateTime(dayjs());
+        setLastUpdateTime(dayjs())
       },
     }
-  );
+  )
   if (error) {
     return (
       <>
@@ -45,35 +46,35 @@ const Grid: React.FC<{
         <Auth
           message="API ERROR, Please check your config"
           onConfigChanged={(auth: IAuth) => {
-            setAuth(updateAuth(auth));
+            setAuth(updateAuth(auth))
           }}
         />
       </>
-    );
+    )
   }
 
-  const mergedData = mergePipelinesWithResponse(data);
+  const mergedData = mergePipelinesWithResponse(data)
 
-  const pipelines = mergedData?.organization?.pipelines?.edges || [];
+  const pipelines = mergedData?.organization?.pipelines?.edges || []
 
   const defaultLayoutProps = {
-    className: "container",
+    className: 'container',
     cols: { lg: 100, md: 10, sm: 6, xs: 4, xxs: 2 },
     rowHeight: 6,
     onLayoutChange: (layout: any, layoutsParam: Layouts) => {
-      const storedLayout = getLayouts();
+      const storedLayout = getLayouts()
       if (
         layout.length === 0 &&
         (layoutsParam.md?.length <= 0 || layoutsParam.lg?.length <= 0)
       ) {
-        console.info("init");
+        console.info('init')
       } else {
         if (!isEqual(layoutsParam, storedLayout)) {
-          saveLayouts(layoutsParam);
+          saveLayouts(layoutsParam)
         }
       }
     },
-  };
+  }
   return (
     <React.Fragment>
       <Titan
@@ -88,10 +89,12 @@ const Grid: React.FC<{
           }}
         />
       )}
-      {auth.oncall && <OncallPannel oncallListJSONString={auth.oncall}/>}
+      {auth.oncall && (
+        <OncallPannel oncallListJSON={convertToJSON(auth.oncall)} />
+      )}
       <ReactGridLayout {...defaultLayoutProps} layouts={layouts}>
         {pipelines.map((pipeline: any, index: number) => {
-          const layoutProps = layouts.lg ? layouts.lg[index] : {};
+          const layoutProps = layouts.lg ? layouts.lg[index] : {}
           return (
             <div
               key={index}
@@ -104,11 +107,11 @@ const Grid: React.FC<{
             >
               <Pipeline pipeline={pipeline} key={pipeline.node.name} />
             </div>
-          );
+          )
         })}
       </ReactGridLayout>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default Grid;
+export default Grid

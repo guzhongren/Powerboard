@@ -10,4 +10,3 @@ cypress/downloads/
 **/*.log
 
 
-package-lock.json

@@ -134,7 +134,7 @@ const Auth: React.FC<{
             placeholder={`Support multiple projects, like :\npipeline-a\npipeline-b\npipeline-c\npipeline-d`}
             value={search}
             onChange={(event) => {
-              setSearch(event.target.value);
+              setSearch(event.target.value)
             }}
           />
         </label>
@@ -177,7 +177,7 @@ const Auth: React.FC<{
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Auth;
+export default Auth

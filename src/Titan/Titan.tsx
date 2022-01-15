@@ -27,7 +27,7 @@ const Titan: React.FC<{
           />
         </div>
         <div className="titan__info">
-          Last updated at {lastUpdate.format("MM-DD HH:mm")}
+          Last updated at {lastUpdate.format('MM-DD HH:mm')}
         </div>
       </div>
       <Modal
@@ -39,7 +39,7 @@ const Titan: React.FC<{
         <Auth onConfigChanged={configChangeHandler} />
       </Modal>
     </>
-  );
-};
+  )
+}
 
-export default Titan;
+export default Titan

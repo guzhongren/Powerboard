@@ -1,5 +1,5 @@
 /// <reference types='cypress' />
-import dashboardConfig from "../fixtures/dashboard.json";
+import dashboardConfig from '../fixtures/dashboard.json'
 
 describe('show pipeline', () => {
   const pipelinesId = '#pipelines'

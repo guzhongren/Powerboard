@@ -1431,8 +1431,8 @@
 
 "@types/query-string@^6.3.0":
   version "6.3.0"
-  resolved "https://registry.nlark.com/@types/query-string/download/@types/query-string-6.3.0.tgz#b6fa172a01405abcaedac681118e78429d62ea39"
-  integrity sha1-tvoXKgFAWryu2saBEY54Qp1i6jk=
+  resolved "https://registry.yarnpkg.com/@types/query-string/-/query-string-6.3.0.tgz#b6fa172a01405abcaedac681118e78429d62ea39"
+  integrity sha512-yuIv/WRffRzL7cBW+sla4HwBZrEXRNf1MKQ5SklPEadth+BKbDxiVG8A3iISN5B3yC4EeSCzMZP8llHTcUhOzQ==
   dependencies:
     query-string "*"
 
@@ -6426,10 +6426,10 @@ qs@~6.5.2:
   resolved "https://registry.nlark.com/qs/download/qs-6.5.2.tgz#cb3ae806e8740444584ef154ce8ee98d403f3e36"
   integrity sha1-yzroBuh0BERYTvFUzo7pjUA/PjY=
 
-query-string@*, query-string@^7.0.0:
-  version "7.0.1"
-  resolved "https://registry.nlark.com/query-string/download/query-string-7.0.1.tgz#45bd149cf586aaa582dffc7ec7a8ad97dd02f75d"
-  integrity sha1-Rb0UnPWGqqWC3/x+x6itl90C910=
+query-string@*, query-string@^7.1.0:
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/query-string/-/query-string-7.1.0.tgz#96b88f27b39794f97b8c8ccd060bc900495078ef"
+  integrity sha512-wnJ8covk+S9isYR5JIXPt93kFUmI2fQ4R/8130fuq+qwLiGVTurg7Klodgfw4NSz/oe7xnyi09y3lSrogUeM3g==
   dependencies:
     decode-uri-component "^0.2.0"
     filter-obj "^1.1.0"

@@ -1,4 +1,4 @@
-FROM node:16-alpine as distPackage
+FROM node:17-alpine as distPackage
 COPY ./ /app
 WORKDIR /app
 RUN yarn

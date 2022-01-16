@@ -3,21 +3,21 @@ name: Test and deploy
 on:
   push:
     branches:
-      - master
+      - main
   schedule:
     - cron: '0 0 * * *'
 
 jobs:
   deployToGitHubPages:
-    name: test and deploy BuildKite-Monitor
+    name: test and deploy dashboard
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v1
-      - name: Use Node.js 12.x
+      - name: Use lts Node.js
         uses: actions/setup-node@v1
         with:
-          node-version: 12.13.0
+          node-version: 16.13.2
       - name: install & lint
         run: |
           yarn install && yarn lint

@@ -57,7 +57,7 @@ Get a buildkite access token first at https://buildkite.com/user/api-access-toke
   }
   ```
 
-## build & Run
+## Build & Run
 
 ```shell
 npm install -g yarn

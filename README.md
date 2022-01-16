@@ -52,7 +52,7 @@ Get a buildkite access token first at https://buildkite.com/user/api-access-toke
     "search": ["kibana / on merge", "apm-onweek-alerts-as-code"],
     "oncall": {
       "startDate": "2021-11-10",
-      "names": ["Chen", "Adame"]
+      "names": ["Chen", "Adam"]
     }
   }
   ```

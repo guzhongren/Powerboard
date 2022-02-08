@@ -10,14 +10,15 @@ dayjs.extend(relativeTime)
 
 const BuildHistory: React.FC<{ build: any }> = ({ build }) => {
   const info = build?.node || {}
-  const openHistoryHandler = () => window.open(info?.url)
   return (
-    <div
-      className={`pipeline__history-build ${info.state}`}
-      onClick={openHistoryHandler}
+    <a
+    href={info?.url}
+    target='_blank'
+    className={`pipeline__history-build ${info.state}`}
+    title={info?.createdBy?.name}
     >
       #{info.number}
-    </div>
+    </a>
   )
 }
 

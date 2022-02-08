@@ -73,6 +73,13 @@ export const buildKiteQuery = (
                         label
                         passed
                         state
+                        pipeline {
+                          id
+                          createdBy {
+                            id
+                            name
+                          }
+                        }
                       }
                     }
                   }

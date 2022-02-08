@@ -43,6 +43,9 @@ export const buildKiteQuery = (
               }
             }
           }
+          repository {
+            url
+          }
           builds(first:11) {
             edges {
               node {

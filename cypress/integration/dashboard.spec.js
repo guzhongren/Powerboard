@@ -38,6 +38,8 @@ describe('show pipeline', () => {
     const orgNameTitle = 'Organization Name'
     const accessTokenTitle = 'Access Token'
     const pipelineTitle = '.pipeline__title-content'
+    const pipelineTitleRepo = '.pipeline__title-repo'
+
     it('should can add pipeline, and update pipeline settings', () => {
       cy.contains(accessTokenTitle)
         .parent()
@@ -90,6 +92,8 @@ describe('show pipeline', () => {
         })
         .then(() => {
           cy.get(pipelineTitle).should('have.length', 2)
+          cy.get(pipelineTitleRepo).should('have.length', 2)
+          cy.get(pipelineTitleRepo).first().parent().should('have.attr', 'target', '_blank')
         })
     })
 
@@ -186,3 +190,4 @@ describe('show pipeline', () => {
     })
   })
 })
+

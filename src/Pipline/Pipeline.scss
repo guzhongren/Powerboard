@@ -73,11 +73,16 @@
   }
 
   &__title {
+    display: flex;
     text-transform: uppercase;
     font-size: 3em;
     &-content {
       color: $font-color;
       cursor: pointer;
+    }
+    &-repo {
+      height: 3rem;
+      margin-right: 1rem;
     }
   }
 

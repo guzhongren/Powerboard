@@ -34,7 +34,7 @@ const Pipeline: React.FC<{ pipeline: any; style?: React.CSSProperties }> = ({
   const startAt = dayjs(lastBuild.startedAt)
   const finishAt = dayjs(lastBuild.finishedAt)
   const jobs = lastBuild.jobs?.edges || []
-
+  console.log(pipeline)
   return (
     <div className="pipeline" style={style}>
       <div className={'pipeline__metrics'}>
@@ -45,6 +45,7 @@ const Pipeline: React.FC<{ pipeline: any; style?: React.CSSProperties }> = ({
       </div>
       <div className={`pipeline__current ${lastBuild.state}`}>
         <div className="pipeline__title">
+          <a href={pipeline?.node?.repository?.url || ''} target='_blank'><img className='pipeline__title-repo' src="https://github.githubassets.com/images/modules/site/icons/footer/github-mark.svg" alt="GitHub" /></a>
           <a
             href={lastBuild.url}
             target="_blank"

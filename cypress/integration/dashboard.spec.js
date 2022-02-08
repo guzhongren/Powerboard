@@ -93,7 +93,10 @@ describe('show pipeline', () => {
         .then(() => {
           cy.get(pipelineTitle).should('have.length', 2)
           cy.get(pipelineTitleRepo).should('have.length', 2)
-          cy.get(pipelineTitleRepo).first().parent().should('have.attr', 'target', '_blank')
+          cy.get(pipelineTitleRepo)
+            .first()
+            .parent()
+            .should('have.attr', 'target', '_blank')
         })
     })
 
@@ -190,4 +193,3 @@ describe('show pipeline', () => {
     })
   })
 })
-

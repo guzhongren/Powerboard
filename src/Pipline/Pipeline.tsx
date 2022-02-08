@@ -12,10 +12,10 @@ const BuildHistory: React.FC<{ build: any }> = ({ build }) => {
   const info = build?.node || {}
   return (
     <a
-    href={info?.url}
-    target='_blank'
-    className={`pipeline__history-build ${info.state}`}
-    title={info?.createdBy?.name}
+      href={info?.url}
+      target="_blank"
+      className={`pipeline__history-build ${info.state}`}
+      title={info?.createdBy?.name}
     >
       #{info.number}
     </a>
@@ -46,7 +46,13 @@ const Pipeline: React.FC<{ pipeline: any; style?: React.CSSProperties }> = ({
       </div>
       <div className={`pipeline__current ${lastBuild.state}`}>
         <div className="pipeline__title">
-          <a href={pipeline?.node?.repository?.url || ''} target='_blank'><img className='pipeline__title-repo' src="https://github.githubassets.com/images/modules/site/icons/footer/github-mark.svg" alt="GitHub" /></a>
+          <a href={pipeline?.node?.repository?.url || ''} target="_blank">
+            <img
+              className="pipeline__title-repo"
+              src="https://github.githubassets.com/images/modules/site/icons/footer/github-mark.svg"
+              alt="GitHub"
+            />
+          </a>
           <a
             href={lastBuild.url}
             target="_blank"

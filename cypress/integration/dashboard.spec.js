@@ -140,7 +140,7 @@ describe('show pipeline', () => {
   })
 
   describe('Config in pipeline', async () => {
-    it('should show pipeline given config(token & configPath) in url', async() => {
+    it('should show pipeline given config(token & configPath) in url', async () => {
       await cy.visit(
         `${Cypress.env('url')}?token=${dashboardConfig.token}&config=${
           dashboardConfig.configPath

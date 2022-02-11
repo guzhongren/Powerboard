@@ -13,7 +13,7 @@
 // This function is called when a project is opened or re-opened (e.g. due to
 // the project's config changing)
 
-const fs = require('fs');
+const fs = require('fs')
 /**
  * @type {Cypress.PluginConfig}
  */
@@ -42,10 +42,13 @@ module.exports = (on, config) => {
 
 function generateTestData() {
   fs.readFile('cypress/fixtures/mockedImportAuthTemplate.json', (err, data) => {
-    if (err) throw err;
-    let mockedImportAuth = JSON.parse(data);
+    if (err) throw err
+    let mockedImportAuth = JSON.parse(data)
     mockedImportAuth.token = process.env.BUILDKITE_TOKEN
 
-    fs.writeFile('cypress/fixtures/mockedImportAuth.json', JSON.stringify(mockedImportAuth, null, 2))
-});
+    fs.writeFile(
+      'cypress/fixtures/mockedImportAuth.json',
+      JSON.stringify(mockedImportAuth, null, 2)
+    )
+  })
 }

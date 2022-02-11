@@ -1,0 +1,18 @@
+{
+  "token": "token",
+  "org": "elastic",
+  "search": "apm-onweek-alerts-as-code\nkibana / on merge",
+  "team": "",
+  "oncall": {
+    "startDate": "2021-09-15",
+    "names": [
+      "P",
+      "F",
+      "Y",
+      "L",
+      "Z",
+      "X",
+      "Yu"
+    ]
+  }
+}

@@ -1,2 +1,9 @@
+FROM node:17-alpine as distPackage
+COPY ./ /app
+WORKDIR /app
+RUN yarn
+RUN yarn build
+
+
 FROM nginx:latest
-COPY dist /usr/share/nginx/html
+COPY --from=distPackage /app/dist /usr/share/nginx/html

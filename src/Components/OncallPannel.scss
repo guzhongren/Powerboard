@@ -1,0 +1,25 @@
+@import '../root.scss';
+.notice {
+  .oncall {
+    height: 5rem;
+    background-color: #009eff;
+    color: $font-color;
+    font-size: 1.5em;
+    display: flex;
+    padding: 1rem;
+    &__item {
+      display: flex;
+      align-items: flex-end;
+      margin-right: 2rem;
+      &-title {
+        color: $font-color;
+        align-self: flex-end;
+        margin-right: 0.5rem;
+      }
+      &-name {
+        font-size: 3em;
+        align-self: center;
+      }
+    }
+  }
+}

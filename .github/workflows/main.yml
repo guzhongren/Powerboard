@@ -37,9 +37,8 @@ jobs:
           user_name: guzhongren
           user_email: guzhongren@live.cn
       - name: UI Automation Test
-        with:
-          BUILDKITE_TOKEN: ${{ secrets.BUILDKITE_TOKEN }}
-        run: sleep 60 && yarn cy:run
+        run: |
+          sleep 60 && yarn cy:run
       - name: Trivy scanner
         uses: aquasecurity/trivy-action@master
         with:

@@ -1,13 +1,20 @@
 /// <reference types='cypress' />
 import dashboardConfig from '../fixtures/dashboard.json'
+import { convertToString } from '../../src/Utils/ConvertUtils'
+import {
+  ID_PIPELINES,
+  ID_IMPORT,
+  LABEL_INPUT,
+  LABEL_PIPELINE_AREA,
+  CLASS_BUTTON_GO,
+  TITLE_ORG_NAME,
+  TITLE_ACCESS_TOKEN,
+  TITLE_PIPELINE,
+  TITLE_PIPELINE_REPO,
+  ID_ONCALL_LIST,
+} from '../fixtures/fixtures'
 
 describe('show pipeline', () => {
-  const pipelinesId = '#pipelines'
-  const importId = '#import'
-  const inputLabel = 'input'
-  const pipelineAreaLabel = 'textarea'
-  const goButton = '.btn'
-  // const token = Cypress.env('BUILDKITE_TOKEN')
   dashboardConfig.token = Cypress.env('BUILDKITE_TOKEN')
   const orgName = dashboardConfig.orgName
   const pipelinesConfig = dashboardConfig.pipelines
@@ -20,11 +27,6 @@ describe('show pipeline', () => {
     ONCALL: 'oncall',
   }
 
-  const orgNameTitle = 'Organization Name'
-  const accessTokenTitle = 'Access Token'
-  const pipelineTitle = '.pipeline__title-content'
-  const pipelineTitleRepo = '.pipeline__title-repo'
-
   describe('display pipeline by manuel config', () => {
     beforeEach(() => {
       cy.visit(Cypress.env('url'))
@@ -35,68 +37,55 @@ describe('show pipeline', () => {
     })
 
     it('should can add pipeline, and update pipeline settings', () => {
-      cy.contains(accessTokenTitle)
+      cy.contains(TITLE_ACCESS_TOKEN)
         .parent()
         .find('input[type=text]')
         .type(dashboardConfig.token)
 
-      cy.contains(orgNameTitle).parent().find('input[type=text]').type(orgName)
+      cy.contains(TITLE_ORG_NAME)
+        .parent()
+        .find('input[type=text]')
+        .type(orgName)
 
-      cy.get(pipelinesId).type(`${pipelinesConfig[0]}`)
-      cy.get('#oncallList').type(`${JSON.stringify(dashboardConfig.oncall)}`, {
-        parseSpecialCharSequences: false,
-      })
+      cy.get(ID_PIPELINES).type(pipelinesConfig[0])
+      cy.get(ID_ONCALL_LIST).type(convertToString(dashboardConfig.oncall))
 
-      cy.get(goButton)
+      const newConfig = {
+        ...dashboardConfig,
+        pipelines: [dashboardConfig.pipelines[0]],
+      }
+      cy.get(CLASS_BUTTON_GO)
         .click()
         .then(() => {
-          const newConfig = {
-            ...dashboardConfig,
-            pipelines: [dashboardConfig.pipelines[0]],
-          }
           checkLocalStorageInfo(newConfig)
           checkPipelineTitle(1)
         })
       // should update the pipeline settings
 
       cy.get('.icon.setting').click()
-      cy.contains(accessTokenTitle)
-        .parent()
-        .find('input[type=text]')
-        .should('have.value', dashboardConfig.token)
-      cy.contains(orgNameTitle)
-        .parent()
-        .find('input[type=text]')
-        .should('have.value', orgName)
+      checkAuthInfo(newConfig)
 
-      cy.get(pipelinesId).should('have.value', `${pipelinesConfig[0]}`)
-
-      cy.get(pipelinesId).type(`{enter}${pipelinesConfig[1]}`)
-
-      cy.get(goButton)
+      cy.get(ID_PIPELINES).type(`{enter}${pipelinesConfig[1]}`)
+      cy.get(CLASS_BUTTON_GO)
         .click()
         .then(() => {
           checkLocalStorageInfo(dashboardConfig)
         })
         .then(() => {
           checkPipelineTitle(2)
-          checkPipelineRepo(pipelineTitleRepo)
+          checkPipelineRepo(TITLE_PIPELINE_REPO)
         })
     })
 
     it('should import auth config json file into app', () => {
       cy.clearLocalStorage()
 
-      cy.get(importId)
-        .attachFile('mockedImportAuth.json')
-        .then(() => {
-          setTimeout(() => {
-            cy.get(pipelinesId).contains(dashboardConfig.pipelines.join('\n'))
-            cy.get('#oncallList').contains(dashboardConfig.oncall)
-          }, 4000)
-        })
+      cy.get(ID_IMPORT).attachFile('mockedImportAuth.json')
 
-      cy.get(goButton)
+      console.log(dashboardConfig)
+      checkAuthInfo(dashboardConfig)
+
+      cy.get(CLASS_BUTTON_GO)
         .click()
         .then(() => {
           checkLocalStorageInfo(dashboardConfig)
@@ -105,7 +94,7 @@ describe('show pipeline', () => {
     it('should download the latest auth config when click download button', () => {
       cy.clearLocalStorage()
 
-      cy.get(importId).attachFile('mockedImportAuth.json')
+      cy.get(ID_IMPORT).attachFile('mockedImportAuth.json')
 
       cy.get('#download')
         .click()
@@ -118,13 +107,13 @@ describe('show pipeline', () => {
               .should('contain', dashboardConfig.pipelines[1])
           }, 2000)
         })
-      cy.get(goButton).click()
+      cy.get(CLASS_BUTTON_GO).click()
     })
 
     it('should contain oncall list when click download button', () => {
       cy.clearLocalStorage()
 
-      cy.get(importId).attachFile('mockedImportAuth.json')
+      cy.get(ID_IMPORT).attachFile('mockedImportAuth.json')
 
       cy.get('#download')
         .click()
@@ -135,7 +124,7 @@ describe('show pipeline', () => {
             ).should('contain', dashboardConfig.oncall)
           }, 2000)
         })
-      cy.get(goButton).click()
+      cy.get(CLASS_BUTTON_GO).click()
     })
   })
 
@@ -147,15 +136,15 @@ describe('show pipeline', () => {
         }`
       )
       checkPipelineTitle(2)
-      checkPipelineRepo(pipelineTitleRepo)
+      checkPipelineRepo(TITLE_PIPELINE_REPO)
     })
   })
 
   function checkPipelineTitle(countOfPipelines) {
-    cy.get(pipelineTitle).should('have.length', countOfPipelines)
-    cy.get(pipelineTitle).first().should('have.attr', 'href')
-    cy.get(pipelineTitle).first().should('have.attr', 'target', '_blank')
-    cy.get(pipelineTitle).first().should('have.text', pipelinesConfig[0])
+    cy.get(TITLE_PIPELINE).should('have.length', countOfPipelines)
+    cy.get(TITLE_PIPELINE).first().should('have.attr', 'href')
+    cy.get(TITLE_PIPELINE).first().should('have.attr', 'target', '_blank')
+    cy.get(TITLE_PIPELINE).first().should('have.text', pipelinesConfig[0])
   }
 
   function checkPipelineRepo(repoCssSelector) {
@@ -167,14 +156,14 @@ describe('show pipeline', () => {
   }
 
   function checkAuthInput() {
-    cy.get(inputLabel).should('have.length', 4)
+    cy.get(LABEL_INPUT).should('have.length', 4)
 
-    cy.get(inputLabel).first().should('have.text', '')
-    cy.get(inputLabel).last().should('have.text', '')
-    cy.get(pipelinesId).should('have.text', '')
-    cy.get(pipelinesId).should('have.text', '')
+    cy.get(LABEL_INPUT).first().should('have.text', '')
+    cy.get(LABEL_INPUT).last().should('have.text', '')
+    cy.get(ID_PIPELINES).should('have.text', '')
+    cy.get(ID_PIPELINES).should('have.text', '')
 
-    cy.get(pipelineAreaLabel).should('have.length', 2)
+    cy.get(LABEL_PIPELINE_AREA).should('have.length', 2)
   }
 
   function checkLocalStorageInfo(dashboardConfig) {
@@ -185,13 +174,32 @@ describe('show pipeline', () => {
       dashboardConfig.team
     )
     expect(localStorage.getItem(DASHBOARD_AUTH.SEARCH)).to.equal(
-      dashboardConfig.pipelines.join('\n')
+      convertToString(dashboardConfig.pipelines)
     )
     expect(localStorage.getItem(DASHBOARD_AUTH.TOKEN)).to.equal(
       dashboardConfig.token
     )
     expect(localStorage.getItem(DASHBOARD_AUTH.ONCALL)).to.equal(
-      JSON.stringify(dashboardConfig.oncall)
+      convertToString(dashboardConfig.oncall)
+    )
+  }
+
+  function checkAuthInfo(dashboardConfig) {
+    cy.contains(TITLE_ACCESS_TOKEN)
+      .parent()
+      .find('input[type=text]')
+      .should('have.value', dashboardConfig.token)
+    cy.contains(TITLE_ORG_NAME)
+      .parent()
+      .find('input[type=text]')
+      .should('have.value', orgName)
+    cy.get(ID_PIPELINES).should(
+      'have.value',
+      dashboardConfig.pipelines.join('\n')
+    )
+    cy.get(ID_ONCALL_LIST).should(
+      'have.value',
+      convertToString(dashboardConfig.oncall)
     )
   }
 })

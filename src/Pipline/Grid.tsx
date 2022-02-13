@@ -1,7 +1,6 @@
 import * as React from 'react'
 import useSWR from 'swr'
-import { parse } from 'query-string'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import * as dayjs from 'dayjs'
 import { Responsive, WidthProvider, Layouts } from 'react-grid-layout'
 import { isEqual } from 'lodash'
@@ -14,7 +13,6 @@ import { getLayouts, saveLayouts } from '../Utils/LayoutStorageUtils'
 import { DEFAULT_ITEM_LAYOUT } from '../Constants/Grid'
 import { PIPELINE_AUTO_REFRESH_PERIOD } from '../Constants/Config'
 import { IAuth } from '../Constants/Auth'
-import { updateAuth } from '../Utils/ConvertUtils'
 import OncallPannel from '@root/Components/OncallPannel'
 import { convertToJSON } from '../Utils/ConvertUtils'
 
@@ -46,7 +44,7 @@ const Grid: React.FC<{
         <Auth
           message="API ERROR, Please check your config"
           onConfigChanged={(auth: IAuth) => {
-            setAuth(updateAuth(auth))
+            setAuth(auth)
           }}
         />
       </>
@@ -79,13 +77,13 @@ const Grid: React.FC<{
     <React.Fragment>
       <Titan
         lastUpdate={lastUpdateTime}
-        onConfigChanged={(auth) => setAuth(updateAuth(auth))}
+        onConfigChanged={(auth) => setAuth(auth)}
       />
       {pipelines.length === 0 && data && (
         <Auth
           message="No pipelines found, Please check your config"
           onConfigChanged={(auth: IAuth) => {
-            setAuth(updateAuth(auth))
+            setAuth(auth)
           }}
         />
       )}

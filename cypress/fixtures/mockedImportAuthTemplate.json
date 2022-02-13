@@ -1,10 +1,21 @@
 {
   "token": "token",
   "org": "elastic",
-  "search": "apm-onweek-alerts-as-code\nkibana / on merge",
+  "search": [
+    "apm-onweek-alerts-as-code",
+    "kibana / on merge"
+  ],
   "team": "",
   "oncall": {
     "startDate": "2021-09-15",
-    "names": ["P", "F", "Y", "L", "Z", "X", "Yu"]
+    "names": [
+      "P",
+      "F",
+      "Y",
+      "L",
+      "Z",
+      "X",
+      "Yu"
+    ]
   }
 }

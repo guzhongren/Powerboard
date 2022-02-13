@@ -1,12 +1,11 @@
 import { IAuth } from '../Constants/Auth'
-import { splitSearch } from './StringUtils'
 
-export const updateAuth = (auth: IAuth) => {
-  return {
-    ...auth,
-    search: splitSearch(auth.search),
-  }
-}
+// export const updateAuth = (auth: IAuth) => {
+//   return {
+//     ...auth,
+//     search: JSON.parse(auth.search),
+//   }
+// }
 
 export const convertToJSON = (config: any) => {
   if (typeof config === 'string') {
@@ -17,7 +16,7 @@ export const convertToJSON = (config: any) => {
 
 export const convertToString = (info: any) => {
   if (typeof info === 'object') {
-    return JSON.stringify(info)
+    return JSON.stringify(info, null, 2)
   }
   return info
 }

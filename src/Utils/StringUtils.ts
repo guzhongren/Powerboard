@@ -1,3 +1,3 @@
 export const splitSearch = (searchString: string) => {
-  return searchString ? searchString.split('\n') : ''
+  return searchString ? searchString.split('\n') : []
 }

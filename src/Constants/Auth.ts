@@ -9,7 +9,7 @@ export const DASHBOARD_AUTH = {
 export interface IAuth {
   org?: string
   team?: string
-  search?: string
+  search?: string[]
   token?: string
-  oncall?: string
+  oncall?: any
 }

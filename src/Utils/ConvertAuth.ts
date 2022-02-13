@@ -4,6 +4,6 @@ import { splitSearch } from './StringUtils'
 export const updateAuth = (auth: IAuth) => {
   return {
     ...auth,
-    search: splitSearch(auth.search),
+    search: auth.search,
   }
 }

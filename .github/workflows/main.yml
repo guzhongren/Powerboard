@@ -22,10 +22,10 @@ jobs:
         run: |
           yarn install && yarn lint
       - name: E2E
-        run: |
-          docker-compose up --build e2e
         with:
           BUILDKITE_TOKEN: ${{ secrets.BUILDKITE_TOKEN }}
+        run: |
+          docker-compose up --build e2e
       - name: build project
         run: |
           yarn build

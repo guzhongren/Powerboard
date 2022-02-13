@@ -22,7 +22,8 @@ export const downloadConfig = (
   fileName: string
 ) => {
   const dataStr =
-    'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(data, null, 2))
+    'data:text/json;charset=utf-8,' +
+    encodeURIComponent(JSON.stringify(data, null, 2))
   dlAnchorElem.setAttribute('href', dataStr)
   dlAnchorElem.setAttribute('download', fileName)
   dlAnchorElem.click()

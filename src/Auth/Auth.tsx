@@ -18,7 +18,9 @@ const Auth: React.FC<{
   const [search, setSearch] = useState(
     convertToJSON(getValueByKey(DASHBOARD_AUTH.SEARCH))
   )
-  const [oncall, setOncall] = useState(convertToJSON(getValueByKey(DASHBOARD_AUTH.ONCALL)))
+  const [oncall, setOncall] = useState(
+    convertToJSON(getValueByKey(DASHBOARD_AUTH.ONCALL))
+  )
   const [orz, setOrz] = useState(getValueByKey(DASHBOARD_AUTH.ORG))
 
   const storeConfig = () => {
@@ -48,7 +50,7 @@ const Auth: React.FC<{
           setToken(data.token || 'Invalided access token!')
           setOrz(data.org || 'Invalided organization name!')
           setTeam(data.team || '')
-          setSearch(data.search|| [])
+          setSearch(data.search || [])
           setOncall(data.oncall)
           saveLayouts(data.layout || {})
           console.log('successfully imported')
@@ -145,7 +147,7 @@ const Auth: React.FC<{
           <textarea
             id="oncallList"
             placeholder={`{\n"startDate": "2021-09-15", \n"names":["PengChong","FengWen","YiChen","Lina","ZhongRen","XuDong","Zhang Yu"]\n}`}
-            value={oncall && convertToString(oncall) || ''}
+            value={(oncall && convertToString(oncall)) || ''}
             onChange={(event) => {
               setOncall(event.target.value)
             }}

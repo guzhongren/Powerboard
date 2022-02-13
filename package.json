@@ -13,7 +13,8 @@
     "majorRelease": "standard-version --release-as major",
     "cy:run": "cross-env ENV=production cypress run --spec 'cypress/integration/dashboard.spec.js'",
     "cy:docker": "cross-env ENV=docker cypress run --spec 'cypress/integration/dashboard.spec.js'",
-    "cy:open": "cypress open"
+    "cy:open": "cypress open",
+    "prepare": "husky install"
   },
   "lint-staged": {
     "src/**/*{.ts,.tsx}": [

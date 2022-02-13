@@ -24,6 +24,8 @@ jobs:
       - name: E2E
         run: |
           docker-compose up --build e2e
+        with:
+          BUILDKITE_TOKEN: ${{ secrets.BUILDKITE_TOKEN }}
       - name: build project
         run: |
           yarn build
@@ -36,6 +38,8 @@ jobs:
           user_name: guzhongren
           user_email: guzhongren@live.cn
       - name: UI Automation Test
+        with:
+          BUILDKITE_TOKEN: ${{ secrets.BUILDKITE_TOKEN }}
         run: sleep 60 && yarn cy:run
       - name: Trivy scanner
         uses: aquasecurity/trivy-action@master

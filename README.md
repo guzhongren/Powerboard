@@ -15,7 +15,7 @@ URL schema: `https://guzhongren.github.io/Powerboard/?token={TOKEN}&config={CONF
 
 Get a buildkite access token first at https://buildkite.com/user/api-access-tokens
 
-> Need all _read permissions_ and _Enable GraphQL API Access_
+> Just need _Organization Access_, and _Enable GraphQL API Access_
 
 ### Config schema
 
@@ -58,6 +58,13 @@ Get a buildkite access token first at https://buildkite.com/user/api-access-toke
   ```
 
 ## Build & Run
+
+- Firstly, you should get your Buildkite token and export it in current shell.
+
+```shell
+export BUILDKITE_TOKEN=xxxx
+```
+- Secondly, run
 
 ```shell
 npm install -g yarn

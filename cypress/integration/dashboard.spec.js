@@ -82,7 +82,6 @@ describe('show pipeline', () => {
 
       cy.get(ID_IMPORT).attachFile('mockedImportAuth.json')
 
-      console.log(dashboardConfig)
       checkAuthInfo(dashboardConfig)
 
       cy.get(CLASS_BUTTON_GO)

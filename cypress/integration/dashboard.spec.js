@@ -78,52 +78,52 @@ describe('show pipeline', () => {
     })
 
     it('should import auth config json file into app', () => {
-      cy.clearLocalStorage()
+      cy.clearLocalStorage().then(() => {
+        cy.get(ID_IMPORT).attachFile('mockedImportAuth.json')
 
-      cy.get(ID_IMPORT).attachFile('mockedImportAuth.json')
+        checkAuthInfo(dashboardConfig)
 
-      checkAuthInfo(dashboardConfig)
-
-      cy.get(CLASS_BUTTON_GO)
-        .click()
-        .then(() => {
-          checkLocalStorageInfo(dashboardConfig)
-        })
+        cy.get(CLASS_BUTTON_GO)
+          .click()
+          .then(() => {
+            checkLocalStorageInfo(dashboardConfig)
+          })
+      })
     })
     it('should download the latest auth config when click download button', () => {
-      cy.clearLocalStorage()
+      cy.clearLocalStorage().then(() => {
+        cy.get(ID_IMPORT).attachFile('mockedImportAuth.json')
 
-      cy.get(ID_IMPORT).attachFile('mockedImportAuth.json')
-
-      cy.get('#download')
-        .click()
-        .then(() => {
-          setTimeout(() => {
-            cy.readFile('cypress/fixtures/downloads/dashboardConfig.json')
-              .should('contain', dashboardConfig.token)
-              .should('contain', dashboardConfig.orgName)
-              .should('contain', dashboardConfig.pipelines[0])
-              .should('contain', dashboardConfig.pipelines[1])
-          }, 2000)
-        })
-      cy.get(CLASS_BUTTON_GO).click()
+        cy.get('#download')
+          .click()
+          .then(() => {
+            setTimeout(() => {
+              cy.readFile('cypress/fixtures/downloads/dashboardConfig.json')
+                .should('contain', dashboardConfig.token)
+                .should('contain', dashboardConfig.orgName)
+                .should('contain', dashboardConfig.pipelines[0])
+                .should('contain', dashboardConfig.pipelines[1])
+            }, 2000)
+          })
+        cy.get(CLASS_BUTTON_GO).click()
+      })
     })
 
     it('should contain oncall list when click download button', () => {
-      cy.clearLocalStorage()
+      cy.clearLocalStorage().then(() => {
+        cy.get(ID_IMPORT).attachFile('mockedImportAuth.json')
 
-      cy.get(ID_IMPORT).attachFile('mockedImportAuth.json')
-
-      cy.get('#download')
-        .click()
-        .then(() => {
-          setTimeout(() => {
-            cy.readFile(
-              'cypress/fixtures/downloads/dashboardConfig.json'
-            ).should('contain', dashboardConfig.oncall)
-          }, 2000)
-        })
-      cy.get(CLASS_BUTTON_GO).click()
+        cy.get('#download')
+          .click()
+          .then(() => {
+            setTimeout(() => {
+              cy.readFile(
+                'cypress/fixtures/downloads/dashboardConfig.json'
+              ).should('contain', dashboardConfig.oncall)
+            }, 2000)
+          })
+        cy.get(CLASS_BUTTON_GO).click()
+      })
     })
   })
 

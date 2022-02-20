@@ -1,0 +1,14 @@
+name: Sensitive Data Scanner
+
+on: push
+
+jobs:
+  Scanner:
+    name: Sensitive Data Scanner
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: trufflehog-actions-scan
+        uses: edplato/trufflehog-actions-scan@master

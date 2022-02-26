@@ -15,7 +15,6 @@ import { PIPELINE_AUTO_REFRESH_PERIOD } from '../Constants/Config'
 import { IAuth } from '../Constants/Auth'
 import OncallPannel from '@root/Components/OncallPannel'
 import { convertToJSON } from '../Utils/ConvertUtils'
-import { flushTitle } from '../Utils/ScreenUtils'
 
 const ReactGridLayout = WidthProvider(Responsive)
 

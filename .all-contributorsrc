@@ -13,7 +13,15 @@
       "contributions": [
         "code",
         "doc",
-        "infra"
+        "infra",
+        "design",
+        "eventOrganizing",
+        "ideas",
+        "maintenance",
+        "platform",
+        "review",
+        "test",
+        "tutorial"
       ]
     }
   ],

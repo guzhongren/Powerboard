@@ -1,6 +1,6 @@
 import * as React from 'react'
 import useSWR from 'swr'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import * as dayjs from 'dayjs'
 import { Responsive, WidthProvider, Layouts } from 'react-grid-layout'
 import { isEqual } from 'lodash'
@@ -15,8 +15,11 @@ import { PIPELINE_AUTO_REFRESH_PERIOD } from '../Constants/Config'
 import { IAuth } from '../Constants/Auth'
 import OncallPannel from '@root/Components/OncallPannel'
 import { convertToJSON } from '../Utils/ConvertUtils'
+import { flushTitle } from '../Utils/ScreenUtils'
 
 const ReactGridLayout = WidthProvider(Responsive)
+
+const FAILED = 'FAILED'
 
 const Grid: React.FC<{
   authConfig?: any
@@ -24,6 +27,7 @@ const Grid: React.FC<{
   const [lastUpdateTime, setLastUpdateTime] = useState(dayjs())
   const [layouts] = useState(getLayouts() || {})
   const [auth, setAuth] = useState(authConfig)
+  const [retry, setRetry] = useState(true)
 
   const { data, error } = useSWR(
     [buildKiteQuery(auth?.org, auth?.team, auth?.search), auth?.token],
@@ -54,6 +58,28 @@ const Grid: React.FC<{
   const mergedData = mergePipelinesWithResponse(data)
 
   const pipelines = mergedData?.organization?.pipelines?.edges || []
+
+  useEffect(() => {
+    let timer = setInterval(() => {
+      setRetry(!retry)
+      const statuses = pipelines.map(
+        (pipeline: any) => pipeline.node?.builds?.edges?.[0]?.node?.state
+      )
+      if (statuses.includes(FAILED)) {
+        if (retry) {
+          const failedCount = statuses.filter(
+            (status: any) => status === FAILED
+          ).length
+          document.title = `🚨 ${failedCount} Failed`
+        } else {
+          document.title = `Powerboard`
+        }
+      }
+    }, 1000)
+    return () => {
+      clearInterval(timer)
+    }
+  })
 
   const defaultLayoutProps = {
     className: 'container',

@@ -1,8 +1,8 @@
 FROM node:17-alpine as distPackage
 COPY ./ /app
 WORKDIR /app
-RUN yarn
-RUN yarn build
+RUN pnpm install
+RUN pnpm build
 
 
 FROM nginx:latest

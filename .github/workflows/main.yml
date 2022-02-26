@@ -20,7 +20,7 @@ jobs:
           node-version: 16.13.2
       - name: install & lint
         run: |
-          yarn install && yarn lint
+          pnpm && pnpm lint
       - name: E2E
         run: |
           export BUILDKITE_TOKEN=${{ secrets.BUILDKITE_TOKEN }}

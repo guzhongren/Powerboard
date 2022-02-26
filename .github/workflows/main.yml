@@ -41,7 +41,7 @@ jobs:
       - name: UI Automation Test
         run: |
           export BUILDKITE_TOKEN=${{ secrets.BUILDKITE_TOKEN }}
-          sleep 60 && yarn cy:run
+          sleep 60 && pnpm cy:run
       - name: Trivy scanner
         uses: aquasecurity/trivy-action@master
         with:

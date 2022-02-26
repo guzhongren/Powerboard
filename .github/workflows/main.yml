@@ -21,7 +21,7 @@ jobs:
       - name: install & lint
         run: |
           npm install -g pnpm
-          pnpm
+          pnpm install
           pnpm lint
       - name: E2E
         run: |

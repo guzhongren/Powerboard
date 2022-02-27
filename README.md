@@ -74,10 +74,10 @@ export BUILDKITE_TOKEN=xxxx
 - Secondly, run
 
 ```shell
-npm install -g yarn
-yarn
-yarn dev
-yarn cy:open
+npm install -g pnpm
+pnpm install
+pnpm dev
+pnpm cy:open
 ```
 
 ## Tech list

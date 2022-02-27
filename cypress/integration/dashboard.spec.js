@@ -79,14 +79,16 @@ describe('show pipeline', () => {
 
     it('should import auth config json file into app', () => {
       cy.clearLocalStorage().then(() => {
-        cy.get(ID_IMPORT).attachFile('mockedImportAuth.json')
-
-        checkAuthInfo(dashboardConfig)
-
-        cy.get(CLASS_BUTTON_GO)
-          .click()
+        cy.get(ID_IMPORT)
+          .attachFile('mockedImportAuth.json')
           .then(() => {
-            checkLocalStorageInfo(dashboardConfig)
+            checkAuthInfo(dashboardConfig)
+
+            cy.get(CLASS_BUTTON_GO)
+              .click()
+              .then(() => {
+                checkLocalStorageInfo(dashboardConfig)
+              })
           })
       })
     })
@@ -97,13 +99,17 @@ describe('show pipeline', () => {
         cy.get('#download')
           .click()
           .then(() => {
-            setTimeout(() => {
-              cy.readFile('cypress/fixtures/downloads/dashboardConfig.json')
-                .should('contain', dashboardConfig.token)
-                .should('contain', dashboardConfig.orgName)
-                .should('contain', dashboardConfig.pipelines[0])
-                .should('contain', dashboardConfig.pipelines[1])
-            }, 2000)
+            cy.readFile('cypress/downloads/dashboardConfig.json').then(
+              (content) => {
+                cy.wrap(content).then((json) => {
+                  console.log(json)
+                  expect(json.org).to.equal(dashboardConfig.orgName)
+                  expect(json.token).to.equal(dashboardConfig.token)
+                  expect(json.search).to.contain(dashboardConfig.pipelines[0])
+                  expect(json.search).to.contain(dashboardConfig.pipelines[1])
+                })
+              }
+            )
           })
         cy.get(CLASS_BUTTON_GO).click()
       })
@@ -116,20 +122,28 @@ describe('show pipeline', () => {
         cy.get('#download')
           .click()
           .then(() => {
-            setTimeout(() => {
-              cy.readFile(
-                'cypress/fixtures/downloads/dashboardConfig.json'
-              ).should('contain', dashboardConfig.oncall)
-            }, 2000)
+            cy.readFile('cypress/downloads/dashboardConfig.json').then(
+              (content) => {
+                cy.wrap(content).then((json) => {
+                  expect(json.org).to.equal(dashboardConfig.orgName)
+                  expect(json.token).to.equal(dashboardConfig.token)
+                  expect(json.search).to.contain(dashboardConfig.pipelines[0])
+                  expect(json.search).to.contain(dashboardConfig.pipelines[1])
+                  expect(json.oncall.toString()).to.equal(
+                    dashboardConfig.oncall.toString()
+                  )
+                })
+              }
+            )
           })
         cy.get(CLASS_BUTTON_GO).click()
       })
     })
   })
 
-  describe('Config in pipeline', async () => {
-    it('should show pipeline given config(token & configPath) in url', async () => {
-      await cy.visit(
+  describe('Config in pipeline', () => {
+    it('should show pipeline given config(token & configPath) in url', () => {
+      cy.visit(
         `${Cypress.env('url')}?token=${dashboardConfig.token}&config=${
           dashboardConfig.configPath
         }`

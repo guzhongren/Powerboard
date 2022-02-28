@@ -1,12 +1,12 @@
 import * as React from 'react'
 import { useState } from 'react'
 import './Auth.scss'
-import { saveValue, getValueByKey } from '../Utils/LocalStorageUtils'
-import { saveLayouts, getLayouts } from '../Utils/LayoutStorageUtils'
-import { DASHBOARD_AUTH, IAuth } from '../Constants/Auth'
-import { importJsonFile, downloadConfig } from '../Utils/JsonFileProcessor'
-import { convertToJSON, convertToString } from '../Utils/ConvertUtils'
-import { splitSearch } from '@root/Utils/StringUtils'
+import { saveValue, getValueByKey } from '../../Utils/LocalStorageUtils'
+import { saveLayouts, getLayouts } from '../../Utils/LayoutStorageUtils'
+import { DASHBOARD_AUTH, IAuth } from '../../Constants/Auth'
+import { importJsonFile, downloadConfig } from '../../Utils/JsonFileProcessor'
+import { convertToJSON, convertToString } from '../../Utils/ConvertUtils'
+import { splitSearch } from '../../Utils/StringUtils'
 
 const Auth: React.FC<{
   message?: string

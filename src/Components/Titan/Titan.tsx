@@ -1,9 +1,9 @@
 import * as React from 'react'
 import './Titan.scss'
-import Modal from '@root/Modal/Modal'
-import Auth from '@root/Auth/Auth'
+import Modal from '../Modal/Modal'
+import Auth from '../Auth/Auth'
 import { useState } from 'react'
-import { IAuth } from '../Constants/Auth'
+import { IAuth } from '../../Constants/Auth'
 
 const Titan: React.FC<{
   lastUpdate: any

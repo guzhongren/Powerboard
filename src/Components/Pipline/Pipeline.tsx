@@ -2,25 +2,11 @@ import * as React from 'react'
 import { first, tail } from 'lodash'
 import * as dayjs from 'dayjs'
 import * as relativeTime from 'dayjs/plugin/relativeTime'
-import Jobs from '@root/Pipline/Jobs'
+import Jobs from './Jobs'
 import './Pipeline.scss'
-import Timer from '@root/Components/Timer'
-
+import Timer from '../Timer'
+import BuildHistory from './BuildHistory'
 dayjs.extend(relativeTime)
-
-const BuildHistory: React.FC<{ build: any }> = ({ build }) => {
-  const info = build?.node || {}
-  return (
-    <a
-      href={info?.url}
-      target="_blank"
-      className={`pipeline__history-build ${info.state}`}
-      title={info?.createdBy?.name}
-    >
-      #{info.number}
-    </a>
-  )
-}
 
 const Pipeline: React.FC<{ pipeline: any; style?: React.CSSProperties }> = ({
   pipeline,

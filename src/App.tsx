@@ -3,10 +3,10 @@ import { useState } from 'react'
 import useSWR from 'swr'
 import './App.scss'
 import { parse } from 'query-string'
-import Grid from './Pipline/Grid'
+import Grid from './Components/Grid'
 import { getValueByKey } from './Utils/LocalStorageUtils'
 import { DASHBOARD_AUTH, IAuth } from './Constants/Auth'
-import Auth from './Auth/Auth'
+import Auth from './Components/Auth/Auth'
 import { convertToJSON } from './Utils/ConvertUtils'
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json())

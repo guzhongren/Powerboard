@@ -17,17 +17,4 @@ const Job: React.FC<{ job: any }> = ({ job }) => {
   )
 }
 
-const Jobs: React.FC<{ jobs: any[] }> = ({ jobs }) => {
-  return (
-    <div className="jobs">
-      {jobs
-        .filter((job) => job?.node?.id)
-        .reverse()
-        .map((job) => (
-          <Job job={job} key={job?.node?.id} />
-        ))}
-    </div>
-  )
-}
-
-export default Jobs
+export default Job

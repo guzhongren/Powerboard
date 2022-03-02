@@ -2,6 +2,36 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/guzhongren/Powerboard/compare/v1.0.0...v2.0.0) (2022-03-02)
+
+### Features
+
+- **alerm:** add flush alerm when failedOC ([50ffa7d](https://github.com/guzhongren/Powerboard/commit/50ffa7d2c737b32be8db6ad0644e2184331ef36d))
+- **Filter:** Can filter with main/master branch ([5f11502](https://github.com/guzhongren/Powerboard/commit/5f11502b4f27d5b074b9dd86084e2709b780b92a))
+- **husky:** update husky ([5e27370](https://github.com/guzhongren/Powerboard/commit/5e27370f4dd79d849eaab9ffa51e18144b27b6ff))
+- **pnpm:** Use pnpm to build ([f3ff8c1](https://github.com/guzhongren/Powerboard/commit/f3ff8c10507667aa1c5c0df4c115b08fa9e63808))
+- **trivy:** add trivy to scanner ([406be91](https://github.com/guzhongren/Powerboard/commit/406be91ef915de42dcb66214b7984beb83a4c230))
+- **trufflehog:** add trufflehog to scanner sensetive data ([44a755e](https://github.com/guzhongren/Powerboard/commit/44a755e17db9a2352db0eafc81b8c09eb5427439))
+
+### Bug Fixes
+
+- **action:** fix format ([6183833](https://github.com/guzhongren/Powerboard/commit/6183833adc5bfaa8aa7eddc1ad9be37744c44c69))
+- **action:** fix format ([cb20767](https://github.com/guzhongren/Powerboard/commit/cb20767f95b380af37b29ec660884e3752c2cb47))
+- **action:** fix format ([d84c6a7](https://github.com/guzhongren/Powerboard/commit/d84c6a7a8e35c6d3f8c1f58a7e4606b57f5fc1e1))
+- **action:** fix format ([c793946](https://github.com/guzhongren/Powerboard/commit/c793946362db8412971125207960478a1be5872e))
+- **action:** fix format ([d3baa5a](https://github.com/guzhongren/Powerboard/commit/d3baa5a466d78c1e3ca2e9c9eb5de0831b2ce1bd))
+- **click:** fix mult click ([0f78d6e](https://github.com/guzhongren/Powerboard/commit/0f78d6e06870cc7bf1a5e741df7f2042acd44c72))
+- **code:** Delete unused code ([0e28b03](https://github.com/guzhongren/Powerboard/commit/0e28b0348a425b9f6a4639fa4d057e78923b29bf))
+- **env:** should pass env:BUILDKITE_TOKEN for E2E ([ec1f010](https://github.com/guzhongren/Powerboard/commit/ec1f01085a72ac924e5e4be93cce3d7ce945fd2d))
+- **pnpm:** install pnpm ([a43fcc8](https://github.com/guzhongren/Powerboard/commit/a43fcc87b079f6918cb6d48f039d1b1c064ce43f))
+- **pnpm:** install pnpm ([fc1de46](https://github.com/guzhongren/Powerboard/commit/fc1de4694a62fc2e7e4da5d6a9a927a857917453))
+- **security:** ignore trivy issu ([85c8d78](https://github.com/guzhongren/Powerboard/commit/85c8d78616b24e2800e4c56bbde3448d19d7fe8e))
+- **security:** update base image & igonre unfixed issues ([90182b9](https://github.com/guzhongren/Powerboard/commit/90182b9b3770aeb28a6e566208334dd0c6f8f725))
+- **trivy:** fix error ([9646640](https://github.com/guzhongren/Powerboard/commit/9646640c3000050b4baef7789026e2d5b12b9a02))
+- **trivy:** revert & add trivy ignore ([d71a837](https://github.com/guzhongren/Powerboard/commit/d71a8374a6843faca40d05e0f2979efddc1d6bc9))
+- **trivy:** test for founding error ([51589e4](https://github.com/guzhongren/Powerboard/commit/51589e40ec27230249f8a51f0845fa8180847265))
+- **trivy:** use alpine as base image to fix trivy issue ([e926fae](https://github.com/guzhongren/Powerboard/commit/e926fae13b2bda5fae44578ff9ae02c874876031))
+
 ## 1.0.0 (2021-01-06)
 
 ### Features

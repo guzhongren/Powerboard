@@ -24,7 +24,8 @@ export const fetcher = (query: string, token: string) => {
 export const buildKiteQuery = (
   orz: string,
   team: string,
-  search: string[] | string
+  search: string[] | string,
+  isOnlyMainBranch: boolean
 ) => {
   const buildPipelineQuery = (pipeline: string, index?: number) => `
     pipelines${isNil(index) ? '' : index}: pipelines(first:10 ${
@@ -46,7 +47,9 @@ export const buildKiteQuery = (
           repository {
             url
           }
-          builds(first:11) {
+          builds(first:11 ${
+            isOnlyMainBranch ? ' ,branch: ["main", "master"]' : ''
+          }) {
             edges {
               node {
                 id

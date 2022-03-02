@@ -4,6 +4,7 @@ export const DASHBOARD_AUTH = {
   SEARCH: 'search',
   TOKEN: 'token',
   ONCALL: 'oncall',
+  IS_ONLY_MAIN_BRANCH: 'isOnlyMainBranch',
 }
 
 export interface IAuth {
@@ -12,4 +13,5 @@ export interface IAuth {
   search?: string[]
   token?: string
   oncall?: any
+  isOnlyMainBranch?: boolean
 }

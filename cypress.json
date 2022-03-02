@@ -3,5 +3,7 @@
     "local": "http://localhost:4321/",
     "docker": "http://web",
     "prod": "https://guzhongren.github.io/Powerboard/"
-  }
+  },
+  "viewportWidth": 1000,
+  "viewportHeight": 860
 }

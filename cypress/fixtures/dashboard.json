@@ -7,5 +7,6 @@
     "startDate": "2021-09-15",
     "names": ["P", "F", "Y", "L", "Z", "X", "Yu"]
   },
+  "isOnlyMainBranch": false,
   "configPath": "https://gist.githubusercontent.com/guzhongren/f2165257ef1db44cc6a08d5d8b4636c5/raw/c689d2e5f4e8f2c939dbc1a2304623d8c9ffed7d/powerboard-test-config.json"
 }

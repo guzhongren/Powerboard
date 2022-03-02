@@ -22,6 +22,9 @@ const Auth: React.FC<{
     convertToJSON(getValueByKey(DASHBOARD_AUTH.ONCALL))
   )
   const [orz, setOrz] = useState(getValueByKey(DASHBOARD_AUTH.ORG))
+  const [isOnlyMainBranch, setIsOnlyMainBranch] = useState(
+    getValueByKey(DASHBOARD_AUTH.IS_ONLY_MAIN_BRANCH) === 'true'
+  )
 
   const storeConfig = () => {
     saveValue(DASHBOARD_AUTH.ORG, orz)
@@ -29,6 +32,7 @@ const Auth: React.FC<{
     saveValue(DASHBOARD_AUTH.SEARCH, convertToString(search))
     saveValue(DASHBOARD_AUTH.TOKEN, token)
     saveValue(DASHBOARD_AUTH.ONCALL, convertToString(oncall))
+    saveValue(DASHBOARD_AUTH.IS_ONLY_MAIN_BRANCH, isOnlyMainBranch)
   }
 
   const submit = () => {
@@ -39,6 +43,7 @@ const Auth: React.FC<{
       search,
       token,
       oncall,
+      isOnlyMainBranch,
     })
   }
 
@@ -154,6 +159,19 @@ const Auth: React.FC<{
           />
         </label>
       </div>
+      <div>
+        <label htmlFor="justOnlyMainBranch">
+          <span>
+            <input
+              type="checkbox"
+              id="justOnlyMainBranch"
+              checked={isOnlyMainBranch}
+              onChange={() => setIsOnlyMainBranch(!isOnlyMainBranch)}
+            />
+            <label htmlFor="justOnlyMainBranch">Just only show master</label>
+          </span>
+        </label>
+      </div>
       <div className="operation">
         <div>
           <label htmlFor="import">Import config</label>
@@ -173,6 +191,7 @@ const Auth: React.FC<{
           </button>
         </div>
       </div>
+
       <div>
         <div className="btn" onClick={submit}>
           Go!

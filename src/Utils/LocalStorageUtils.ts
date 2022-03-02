@@ -4,7 +4,7 @@ export const getValueByKey = (key: string) => {
   }
 }
 
-export const saveValue = (key: string, value: string) => {
+export const saveValue = (key: string, value: any) => {
   if (window.localStorage) {
     value = value || ''
     window.localStorage.setItem(key, value)

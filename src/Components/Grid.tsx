@@ -29,7 +29,15 @@ const Grid: React.FC<{
   const [retry, setRetry] = useState(true)
 
   const { data, error } = useSWR(
-    [buildKiteQuery(auth?.org, auth?.team, auth?.search), auth?.token],
+    [
+      buildKiteQuery(
+        auth?.org,
+        auth?.team,
+        auth?.search,
+        auth.isOnlyMainBranch
+      ),
+      auth?.token,
+    ],
     fetcher,
     {
       refreshInterval: PIPELINE_AUTO_REFRESH_PERIOD,

@@ -25,6 +25,7 @@ describe('show pipeline', () => {
     SEARCH: 'search',
     TOKEN: 'token',
     ONCALL: 'oncall',
+    IS_ONLY_MAIN_BRANCH: 'isOnlyMainBranch',
   }
 
   describe('display pipeline by manuel config', () => {
@@ -52,6 +53,7 @@ describe('show pipeline', () => {
 
       const newConfig = {
         ...dashboardConfig,
+        isOnlyMainBranch: '',
         pipelines: [dashboardConfig.pipelines[0]],
       }
       cy.get(CLASS_BUTTON_GO)
@@ -69,7 +71,10 @@ describe('show pipeline', () => {
       cy.get(CLASS_BUTTON_GO)
         .click()
         .then(() => {
-          checkLocalStorageInfo(dashboardConfig)
+          checkLocalStorageInfo({
+            ...newConfig,
+            pipelines: dashboardConfig.pipelines,
+          })
         })
         .then(() => {
           checkPipelineTitle(2)
@@ -84,13 +89,45 @@ describe('show pipeline', () => {
           .then(() => {
             checkAuthInfo(dashboardConfig)
 
+            cy.get('input[type="checkbox"]').click()
             cy.get(CLASS_BUTTON_GO)
               .click()
               .then(() => {
-                checkLocalStorageInfo(dashboardConfig)
+                checkLocalStorageInfo({
+                  ...dashboardConfig,
+                  isOnlyMainBranch: true,
+                })
               })
           })
       })
+    })
+
+    it('should show master branch pipeline when click just only show main/master branch checkbox', () => {
+      cy.contains(TITLE_ACCESS_TOKEN)
+        .parent()
+        .find('input[type=text]')
+        .type(dashboardConfig.token)
+
+      cy.contains(TITLE_ORG_NAME)
+        .parent()
+        .find('input[type=text]')
+        .type(orgName)
+
+      cy.get(ID_PIPELINES).type(pipelinesConfig.join('\n'))
+      cy.get(ID_ONCALL_LIST).type(convertToString(dashboardConfig.oncall))
+      cy.get('input[type="checkbox"]').check()
+
+      const newConfig = {
+        ...dashboardConfig,
+        pipelines: dashboardConfig.pipelines,
+        isOnlyMainBranch: true,
+      }
+      cy.get(CLASS_BUTTON_GO)
+        .click()
+        .then(() => {
+          checkLocalStorageInfo(newConfig)
+          checkPipelineTitle(2)
+        })
     })
     it('should download the latest auth config when click download button', () => {
       cy.clearLocalStorage().then(() => {
@@ -169,12 +206,12 @@ describe('show pipeline', () => {
   }
 
   function checkAuthInput() {
-    cy.get(LABEL_INPUT).should('have.length', 4)
+    cy.get(LABEL_INPUT).should('have.length', 5)
 
     cy.get(LABEL_INPUT).first().should('have.text', '')
     cy.get(LABEL_INPUT).last().should('have.text', '')
     cy.get(ID_PIPELINES).should('have.text', '')
-    cy.get(ID_PIPELINES).should('have.text', '')
+    cy.get('input[type="checkbox"]').should('not.be.checked')
 
     cy.get(LABEL_PIPELINE_AREA).should('have.length', 2)
   }
@@ -195,6 +232,10 @@ describe('show pipeline', () => {
     expect(localStorage.getItem(DASHBOARD_AUTH.ONCALL)).to.equal(
       convertToString(dashboardConfig.oncall)
     )
+
+    expect(localStorage.getItem(DASHBOARD_AUTH.IS_ONLY_MAIN_BRANCH)).to.equal(
+      `${dashboardConfig.isOnlyMainBranch}`
+    )
   }
 
   function checkAuthInfo(dashboardConfig) {
@@ -213,6 +254,9 @@ describe('show pipeline', () => {
     cy.get(ID_ONCALL_LIST).should(
       'have.value',
       convertToString(dashboardConfig.oncall)
+    )
+    cy.get('input[type="checkbox"]').should(
+      `${dashboardConfig.isOnlyMainBranch ? '' : 'not.'}be.checked`
     )
   }
 })

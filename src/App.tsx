@@ -32,13 +32,14 @@ function App() {
   }
 
   if (data && data.org && parsed.token) {
-    const { org, team, search, oncall } = data
+    const { org, team, search, oncall, isOnlyMainBranch } = data
     const authConfig = {
       org,
       team,
       search,
       token: parsed.token,
       oncall,
+      isOnlyMainBranch,
     }
     return <Grid authConfig={authConfig} />
   } else {

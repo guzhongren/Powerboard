@@ -40,7 +40,7 @@ describe('show pipeline', () => {
     it('should can add pipeline, and update pipeline settings', () => {
       cy.contains(TITLE_ACCESS_TOKEN)
         .parent()
-        .find('input[type=text]')
+        .find('input[type=password]')
         .type(dashboardConfig.token)
 
       cy.contains(TITLE_ORG_NAME)
@@ -105,7 +105,7 @@ describe('show pipeline', () => {
     it('should show master branch pipeline when click just only show main/master branch checkbox', () => {
       cy.contains(TITLE_ACCESS_TOKEN)
         .parent()
-        .find('input[type=text]')
+        .find('input[type=password]')
         .type(dashboardConfig.token)
 
       cy.contains(TITLE_ORG_NAME)
@@ -241,7 +241,7 @@ describe('show pipeline', () => {
   function checkAuthInfo(dashboardConfig) {
     cy.contains(TITLE_ACCESS_TOKEN)
       .parent()
-      .find('input[type=text]')
+      .find('input[type=password]')
       .should('have.value', dashboardConfig.token)
     cy.contains(TITLE_ORG_NAME)
       .parent()

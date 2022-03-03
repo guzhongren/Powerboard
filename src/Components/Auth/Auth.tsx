@@ -99,7 +99,7 @@ const Auth: React.FC<{
             </a>
           </div>
           <input
-            type="text"
+            type="password"
             value={token}
             onChange={(event) => {
               setToken(event.target.value)

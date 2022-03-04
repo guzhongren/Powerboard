@@ -17,6 +17,8 @@ function App() {
     search: convertToJSON(getValueByKey(DASHBOARD_AUTH.SEARCH)),
     token: getValueByKey(DASHBOARD_AUTH.TOKEN),
     oncall: convertToJSON(getValueByKey(DASHBOARD_AUTH.ONCALL)),
+    isOnlyMainBranch:
+      getValueByKey(DASHBOARD_AUTH.IS_ONLY_MAIN_BRANCH) === 'true',
   }
 
   const [auth, setAuth] = useState(authConfig)

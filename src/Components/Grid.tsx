@@ -79,14 +79,20 @@ const Grid: React.FC<{
           ).length
           document.title = `🚨 ${failedCount} Failed`
         } else {
-          document.title = `Powerboard`
+          defaultTitle()
         }
+      } else {
+        defaultTitle()
       }
     }, 1000)
     return () => {
       clearInterval(timer)
     }
   })
+
+  const defaultTitle = () => {
+    document.title = `Powerboard`
+  }
 
   const defaultLayoutProps = {
     className: 'container',

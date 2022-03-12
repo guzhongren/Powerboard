@@ -20,6 +20,6 @@ jobs:
       - name: Run Lighthouse against a static dist dir
         uses: treosh/lighthouse-ci-action@v9
         with:
-          configPath: '../config/lighthouserc.json'
+          configPath: '.github/config/lighthouserc.json'
           uploadArtifacts: true
           temporaryPublicStorage: true

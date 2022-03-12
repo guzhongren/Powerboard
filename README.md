@@ -8,6 +8,7 @@
 
 [![Test and deploy](https://github.com/guzhongren/Powerboard/actions/workflows/main.yml/badge.svg)](https://github.com/guzhongren/Powerboard/actions/workflows/main.yml)
 
+[![Lighthouse](https://github.com/guzhongren/Powerboard/actions/workflows/Lighthouse.yml/badge.svg)](https://github.com/guzhongren/Powerboard/actions/workflows/Lighthouse.yml)
 ![Powerboard](./src/assets/Buildkite-dashboard.gif)
 
 ## How to use

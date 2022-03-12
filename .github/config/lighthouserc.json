@@ -4,7 +4,13 @@
       "staticDistDir": "./dist",
       "settings": {
         "formFactor": "desktop",
-        "screenEmulation": "desktop"
+        "screenEmulation": {
+          "mobile": false,
+          "width": 1920,
+          "height": 1080,
+          "deviceScaleFactor": 1,
+          "disabled": false
+        }
       }
     },
     "assert": {

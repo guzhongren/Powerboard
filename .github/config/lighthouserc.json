@@ -3,7 +3,7 @@
     "collect": {
       "staticDistDir": "./dist",
       "settings": {
-        "emulatedFormFactor": "desktop"
+        "formFactor": "desktop"
       }
     },
     "assert": {

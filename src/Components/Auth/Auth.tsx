@@ -160,17 +160,15 @@ const Auth: React.FC<{
         </label>
       </div>
       <div>
-        <label htmlFor="justOnlyMainBranch">
-          <span>
-            <input
-              type="checkbox"
-              id="justOnlyMainBranch"
-              checked={isOnlyMainBranch}
-              onChange={() => setIsOnlyMainBranch(!isOnlyMainBranch)}
-            />
-            <label htmlFor="justOnlyMainBranch">Just only show master</label>
-          </span>
-        </label>
+        <span>
+          <input
+            type="checkbox"
+            id="justOnlyMainBranch"
+            checked={isOnlyMainBranch}
+            onChange={() => setIsOnlyMainBranch(!isOnlyMainBranch)}
+          />
+          <label htmlFor="justOnlyMainBranch">Just only show master</label>
+        </span>
       </div>
       <div className="operation">
         <div>

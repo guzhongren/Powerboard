@@ -5,6 +5,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Use lts Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16.13.2
+      - name: install & lint
+        run: |
+          npm install -g pnpm
+          pnpm install
+          pnpm lint
+      - name: build project
+        run: |
+          pnpm build
       - name: Run Lighthouse against a static dist dir
         uses: treosh/lighthouse-ci-action@v9
         with:

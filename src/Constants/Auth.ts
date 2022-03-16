@@ -5,6 +5,7 @@ export const DASHBOARD_AUTH = {
   TOKEN: 'token',
   ONCALL: 'oncall',
   IS_ONLY_MAIN_BRANCH: 'isOnlyMainBranch',
+  COLUMN_COUNT: 'columnCount',
 }
 
 export interface IAuth {
@@ -14,4 +15,5 @@ export interface IAuth {
   token?: string
   oncall?: any
   isOnlyMainBranch?: boolean
+  columnCount?: number
 }

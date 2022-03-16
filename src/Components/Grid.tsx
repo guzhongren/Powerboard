@@ -1,8 +1,8 @@
 import * as React from 'react'
 import useSWR from 'swr'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import * as dayjs from 'dayjs'
-import { Responsive, WidthProvider, Layouts } from 'react-grid-layout'
+import { Responsive, WidthProvider, Layouts, Layout } from 'react-grid-layout'
 import { isEqual } from 'lodash'
 import { buildKiteQuery, fetcher } from '../fetcher'
 import { mergePipelinesWithResponse } from '../help'
@@ -10,11 +10,16 @@ import Pipeline from './Pipline/Pipeline'
 import Titan from './Titan/Titan'
 import Auth from './Auth/Auth'
 import { getLayouts, saveLayouts } from '../Utils/LayoutStorageUtils'
-import { DEFAULT_ITEM_LAYOUT } from '../Constants/Grid'
+import {
+  DEFAULT_ITEM_LAYOUT,
+  GRID_ITEM_DEFAULT_HEIGHT,
+} from '../Constants/Grid'
 import { PIPELINE_AUTO_REFRESH_PERIOD } from '../Constants/Config'
-import { IAuth } from '../Constants/Auth'
+import { DASHBOARD_AUTH, IAuth } from '../Constants/Auth'
 import OncallPannel from './OncallPannel/OncallPannel'
 import { convertToJSON } from '../Utils/ConvertUtils'
+import { SCREEN_WIDTH } from '../Constants/Grid'
+import { LOCAL_STORAGE_KEY } from '@root/Constants/Storage'
 
 const ReactGridLayout = WidthProvider(Responsive)
 
@@ -24,7 +29,7 @@ const Grid: React.FC<{
   authConfig?: any
 }> = ({ authConfig }) => {
   const [lastUpdateTime, setLastUpdateTime] = useState(dayjs())
-  const [layouts] = useState(getLayouts() || {})
+  const [layouts, setLayouts] = useState(getLayouts() || {})
   const [auth, setAuth] = useState(authConfig)
   const [retry, setRetry] = useState(true)
 
@@ -96,8 +101,10 @@ const Grid: React.FC<{
 
   const defaultLayoutProps = {
     className: 'container',
-    cols: { lg: 100, md: 10, sm: 6, xs: 4, xxs: 2 },
-    rowHeight: 6,
+    cols: {
+      lg: SCREEN_WIDTH,
+    },
+    rowHeight: GRID_ITEM_DEFAULT_HEIGHT,
     onLayoutChange: (layout: any, layoutsParam: Layouts) => {
       const storedLayout = getLayouts()
       if (
@@ -112,41 +119,63 @@ const Grid: React.FC<{
       }
     },
   }
-  return (
-    <React.Fragment>
-      <Titan
-        lastUpdate={lastUpdateTime}
-        onConfigChanged={(auth) => setAuth(auth)}
-      />
-      {pipelines.length === 0 && data && (
-        <Auth
-          message="No pipelines found, Please check your config"
-          onConfigChanged={(auth: IAuth) => {
-            setAuth(auth)
-          }}
-        />
-      )}
-      {auth.oncall && (
-        <OncallPannel oncallListJSON={convertToJSON(auth.oncall)} />
-      )}
-      <ReactGridLayout {...defaultLayoutProps} layouts={layouts}>
+
+  const authChangeHandler = (auth: IAuth) => {
+    setAuth(auth)
+    setLayouts((layouts: Layouts) => {
+      console.log(layouts)
+      const lg = layouts?.lg?.map((item: any) => {
+        item.w = SCREEN_WIDTH / auth.columnCount
+        return item
+      })
+      return {
+        layouts: {
+          lg,
+        },
+      }
+    })
+  }
+
+  const pipelineGrid = useMemo(() => {
+    const authColumnCount = auth.columnCount || 1
+    const breakpoints = { lg: SCREEN_WIDTH }
+    return (
+      <ReactGridLayout {...defaultLayoutProps} breakpoints={breakpoints}>
         {pipelines.map((pipeline: any, index: number) => {
           const layoutProps = layouts.lg ? layouts.lg[index] : {}
+          const currentColumn = index % authColumnCount
+          const columnWidth = SCREEN_WIDTH / authColumnCount
+          const dataGrid = {
+            ...DEFAULT_ITEM_LAYOUT,
+            ...layoutProps,
+            i: index,
+            w: columnWidth,
+            x: columnWidth * currentColumn,
+            y: index + GRID_ITEM_DEFAULT_HEIGHT,
+          }
           return (
-            <div
-              key={index}
-              className="pipelines"
-              data-grid={{
-                ...DEFAULT_ITEM_LAYOUT,
-                ...layoutProps,
-                y: index + 10,
-              }}
-            >
+            <div key={index} className="pipelines" data-grid={dataGrid}>
               <Pipeline pipeline={pipeline} key={pipeline.node.name} />
             </div>
           )
         })}
       </ReactGridLayout>
+    )
+  }, [auth.columnCount, data])
+
+  return (
+    <React.Fragment>
+      <Titan lastUpdate={lastUpdateTime} onConfigChanged={authChangeHandler} />
+      {pipelines.length === 0 && data && (
+        <Auth
+          message="No pipelines found, Please check your config"
+          onConfigChanged={authChangeHandler}
+        />
+      )}
+      {auth.oncall && (
+        <OncallPannel oncallListJSON={convertToJSON(auth.oncall)} />
+      )}
+      {pipelineGrid}
     </React.Fragment>
   )
 }

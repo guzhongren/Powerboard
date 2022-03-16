@@ -8,6 +8,8 @@ import { importJsonFile, downloadConfig } from '../../Utils/JsonFileProcessor'
 import { convertToJSON, convertToString } from '../../Utils/ConvertUtils'
 import { splitSearch } from '../../Utils/StringUtils'
 
+const defaultColumnCount = 10
+
 const Auth: React.FC<{
   message?: string
   onConfigChanged?: (auth: IAuth) => void
@@ -25,6 +27,9 @@ const Auth: React.FC<{
   const [isOnlyMainBranch, setIsOnlyMainBranch] = useState(
     getValueByKey(DASHBOARD_AUTH.IS_ONLY_MAIN_BRANCH) === 'true'
   )
+  const [columnCount, setColumnCount] = useState(
+    parseInt(getValueByKey(DASHBOARD_AUTH.COLUMN_COUNT)) || 1
+  )
 
   const storeConfig = () => {
     saveValue(DASHBOARD_AUTH.ORG, orz)
@@ -33,6 +38,7 @@ const Auth: React.FC<{
     saveValue(DASHBOARD_AUTH.TOKEN, token)
     saveValue(DASHBOARD_AUTH.ONCALL, convertToString(oncall))
     saveValue(DASHBOARD_AUTH.IS_ONLY_MAIN_BRANCH, isOnlyMainBranch)
+    saveValue(DASHBOARD_AUTH.COLUMN_COUNT, columnCount)
   }
 
   const submit = () => {
@@ -44,6 +50,7 @@ const Auth: React.FC<{
       token,
       oncall,
       isOnlyMainBranch,
+      columnCount,
     })
   }
 
@@ -57,6 +64,7 @@ const Auth: React.FC<{
           setTeam(data.team || '')
           setSearch(data.search || [])
           setOncall(data.oncall)
+          setColumnCount(data.columnCount || 1)
           saveLayouts(data.layout || {})
           console.log('successfully imported')
         },
@@ -75,12 +83,16 @@ const Auth: React.FC<{
       search,
       token,
       oncall,
+      columnCount,
     }
     downloadConfig(
       dlAnchorElem,
       { ...config, layout: getLayouts() },
       downloadFileName
     )
+  }
+  const columChangeHandler = (evt: any) => {
+    setColumnCount(parseInt(evt.target.value) || 0)
   }
 
   return (
@@ -159,7 +171,7 @@ const Auth: React.FC<{
           />
         </label>
       </div>
-      <div>
+      <div className="auth__message-line">
         <span>
           <input
             type="checkbox"
@@ -168,6 +180,24 @@ const Auth: React.FC<{
             onChange={() => setIsOnlyMainBranch(!isOnlyMainBranch)}
           />
           <label htmlFor="justOnlyMainBranch">Just only show master</label>
+        </span>
+        <span>
+          <label htmlFor="columnCount">Column count</label>
+          <select
+            name="columnCount"
+            defaultValue={`${columnCount}`}
+            onChange={columChangeHandler}
+          >
+            {Array.from(Array(defaultColumnCount + 1).keys())
+              .splice(1)
+              .map((x) => {
+                return (
+                  <option key={x} value={x}>
+                    {x}
+                  </option>
+                )
+              })}
+          </select>
         </span>
       </div>
       <div className="operation">

@@ -10,6 +10,8 @@ import Auth from './Components/Auth/Auth'
 import { convertToJSON } from './Utils/ConvertUtils'
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json())
+const defaultColumnCount =
+  parseInt(getValueByKey(DASHBOARD_AUTH.COLUMN_COUNT)) || 1
 function App() {
   const authConfig: any = {
     org: getValueByKey(DASHBOARD_AUTH.ORG),
@@ -19,6 +21,7 @@ function App() {
     oncall: convertToJSON(getValueByKey(DASHBOARD_AUTH.ONCALL)),
     isOnlyMainBranch:
       getValueByKey(DASHBOARD_AUTH.IS_ONLY_MAIN_BRANCH) === 'true',
+    columnCount: defaultColumnCount,
   }
 
   const [auth, setAuth] = useState(authConfig)
@@ -42,6 +45,7 @@ function App() {
       token: parsed.token,
       oncall,
       isOnlyMainBranch,
+      columnCount: defaultColumnCount,
     }
     return <Grid authConfig={authConfig} />
   } else {

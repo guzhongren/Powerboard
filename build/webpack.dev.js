@@ -20,7 +20,7 @@ module.exports = {
     publicPath: '/',
   },
   context: path.resolve(__dirname, '../src'),
-  devtool: 'cheap-module-source-map',
+  devtool: 'source-map',
   devServer: {
     hot: true,
     // enable HMR on the server

@@ -95,6 +95,16 @@ const Auth: React.FC<{
     setColumnCount(parseInt(evt.target.value) || 0)
   }
 
+  const oncallPlaceholder = () =>
+    JSON.stringify(
+      {
+        startDate: '2021-09-15',
+        names: ['P', 'F', 'Y', 'L', 'Z', 'X', 'Yu'],
+      },
+      () => {},
+      2
+    )
+
   return (
     <div className="auth">
       {message && <div className="auth__message">{message}</div>}
@@ -163,7 +173,7 @@ const Auth: React.FC<{
           <span>Oncall List</span>
           <textarea
             id="oncallList"
-            placeholder={`{\n"startDate": "2021-09-15", \n"names":["PengChong","FengWen","YiChen","Lina","ZhongRen","XuDong","Zhang Yu"]\n}`}
+            placeholder={oncallPlaceholder()}
             value={(oncall && convertToString(oncall)) || ''}
             onChange={(event) => {
               setOncall(event.target.value)
@@ -185,7 +195,7 @@ const Auth: React.FC<{
           <label htmlFor="columnCount">Column count</label>
           <select
             name="columnCount"
-            defaultValue={`${columnCount}`}
+            value={columnCount}
             onChange={columChangeHandler}
           >
             {Array.from(Array(defaultColumnCount + 1).keys())

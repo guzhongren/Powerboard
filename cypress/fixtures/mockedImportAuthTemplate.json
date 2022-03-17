@@ -6,5 +6,6 @@
   "oncall": {
     "startDate": "2021-09-15",
     "names": ["P", "F", "Y", "L", "Z", "X", "Yu"]
-  }
+  },
+  "columnCount": 2
 }

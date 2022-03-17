@@ -136,13 +136,46 @@ const Grid: React.FC<{
     })
   }
 
+  const authColumnCount = auth?.columnCount || 1
+
+  useEffect(() => {
+    const columnWidth = SCREEN_WIDTH / authColumnCount
+    const newLayout: Array<any> = pipelines.map(
+      (pipeline: any, index: number) => {
+        const layoutProps = layouts.lg ? layouts.lg[index] : {}
+        const currentColumn = index % authColumnCount
+        return {
+          ...DEFAULT_ITEM_LAYOUT,
+          ...layoutProps,
+          i: index,
+          x: columnWidth * currentColumn,
+          y: index + GRID_ITEM_DEFAULT_HEIGHT,
+          w: columnWidth,
+        }
+      }
+    )
+    setLayouts({ lg: newLayout })
+  }, [authColumnCount, data])
+
+  const renderPipelineChildren = () => {
+    return pipelines?.map((pipeline: any, index: number) => (
+      <div key={index} className="pipelines">
+        <Pipeline pipeline={pipeline} key={pipeline.node.name} />
+      </div>
+    ))
+  }
+
   const pipelineGrid = useMemo(() => {
     const authColumnCount = auth.columnCount || 1
     const breakpoints = { lg: SCREEN_WIDTH }
     return (
-      <ReactGridLayout {...defaultLayoutProps} breakpoints={breakpoints}>
+      <ReactGridLayout
+        {...defaultLayoutProps}
+        layouts={layouts}
+        breakpoints={breakpoints}
+      >
         {pipelines.map((pipeline: any, index: number) => {
-          const layoutProps = layouts.lg ? layouts.lg[index] : {}
+          const layoutProps = getLayouts().lg ? getLayouts().lg[index] : {}
           const currentColumn = index % authColumnCount
           const columnWidth = SCREEN_WIDTH / authColumnCount
           const dataGrid = {
@@ -161,7 +194,7 @@ const Grid: React.FC<{
         })}
       </ReactGridLayout>
     )
-  }, [auth.columnCount, data])
+  }, [auth.columnCount, pipelines])
 
   return (
     <React.Fragment>

@@ -2,12 +2,12 @@ interface IObj {
   [key: string]: any
 }
 
-export const SCREEN_WIDTH = 100
-export const GRID_ITEM_DEFAULT_HEIGHT = 8
+export const SCREEN_WIDTH = 1080
+export const GRID_ITEM_DEFAULT_HEIGHT = 15
 export const LAYOUT__KEY: string = 'LAYOUT__KEY'
 export const DEFAULT_ITEM_LAYOUT = {
   w: SCREEN_WIDTH,
-  h: 20,
+  h: GRID_ITEM_DEFAULT_HEIGHT,
   x: 0,
   y: 0,
   i: '0',

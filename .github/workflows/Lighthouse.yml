@@ -1,7 +1,7 @@
 name: Lighthouse
 on: push
 jobs:
-  static-dist-dir:
+  Lighthouse-checker:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2

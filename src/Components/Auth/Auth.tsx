@@ -83,13 +83,10 @@ const Auth: React.FC<{
       search,
       token,
       oncall,
+      isOnlyMainBranch,
       columnCount,
     }
-    downloadConfig(
-      dlAnchorElem,
-      { ...config, layout: getLayouts() },
-      downloadFileName
-    )
+    downloadConfig(dlAnchorElem, config, downloadFileName)
   }
   const columChangeHandler = (evt: any) => {
     setColumnCount(parseInt(evt.target.value) || 0)

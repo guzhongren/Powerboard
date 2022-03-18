@@ -89,7 +89,6 @@ describe('show pipeline', () => {
           .then(() => {
             checkAuthInfo(dashboardConfig)
 
-            cy.get('input[type="checkbox"]').click()
             cy.get(CLASS_BUTTON_GO)
               .click()
               .then(() => {
@@ -97,6 +96,18 @@ describe('show pipeline', () => {
                   ...dashboardConfig,
                   isOnlyMainBranch: true,
                 })
+              })
+              .then(() => {
+                cy.get('.icon.setting').click()
+                cy.get('input[type="checkbox"]').click()
+                cy.get(CLASS_BUTTON_GO)
+                  .click()
+                  .then(() => {
+                    checkLocalStorageInfo({
+                      ...dashboardConfig,
+                      isOnlyMainBranch: false,
+                    })
+                  })
               })
           })
       })
@@ -217,24 +228,23 @@ describe('show pipeline', () => {
   }
 
   function checkLocalStorageInfo(dashboardConfig) {
-    expect(localStorage.getItem(DASHBOARD_AUTH.ORG)).to.equal(
-      dashboardConfig.orgName
+    expect(dashboardConfig.orgName).to.equal(
+      localStorage.getItem(DASHBOARD_AUTH.ORG)
     )
-    expect(localStorage.getItem(DASHBOARD_AUTH.TEAM)).to.equal(
-      dashboardConfig.team
+    expect(dashboardConfig.team).to.equal(
+      localStorage.getItem(DASHBOARD_AUTH.TEAM)
     )
-    expect(localStorage.getItem(DASHBOARD_AUTH.SEARCH)).to.equal(
-      convertToString(dashboardConfig.pipelines)
+    expect(convertToString(dashboardConfig.pipelines)).to.equal(
+      localStorage.getItem(DASHBOARD_AUTH.SEARCH)
     )
-    expect(localStorage.getItem(DASHBOARD_AUTH.TOKEN)).to.equal(
-      dashboardConfig.token
+    expect(dashboardConfig.token).to.equal(
+      localStorage.getItem(DASHBOARD_AUTH.TOKEN)
     )
-    expect(localStorage.getItem(DASHBOARD_AUTH.ONCALL)).to.equal(
-      convertToString(dashboardConfig.oncall)
+    expect(convertToString(dashboardConfig.oncall)).to.equal(
+      localStorage.getItem(DASHBOARD_AUTH.ONCALL)
     )
-
-    expect(localStorage.getItem(DASHBOARD_AUTH.IS_ONLY_MAIN_BRANCH)).to.equal(
-      `${dashboardConfig.isOnlyMainBranch}`
+    expect(`${dashboardConfig.isOnlyMainBranch}`).to.equal(
+      localStorage.getItem(DASHBOARD_AUTH.IS_ONLY_MAIN_BRANCH)
     )
   }
 

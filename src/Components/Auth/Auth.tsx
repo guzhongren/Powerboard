@@ -37,7 +37,7 @@ const Auth: React.FC<{
     saveValue(DASHBOARD_AUTH.SEARCH, convertToString(search))
     saveValue(DASHBOARD_AUTH.TOKEN, token)
     saveValue(DASHBOARD_AUTH.ONCALL, convertToString(oncall))
-    saveValue(DASHBOARD_AUTH.IS_ONLY_MAIN_BRANCH, isOnlyMainBranch)
+    saveValue(DASHBOARD_AUTH.IS_ONLY_MAIN_BRANCH, `${isOnlyMainBranch}`)
     saveValue(DASHBOARD_AUTH.COLUMN_COUNT, columnCount)
   }
 
@@ -64,6 +64,7 @@ const Auth: React.FC<{
           setTeam(data.team || '')
           setSearch(data.search || [])
           setOncall(data.oncall)
+          setIsOnlyMainBranch(data.isOnlyMainBranch || false)
           setColumnCount(data.columnCount || 1)
           saveLayouts(data.layout || {})
           console.log('successfully imported')

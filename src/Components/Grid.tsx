@@ -123,7 +123,6 @@ const Grid: React.FC<{
   const authChangeHandler = (auth: IAuth) => {
     setAuth(auth)
     setLayouts((layouts: Layouts) => {
-      console.log(layouts)
       const lg = layouts?.lg?.map((item: any) => {
         item.w = SCREEN_WIDTH / auth.columnCount
         return item
@@ -175,7 +174,7 @@ const Grid: React.FC<{
         breakpoints={breakpoints}
       >
         {pipelines.map((pipeline: any, index: number) => {
-          const layoutProps = getLayouts().lg ? getLayouts().lg[index] : {}
+          const layoutProps = getLayouts()?.lg ? getLayouts().lg[index] : {}
           const currentColumn = index % authColumnCount
           const columnWidth = SCREEN_WIDTH / authColumnCount
           const dataGrid = {

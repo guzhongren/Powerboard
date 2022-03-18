@@ -15,15 +15,15 @@ const Auth: React.FC<{
   onConfigChanged?: (auth: IAuth) => void
 }> = ({ message, onConfigChanged }) => {
   const downloadFileName = 'dashboardConfig.json'
-  const [token, setToken] = useState(getValueByKey(DASHBOARD_AUTH.TOKEN))
-  const [team, setTeam] = useState(getValueByKey(DASHBOARD_AUTH.TEAM))
+  const [token, setToken] = useState(getValueByKey(DASHBOARD_AUTH.TOKEN) || '')
+  const [team, setTeam] = useState(getValueByKey(DASHBOARD_AUTH.TEAM) || '')
   const [search, setSearch] = useState(
     convertToJSON(getValueByKey(DASHBOARD_AUTH.SEARCH))
   )
   const [oncall, setOncall] = useState(
     convertToJSON(getValueByKey(DASHBOARD_AUTH.ONCALL))
   )
-  const [orz, setOrz] = useState(getValueByKey(DASHBOARD_AUTH.ORG))
+  const [orz, setOrz] = useState(getValueByKey(DASHBOARD_AUTH.ORG) || '')
   const [isOnlyMainBranch, setIsOnlyMainBranch] = useState(
     getValueByKey(DASHBOARD_AUTH.IS_ONLY_MAIN_BRANCH) === 'true'
   )

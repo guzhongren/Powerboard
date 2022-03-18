@@ -37,7 +37,7 @@ describe('show pipeline', () => {
       checkAuthInput()
     })
 
-    it.only('should can add pipeline, and update pipeline settings', () => {
+    it('should can add pipeline, and update pipeline settings', () => {
       cy.contains(TITLE_ACCESS_TOKEN)
         .parent()
         .find('input[type=password]')

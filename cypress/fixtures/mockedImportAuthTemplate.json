@@ -4,6 +4,7 @@
   "search": ["apm-onweek-alerts-as-code", "kibana / on merge"],
   "team": "",
   "columnCount": 2,
+  "isOnlyMainBranch": true,
   "oncall": {
     "startDate": "2021-09-15",
     "names": ["P", "F", "Y", "L", "Z", "X", "Yu"]

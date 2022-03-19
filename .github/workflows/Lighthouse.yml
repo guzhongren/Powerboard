@@ -1,27 +1,30 @@
-name: Lighthouse
-on: push
+name: Lighthouse CI
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '0 0 * * *'
 jobs:
-  Lighthouse-checker:
+  lhci:
+    name: Lighthouse
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Use lts Node.js
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - name: Use Node.js 10.x
         uses: actions/setup-node@v1
         with:
           node-version: 16.14.2
-      - name: install & lint
+      - name: npm install, build
         run: |
-          npm install -g pnpm
-          pnpm install
-          pnpm lint
-      - name: build project
+          npm install
+          npm run build
+      - name: run Lighthouse CI
         run: |
-          pnpm build
-      - name: Run Lighthouse
-        uses: treosh/lighthouse-ci-action@v9
-        with:
-          configPath: '.github/config/lighthouserc.json'
-          uploadArtifacts: true
-          # temporaryPublicStorage: true
-          serverBaseUrl: ${{ secrets.LHCI_SERVER_URL }}
-          serverToken: ${{ secrets.LHCI_BUILD_TOKEN }}
+          ls -a
+          npm install -g @lhci/cli@0.8.x
+          lhci autorun --config=.github/config/lighthouserc.json --serverBaseUrl=${{ secrets.LHCI_SERVER_URL }} --token=${{ secrets.LHCI_BUILD_TOKEN }}
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}

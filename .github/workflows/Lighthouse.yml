@@ -22,4 +22,6 @@ jobs:
         with:
           configPath: '.github/config/lighthouserc.json'
           uploadArtifacts: true
-          temporaryPublicStorage: true
+          # temporaryPublicStorage: true
+          serverBaseUrl: ${{ secrets.LHCI_SERVER_URL }}
+          serverToken: ${{ secrets.LHCI_BUILD_TOKEN }}

@@ -3,11 +3,12 @@ import { useState } from 'react'
 import useSWR from 'swr'
 import './App.scss'
 import { parse } from 'query-string'
-import Grid from './Components/Grid'
 import { getValueByKey } from './Utils/LocalStorageUtils'
-import { DASHBOARD_AUTH, IAuth } from './Constants/Auth'
-import Auth from './Components/Auth/Auth'
+import { DASHBOARD_AUTH } from './Constants/Auth'
 import { convertToJSON } from './Utils/ConvertUtils'
+
+const GridComponent = React.lazy(() => import('./Components/Grid'))
+const AuthComponent = React.lazy(() => import('./Components/Auth/Auth'))
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json())
 const defaultColumnCount =
@@ -47,12 +48,24 @@ function App() {
       isOnlyMainBranch,
       columnCount: defaultColumnCount,
     }
-    return <Grid authConfig={authConfig} />
+    return (
+      <React.Suspense fallback={'loading'}>
+        <GridComponent authConfig={authConfig} />
+      </React.Suspense>
+    )
   } else {
     if (auth.org && auth.token) {
-      return <Grid authConfig={auth} />
+      return (
+        <React.Suspense fallback={'loading'}>
+          <GridComponent authConfig={auth} />
+        </React.Suspense>
+      )
     } else {
-      return <Auth onConfigChanged={(auth) => setAuth(auth)} />
+      return (
+        <React.Suspense fallback={'loading'}>
+          <AuthComponent onConfigChanged={(auth) => setAuth(auth)} />
+        </React.Suspense>
+      )
     }
   }
 }

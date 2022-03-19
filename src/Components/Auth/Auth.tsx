@@ -99,7 +99,7 @@ const Auth: React.FC<{
         startDate: '2021-09-15',
         names: ['P', 'F', 'Y', 'L', 'Z', 'X', 'Yu'],
       },
-      () => {},
+      null,
       2
     )
 

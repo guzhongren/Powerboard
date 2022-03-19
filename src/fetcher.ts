@@ -13,7 +13,7 @@ export const fetcher = (query: string, token: string) => {
     .request(query)
     .catch((err) => {
       console.error(
-        `There are some error when request buildkite, the page will auto reload! ${err}`
+        `There are some error when request buildkite, the page will auto reload! ${err}`,
       )
       setTimeout(() => {
         window.location.reload()
@@ -25,7 +25,7 @@ export const buildKiteQuery = (
   orz: string,
   team: string,
   search: string[] | string,
-  isOnlyMainBranch: boolean
+  isOnlyMainBranch: boolean,
 ) => {
   const buildPipelineQuery = (pipeline: string, index?: number) => `
     pipelines${isNil(index) ? '' : index}: pipelines(first:10 ${

@@ -12,6 +12,7 @@ const BuildHistory: React.FC<{ build: any }> = ({ build }) => {
       target="_blank"
       className={`pipeline__history-build ${info.state}`}
       title={info?.createdBy?.name}
+      rel="noreferrer"
     >
       #{info.number}
     </a>

@@ -9,8 +9,8 @@ dayjs.extend(relativeTime)
 const OncallPannel: React.FC<{ oncallListJSON?: any }> = ({
   oncallListJSON,
 }) => {
-  const [isEmpty, setIsEmpty] = useState(
-    !oncallListJSON || oncallListJSON.names.length === 0
+  const [isEmpty] = useState(
+    !oncallListJSON || oncallListJSON.names.length === 0,
   )
   let startDate
   let names

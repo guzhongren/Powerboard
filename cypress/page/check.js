@@ -47,22 +47,22 @@ export function checkAuthInput() {
 
 export function checkLocalStorageInfo(dashboardConfig) {
   expect(dashboardConfig.orgName).to.equal(
-    localStorage.getItem(DASHBOARD_AUTH.ORG)
+    localStorage.getItem(DASHBOARD_AUTH.ORG),
   )
   expect(dashboardConfig.team).to.equal(
-    localStorage.getItem(DASHBOARD_AUTH.TEAM)
+    localStorage.getItem(DASHBOARD_AUTH.TEAM),
   )
   expect(convertToString(dashboardConfig.pipelines)).to.equal(
-    localStorage.getItem(DASHBOARD_AUTH.SEARCH)
+    localStorage.getItem(DASHBOARD_AUTH.SEARCH),
   )
   expect(dashboardConfig.token).to.equal(
-    localStorage.getItem(DASHBOARD_AUTH.TOKEN)
+    localStorage.getItem(DASHBOARD_AUTH.TOKEN),
   )
   expect(convertToString(dashboardConfig.oncall)).to.equal(
-    localStorage.getItem(DASHBOARD_AUTH.ONCALL)
+    localStorage.getItem(DASHBOARD_AUTH.ONCALL),
   )
   expect(`${dashboardConfig.isOnlyMainBranch}`).to.equal(
-    localStorage.getItem(DASHBOARD_AUTH.IS_ONLY_MAIN_BRANCH)
+    localStorage.getItem(DASHBOARD_AUTH.IS_ONLY_MAIN_BRANCH),
   )
 }
 
@@ -77,13 +77,13 @@ export function checkAuthInfo(dashboardConfig) {
     .should('have.value', dashboardConfig.orgName)
   cy.get(ID_PIPELINES).should(
     'have.value',
-    dashboardConfig.pipelines.join('\n')
+    dashboardConfig.pipelines.join('\n'),
   )
   cy.get(ID_ONCALL_LIST).should(
     'have.value',
-    convertToString(dashboardConfig.oncall)
+    convertToString(dashboardConfig.oncall),
   )
   cy.get('input[type="checkbox"]').should(
-    `${dashboardConfig.isOnlyMainBranch ? '' : 'not.'}be.checked`
+    `${dashboardConfig.isOnlyMainBranch ? '' : 'not.'}be.checked`,
   )
 }

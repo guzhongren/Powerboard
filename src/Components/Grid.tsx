@@ -2,7 +2,7 @@ import * as React from 'react'
 import useSWR from 'swr'
 import { useState, useEffect, useMemo } from 'react'
 import * as dayjs from 'dayjs'
-import { Responsive, WidthProvider, Layouts, Layout } from 'react-grid-layout'
+import { Responsive, WidthProvider, Layouts } from 'react-grid-layout'
 import { isEqual } from 'lodash'
 import { buildKiteQuery, fetcher } from '../fetcher'
 import { mergePipelinesWithResponse } from '../help'
@@ -13,13 +13,12 @@ import { getLayouts, saveLayouts } from '../Utils/LayoutStorageUtils'
 import {
   DEFAULT_ITEM_LAYOUT,
   GRID_ITEM_DEFAULT_HEIGHT,
+  SCREEN_WIDTH,
 } from '../Constants/Grid'
 import { PIPELINE_AUTO_REFRESH_PERIOD } from '../Constants/Config'
-import { DASHBOARD_AUTH, IAuth } from '../Constants/Auth'
+import { IAuth } from '../Constants/Auth'
 import OncallPannel from './OncallPannel/OncallPannel'
 import { convertToJSON } from '../Utils/ConvertUtils'
-import { SCREEN_WIDTH } from '../Constants/Grid'
-import { LOCAL_STORAGE_KEY } from '@root/Constants/Storage'
 
 const ReactGridLayout = WidthProvider(Responsive)
 
@@ -39,7 +38,7 @@ const Grid: React.FC<{
         auth?.org,
         auth?.team,
         auth?.search,
-        auth.isOnlyMainBranch
+        auth.isOnlyMainBranch,
       ),
       auth?.token,
     ],
@@ -49,7 +48,7 @@ const Grid: React.FC<{
       onSuccess: () => {
         setLastUpdateTime(dayjs())
       },
-    }
+    },
   )
   if (error) {
     return (
@@ -72,15 +71,15 @@ const Grid: React.FC<{
   const pipelines = mergedData?.organization?.pipelines?.edges || []
 
   useEffect(() => {
-    let timer = setInterval(() => {
+    const timer = setInterval(() => {
       setRetry(!retry)
       const statuses = pipelines.map(
-        (pipeline: any) => pipeline.node?.builds?.edges?.[0]?.node?.state
+        (pipeline: any) => pipeline.node?.builds?.edges?.[0]?.node?.state,
       )
       if (statuses.includes(FAILED)) {
         if (retry) {
           const failedCount = statuses.filter(
-            (status: any) => status === FAILED
+            (status: any) => status === FAILED,
           ).length
           document.title = `🚨 ${failedCount} Failed`
         } else {
@@ -96,7 +95,7 @@ const Grid: React.FC<{
   })
 
   const defaultTitle = () => {
-    document.title = `Powerboard`
+    document.title = 'Powerboard'
   }
 
   const defaultLayoutProps = {
@@ -151,18 +150,10 @@ const Grid: React.FC<{
           y: index + GRID_ITEM_DEFAULT_HEIGHT,
           w: columnWidth,
         }
-      }
+      },
     )
     setLayouts({ lg: newLayout })
   }, [authColumnCount, data])
-
-  const renderPipelineChildren = () => {
-    return pipelines?.map((pipeline: any, index: number) => (
-      <div key={index} className="pipelines">
-        <Pipeline pipeline={pipeline} key={pipeline.node.name} />
-      </div>
-    ))
-  }
 
   const pipelineGrid = useMemo(() => {
     const authColumnCount = auth.columnCount || 1

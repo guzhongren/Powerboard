@@ -17,7 +17,7 @@ const Modal: React.FC<{
           />
           <div className="modal__content">{props.children}</div>
         </div>,
-        document.body
+        document.body,
       )
     : null
 }

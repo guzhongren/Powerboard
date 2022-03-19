@@ -6,7 +6,7 @@ export const importJsonFile = (file: File) => {
       try {
         resolve(JSON.parse(reader.result as string))
       } catch (err) {
-        reject('Parse json error: ' + err.toString())
+        reject(new Error('Parse json error: ' + err.toString()))
       }
     }
     reader.onerror = () => {
@@ -19,7 +19,7 @@ export const importJsonFile = (file: File) => {
 export const downloadConfig = (
   dlAnchorElem: any,
   data: any,
-  fileName: string
+  fileName: string,
 ) => {
   const dataStr =
     'data:text/json;charset=utf-8,' +

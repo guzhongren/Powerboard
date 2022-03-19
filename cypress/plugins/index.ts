@@ -48,7 +48,7 @@ function generateTestData() {
 
     fs.writeFile(
       'cypress/fixtures/mockedImportAuth.json',
-      JSON.stringify(mockedImportAuth, null, 2)
+      JSON.stringify(mockedImportAuth, null, 2),
     )
   })
 }

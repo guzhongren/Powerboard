@@ -31,7 +31,11 @@ const Pipeline: React.FC<{ pipeline: any; style?: React.CSSProperties }> = ({
       </div>
       <div className={`pipeline__current ${lastBuild.state}`}>
         <div className="pipeline__title">
-          <a href={pipeline?.node?.repository?.url || ''} target="_blank">
+          <a
+            href={pipeline?.node?.repository?.url || ''}
+            target="_blank"
+            rel="noreferrer"
+          >
             <img
               className="pipeline__title-repo"
               src="https://github.githubassets.com/images/modules/site/icons/footer/github-mark.svg"
@@ -42,6 +46,7 @@ const Pipeline: React.FC<{ pipeline: any; style?: React.CSSProperties }> = ({
             href={lastBuild.url}
             target="_blank"
             className="pipeline__title-content"
+            rel="noreferrer"
           >
             {pipeline?.node?.name}
           </a>

@@ -18,17 +18,17 @@ const Auth: React.FC<{
   const [token, setToken] = useState(getValueByKey(DASHBOARD_AUTH.TOKEN) || '')
   const [team, setTeam] = useState(getValueByKey(DASHBOARD_AUTH.TEAM) || '')
   const [search, setSearch] = useState(
-    convertToJSON(getValueByKey(DASHBOARD_AUTH.SEARCH))
+    convertToJSON(getValueByKey(DASHBOARD_AUTH.SEARCH)),
   )
   const [oncall, setOncall] = useState(
-    convertToJSON(getValueByKey(DASHBOARD_AUTH.ONCALL))
+    convertToJSON(getValueByKey(DASHBOARD_AUTH.ONCALL)),
   )
   const [orz, setOrz] = useState(getValueByKey(DASHBOARD_AUTH.ORG) || '')
   const [isOnlyMainBranch, setIsOnlyMainBranch] = useState(
-    getValueByKey(DASHBOARD_AUTH.IS_ONLY_MAIN_BRANCH) === 'true'
+    getValueByKey(DASHBOARD_AUTH.IS_ONLY_MAIN_BRANCH) === 'true',
   )
   const [columnCount, setColumnCount] = useState(
-    parseInt(getValueByKey(DASHBOARD_AUTH.COLUMN_COUNT)) || 1
+    parseInt(getValueByKey(DASHBOARD_AUTH.COLUMN_COUNT)) || 1,
   )
 
   const storeConfig = () => {
@@ -71,7 +71,7 @@ const Auth: React.FC<{
         },
         (err) => {
           console.error(err)
-        }
+        },
       )
     }
   }
@@ -100,7 +100,7 @@ const Auth: React.FC<{
         names: ['P', 'F', 'Y', 'L', 'Z', 'X', 'Yu'],
       },
       null,
-      2
+      2,
     )
 
   return (
@@ -114,6 +114,7 @@ const Auth: React.FC<{
             <a
               href="https://buildkite.com/user/api-access-tokens"
               target="_blank"
+              rel="noreferrer"
             >
               generate a Token{' '}
             </a>
@@ -158,7 +159,9 @@ const Auth: React.FC<{
           <span>Pipeline Name</span>
           <textarea
             id="pipelines"
-            placeholder={`Support multiple projects, like :\npipeline-a\npipeline-b\npipeline-c\npipeline-d`}
+            placeholder={
+              'Support multiple projects, like :\npipeline-a\npipeline-b\npipeline-c\npipeline-d'
+            }
             value={search?.join('\n')}
             onChange={(event) => {
               setSearch(splitSearch(event.target.value || ''))

@@ -15,6 +15,6 @@ export const saveLayouts = (value: any) => {
     LOCAL_STORAGE_KEY,
     JSON.stringify({
       [LAYOUT__KEY]: value,
-    })
+    }),
   )
 }

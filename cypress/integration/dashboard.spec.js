@@ -152,7 +152,7 @@ describe('show pipeline', () => {
                   expect(json.search).to.contain(dashboardConfig.pipelines[0])
                   expect(json.search).to.contain(dashboardConfig.pipelines[1])
                 })
-              }
+              },
             )
           })
         cy.get(CLASS_BUTTON_GO).click()
@@ -174,10 +174,10 @@ describe('show pipeline', () => {
                   expect(json.search).to.contain(dashboardConfig.pipelines[0])
                   expect(json.search).to.contain(dashboardConfig.pipelines[1])
                   expect(json.oncall.toString()).to.equal(
-                    dashboardConfig.oncall.toString()
+                    dashboardConfig.oncall.toString(),
                   )
                 })
-              }
+              },
             )
           })
         cy.get(CLASS_BUTTON_GO).click()
@@ -190,7 +190,7 @@ describe('show pipeline', () => {
       cy.visit(
         `${Cypress.env('url')}?token=${dashboardConfig.token}&config=${
           dashboardConfig.configPath
-        }`
+        }`,
       )
       checkPipelineTitle(2, pipelinesConfig[0])
       checkPipelineRepo(TITLE_PIPELINE_REPO)

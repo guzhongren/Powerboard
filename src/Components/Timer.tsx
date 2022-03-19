@@ -1,7 +1,6 @@
 import * as React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import * as dayjs from 'dayjs'
-import { useEffect } from 'react'
 
 const Timer: React.FC<{ startAt: any }> = ({ startAt }) => {
   const [now, setNow] = useState(dayjs())

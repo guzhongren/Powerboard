@@ -4,8 +4,8 @@ import useSWR from 'swr'
 import './App.scss'
 import { parse } from 'query-string'
 import { getValueByKey } from './Utils/LocalStorageUtils'
-import { DASHBOARD_AUTH } from './Constants/Auth'
 import { convertToJSON } from './Utils/ConvertUtils'
+import { DASHBOARD_AUTH } from './Constants/Auth'
 
 const GridComponent = React.lazy(() => import('./Components/Grid'))
 const AuthComponent = React.lazy(() => import('./Components/Auth/Auth'))

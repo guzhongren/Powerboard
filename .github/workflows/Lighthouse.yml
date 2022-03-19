@@ -8,7 +8,7 @@ jobs:
       - name: Use lts Node.js
         uses: actions/setup-node@v1
         with:
-          node-version: 16.13.2
+          node-version: 16.14.2
       - name: install & lint
         run: |
           npm install -g pnpm
@@ -17,7 +17,7 @@ jobs:
       - name: build project
         run: |
           pnpm build
-      - name: Run Lighthouse against a static dist dir
+      - name: Run Lighthouse
         uses: treosh/lighthouse-ci-action@v9
         with:
           configPath: '.github/config/lighthouserc.json'

@@ -2,6 +2,32 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/guzhongren/Powerboard/compare/v2.0.0...v2.1.0) (2022-03-21)
+
+
+### Features
+
+* **budge:** Add lighthouse budge ([f627754](https://github.com/guzhongren/Powerboard/commit/f6277547d46b52371ef97ba972650f1c19593438))
+* **column:** add column ([260461a](https://github.com/guzhongren/Powerboard/commit/260461a9ec4ef37afadf1078a6376dadb31fca50))
+* **column:** Customize layout ([ba61b0b](https://github.com/guzhongren/Powerboard/commit/ba61b0bc93a8b94dac788bf4c10fa0a131e9e35a))
+* **token:** Update token input as password type ([436ef53](https://github.com/guzhongren/Powerboard/commit/436ef535a9e7657f38fe2378ef864f0d85e143bd))
+
+
+### Bug Fixes
+
+* **ci:** Should upload the report to server ([9223f1e](https://github.com/guzhongren/Powerboard/commit/9223f1e97c8e0e078247c573b6405c7316917750))
+* **ci:** Should upload the report to server ([bcbb5e1](https://github.com/guzhongren/Powerboard/commit/bcbb5e1ea66a42b9c88de533db0d1364c997f18f))
+* **config:** Fix path of lighthouse ([5cebf73](https://github.com/guzhongren/Powerboard/commit/5cebf739342d6d819ad06377c4396b9bc4b76000))
+* **isOnlyMainBranch:** Fix isOnlyMainBranch value in localStorage ([91ab49b](https://github.com/guzhongren/Powerboard/commit/91ab49b2b42eea02245da99f01c8e2f315c66472))
+* **lghs:** Update the formFactor ([2ff402e](https://github.com/guzhongren/Powerboard/commit/2ff402e4c4f1996f2f39352a01a8a1b1ff312c2c))
+* **lghs:** Update the formFactor ([421b715](https://github.com/guzhongren/Powerboard/commit/421b7154f310aecfe3e79a65cc1196067459527e))
+* **lghs:** Update the formFactor ([57b0640](https://github.com/guzhongren/Powerboard/commit/57b06403e906357fd2fe85ca832cb8f234bc396a))
+* **lghs:** Update the formFactor ([2858015](https://github.com/guzhongren/Powerboard/commit/2858015aca5530e8e760990b12538419b0c219ca))
+* **oncall:** Should show oncall placeholder ([2984c08](https://github.com/guzhongren/Powerboard/commit/2984c085be2b4636d230253fb1e8c53a70681be5))
+* **select:** Auto display selected value ([0c3c300](https://github.com/guzhongren/Powerboard/commit/0c3c300078e2c4ae5fa32a386c526695f51f83c5))
+* **title:** Should display normal title when no failed case ([8853733](https://github.com/guzhongren/Powerboard/commit/88537331e263b72764dcdd30ac28c72b5826a7d9))
+* **title:** Should load latest data by filter: Just show main/master branches ([5b11547](https://github.com/guzhongren/Powerboard/commit/5b115477f3545691b13b543613c4a8186fa7245d))
+
 ## [2.0.0](https://github.com/guzhongren/Powerboard/compare/v1.0.0...v2.0.0) (2022-03-02)
 
 ### Features

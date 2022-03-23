@@ -1,4 +1,4 @@
-export const SCREEN_WIDTH = 10
+export const SCREEN_WIDTH = 10 * 10
 export const GRID_ITEM_DEFAULT_HEIGHT = 13
 export const LAYOUT__KEY: string = 'LAYOUT__KEY'
 export const DEFAULT_ITEM_LAYOUT = {

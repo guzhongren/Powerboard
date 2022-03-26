@@ -40,9 +40,9 @@ jobs:
           port: ${{ secrets.REMOTE_PORT }}
           script: |
             # 停止旧版容器
-            docker stop $(docker ps --filter ancestor=${{ secrets.DOCKERHUB_USERNAME }}/powerboard -q)
+            docker stop $(docker ps --filter name=powerboard -q)
             # 删除旧版容器
-            docker rm -f $(docker ps -a --filter ancestor=${{ secrets.DOCKERHUB_USERNAME }}/powerboard -q)
+            docker rm -f $(docker ps -a --filter name=powerboard -q)
             # 删除旧版镜像
             docker rmi -f $(docker images ${{ secrets.DOCKERHUB_USERNAME }}/powerboard -q)
             # 登陆镜像服务器
@@ -50,4 +50,4 @@ jobs:
             # 拉取最新latest版本镜像
             docker pull ${{ secrets.DOCKERHUB_USERNAME }}/powerboard:${{github.run_number}}
             # 运行最新latest版本镜像
-            docker run -d -p 4321:4321 ${{ secrets.DOCKERHUB_USERNAME }}/powerboard:${{github.run_number}}
+            docker run --name powerboard -d  -p 4321:80 ${{ secrets.DOCKERHUB_USERNAME }}/powerboard:${{github.run_number}}

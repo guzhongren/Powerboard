@@ -22,7 +22,7 @@ jobs:
               /var/run/docker.sock:/var/run/docker.sock \
               aquasec/trivy repo \
              --severity HIGH,CRITICAL \
-             https://github.com/guzhongren/Buildkite-Dashboard
+             https://github.com/guzhongren/Powerboard
       - name: pwd
         run: ls ../
       - name: Scan config

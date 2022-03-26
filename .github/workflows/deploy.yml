@@ -1,5 +1,4 @@
 name: Deploy to Remote
-
 on:
   push:
     branches:
@@ -9,6 +8,8 @@ jobs:
   deployToRemote:
     name: Deploy
     runs-on: ubuntu-latest
+    env:
+      IMAGE_NAME: ${{ secrets.DOCKERHUB_USERNAME }}/powerboard:${{evn.GITHUB_RUN_NUMBER}}
 
     steps:
       - uses: actions/checkout@v2
@@ -31,7 +32,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: '${{ secrets.DOCKERHUB_USERNAME }}/powerboard:${GITHUB_RUN_NUMBER}'
+          tags: '$IMAGE_NAME'
       - name: Deploy
         uses: appleboy/ssh-action@master
         with:
@@ -49,6 +50,6 @@ jobs:
             # 登陆镜像服务器
             docker login --username=${{ secrets.DOCKER_USERNAME }} --password ${{ secrets.DOCKERHUB_TOKEN }}
             # 拉取最新latest版本镜像
-            docker pull "${{ secrets.DOCKERHUB_USERNAME }}/powerboard:${GITHUB_RUN_NUMBER}"
+            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/powerboard:${{evn.GITHUB_RUN_NUMBER}}
             # 运行最新latest版本镜像
-            docker run -d -p 4321:4321 "${{ secrets.DOCKERHUB_USERNAME }}/powerboard:${GITHUB_RUN_NUMBER}"
+            docker run -d -p 4321:4321 ${{ secrets.DOCKERHUB_USERNAME }}/powerboard:${{evn.GITHUB_RUN_NUMBER}}

@@ -31,7 +31,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/powerboard:${GITHUB_RUN_NUMBER}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/powerboard:"${GITHUB_RUN_NUMBER}"
       - name: Deploy
         uses: appleboy/ssh-action@master
         with:
@@ -49,6 +49,6 @@ jobs:
             # 登陆镜像服务器
             docker login --username=${{ secrets.DOCKER_USERNAME }} --password ${{ secrets.DOCKERHUB_TOKEN }}
             # 拉取最新latest版本镜像
-            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/powerboard:${GITHUB_RUN_NUMBER}
+            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/powerboard:"${GITHUB_RUN_NUMBER}"
             # 运行最新latest版本镜像
-            docker run -d -p 4321:4321 ${{ secrets.DOCKERHUB_USERNAME }}/powerboard:${GITHUB_RUN_NUMBER}
+            docker run -d -p 4321:4321 ${{ secrets.DOCKERHUB_USERNAME }}/powerboard:"${GITHUB_RUN_NUMBER}"

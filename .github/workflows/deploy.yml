@@ -26,7 +26,7 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: test
-        run: echo ${{GITHUB_RUN_NUMBER}}
+        run: echo ${{github.run_number}}
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
         with:
@@ -50,6 +50,6 @@ jobs:
             # 登陆镜像服务器
             docker login --username=${{ secrets.DOCKER_USERNAME }} --password ${{ secrets.DOCKERHUB_TOKEN }}
             # 拉取最新latest版本镜像
-            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/powerboard:${{env.GITHUB_RUN_NUMBER}}
+            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/powerboard:${{github.run_number}}
             # 运行最新latest版本镜像
-            docker run -d -p 4321:4321 ${{ secrets.DOCKERHUB_USERNAME }}/powerboard:${{env.GITHUB_RUN_NUMBER}}
+            docker run -d -p 4321:4321 ${{ secrets.DOCKERHUB_USERNAME }}/powerboard:${{github.run_number}}

@@ -8,8 +8,6 @@ jobs:
   deployToRemote:
     name: Deploy
     runs-on: ubuntu-latest
-    env:
-      IMAGE_NAME: ${{ secrets.DOCKERHUB_USERNAME }}/powerboard:${{evn.GITHUB_RUN_NUMBER}}
 
     steps:
       - uses: actions/checkout@v2
@@ -27,6 +25,8 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: test
+        run: echo ${{env.GITHUB_RUN_NUMBER}}
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
         with:

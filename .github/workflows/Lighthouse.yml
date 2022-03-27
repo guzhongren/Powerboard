@@ -21,15 +21,16 @@ jobs:
         run: |
           npm install
           npm run build
-      - name: run Lighthouse CI
+      - name: Upload Lighthouse Report
         run: |
-          npm install -g @lhci/cli@0.9.0
+          npm install -g @lhci/cli
           lhci autorun --config=.github/config/lighthouserc-no-condition.json
           lhci upload --serverBaseUrl=${{ secrets.LHCI_SERVER_URL }} --token=${{ secrets.LHCI_BUILD_TOKEN }}
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
-      - name: run Lighthouse CI
+      - name: Check Lighthouse Report
         run: |
+          rm -rf .lighthouseci
           lhci autorun --config=.github/config/lighthouserc.json
           lhci upload --serverBaseUrl=${{ secrets.LHCI_SERVER_URL }} --token=${{ secrets.LHCI_BUILD_TOKEN }}
         env:

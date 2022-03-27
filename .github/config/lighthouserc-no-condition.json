@@ -19,7 +19,7 @@
         "categories:accessibility": "off",
         "categories:best-practices": "off",
         "categories:seo": "off",
-        "categories:pwd": "off"
+        "categories:pwa": "off"
       }
     }
   }

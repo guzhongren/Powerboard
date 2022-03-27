@@ -23,7 +23,7 @@ jobs:
           npm run build
       - name: run Lighthouse CI
         run: |
-          npm install -g @lhci/cli
+          npm install -g @lhci/cli@0.9.0
           lhci autorun --config=.github/config/lighthouserc-no-condition.json
           lhci upload --serverBaseUrl=${{ secrets.LHCI_SERVER_URL }} --token=${{ secrets.LHCI_BUILD_TOKEN }}
         env:

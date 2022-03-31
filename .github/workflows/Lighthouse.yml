@@ -3,8 +3,6 @@ on:
   push:
     branches:
       - main
-  schedule:
-    - cron: '0 0 * * *'
 jobs:
   lhci:
     name: Lighthouse
@@ -25,7 +23,7 @@ jobs:
         run: |
           npm install -g @lhci/cli
           lhci autorun --config=.github/config/lighthouserc-no-condition.json
-          lhci upload --serverBaseUrl=${{ secrets.LHCI_SERVER_URL }} --token=${{ secrets.LHCI_BUILD_TOKEN }}
+          lhci upload --ignoreDuplicateBuildFailure --serverBaseUrl=${{ secrets.LHCI_SERVER_URL }} --token=${{ secrets.LHCI_BUILD_TOKEN }}
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
       - name: Check Lighthouse Report

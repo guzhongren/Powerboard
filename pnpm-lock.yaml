@@ -33,7 +33,7 @@ specifiers:
   jest: ^27.5.1
   lint-staged: ^12.3.7
   lodash: ^4.17.21
-  mini-css-extract-plugin: 2.6.0
+  mini-css-extract-plugin: 2.4.5
   node-sass: ^7.0.1
   postcss: ^8.4.12
   postcss-loader: ^6.2.1
@@ -96,7 +96,7 @@ devDependencies:
   husky: 7.0.4
   jest: 27.5.1
   lint-staged: 12.3.7
-  mini-css-extract-plugin: 2.6.0_webpack@5.71.0
+  mini-css-extract-plugin: 2.4.5_webpack@5.71.0
   node-sass: 7.0.1
   postcss: 8.4.12
   postcss-loader: 6.2.1_postcss@8.4.12+webpack@5.71.0
@@ -9159,10 +9159,10 @@ packages:
     engines: { node: '>=4' }
     dev: true
 
-  /mini-css-extract-plugin/2.6.0_webpack@5.71.0:
+  /mini-css-extract-plugin/2.4.5_webpack@5.71.0:
     resolution:
       {
-        integrity: sha512-ndG8nxCEnAemsg4FSgS+yNyHKgkTB4nPKqCOgh65j3/30qqC5RaSQQXMm++Y6sb6E1zRSxPkztj9fqxhS1Eo6w==,
+        integrity: sha512-oEIhRucyn1JbT/1tU2BhnwO6ft1jjH1iCX9Gc59WFMg0n5773rQU0oyQ0zzeYFFuBfONaRbQJyGoPtuNseMxjA==,
       }
     engines: { node: '>= 12.13.0' }
     peerDependencies:

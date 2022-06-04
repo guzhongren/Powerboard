@@ -5,6 +5,7 @@ import './Modal.scss'
 const Modal: React.FC<{
   visible: boolean
   onClose: (event?: any) => any
+  children?: React.ReactNode
 }> = (props) => {
   return props.visible
     ? ReactDOM.createPortal(

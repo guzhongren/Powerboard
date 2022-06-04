@@ -7,3 +7,4 @@ cypress/downloads
 
 cypress/fixtures/mockedImportAuth.json
 CHANGELOG.md
+pnpm-lock.yaml

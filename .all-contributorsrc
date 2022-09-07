@@ -21,7 +21,7 @@
         "platform",
         "review",
         "test",
-        "tutorial"
+        "tutorial",
         "infra"
       ]
     }

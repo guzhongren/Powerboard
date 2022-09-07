@@ -1,7 +1,7 @@
 # **Powerboard** A BuildKite CI monitor and utils.
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![Test and deploy](https://github.com/guzhongren/Powerboard/actions/workflows/main.yml/badge.svg)](https://github.com/guzhongren/Powerboard/actions/workflows/main.yml) [![Lighthouse](https://github.com/guzhongren/Powerboard/actions/workflows/Lighthouse.yml/badge.svg)](https://github.com/guzhongren/Powerboard/actions/workflows/Lighthouse.yml)
@@ -98,6 +98,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center"><a href="https://guzhongren.github.io/"><img src="https://avatars.githubusercontent.com/u/8743692?v=4?s=100" width="100px;" alt=""/><br /><sub><b>guzhongren</b></sub></a><br /><a href="https://github.com/guzhongren/Powerboard/commits?author=guzhongren" title="Code">💻</a> <a href="https://github.com/guzhongren/Powerboard/commits?author=guzhongren" title="Documentation">📖</a> <a href="#infra-guzhongren" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#design-guzhongren" title="Design">🎨</a> <a href="#eventOrganizing-guzhongren" title="Event Organizing">📋</a> <a href="#ideas-guzhongren" title="Ideas, Planning, & Feedback">🤔</a> <a href="#maintenance-guzhongren" title="Maintenance">🚧</a> <a href="#platform-guzhongren" title="Packaging/porting to new platform">📦</a> <a href="https://github.com/guzhongren/Powerboard/pulls?q=is%3Apr+reviewed-by%3Aguzhongren" title="Reviewed Pull Requests">👀</a> <a href="https://github.com/guzhongren/Powerboard/commits?author=guzhongren" title="Tests">⚠️</a> <a href="#tutorial-guzhongren" title="Tutorials">✅</a> <a href="#infra-guzhongren" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
     <td align="center"><a href="https://github.com/davidwangcn9"><img src="https://avatars.githubusercontent.com/u/14356067?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Wang YiChen</b></sub></a><br /><a href="https://github.com/guzhongren/Powerboard/commits?author=davidwangcn9" title="Tests">⚠️</a> <a href="https://github.com/guzhongren/Powerboard/commits?author=davidwangcn9" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/yuzhang17"><img src="https://avatars.githubusercontent.com/u/16209618?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Yu Zhang</b></sub></a><br /><a href="https://github.com/guzhongren/Powerboard/commits?author=yuzhang17" title="Tests">⚠️</a> <a href="https://github.com/guzhongren/Powerboard/commits?author=yuzhang17" title="Code">💻</a></td>
   </tr>
 </table>
 

@@ -3,7 +3,7 @@ import { useState } from 'react'
 import './Auth.scss'
 import { saveValue, getValueByKey } from '../../Utils/LocalStorageUtils'
 import { saveLayouts, getLayouts } from '../../Utils/LayoutStorageUtils'
-import { DASHBOARD_AUTH, IAuth } from '../../Constants/Auth'
+import { DASHBOARD_AUTH, IAuth, IOnCall } from '../../Constants/Auth'
 import { importJsonFile, downloadConfig } from '../../Utils/JsonFileProcessor'
 import { convertToJSON, convertToString } from '../../Utils/ConvertUtils'
 import { splitSearch, validateJson } from '../../Utils/StringUtils'
@@ -63,7 +63,7 @@ const Auth: React.FC<{
   const validateDate = () => {
     validateToken(token)
     validateOrgName(orz)
-    validateOnCallList(oncall)
+    validateOnCall(oncall)
     return tokenValid && orgNameValid && onCallListValid
   }
 
@@ -79,11 +79,9 @@ const Auth: React.FC<{
     return isValid
   }
 
-  const validateOnCallList = (onCallListStr: string): boolean => {
-    if (onCallListStr) {
-      const isValid =
-        (onCallListStr.length > 0 && validateJson(onCallListStr)) ||
-        onCallListStr.length <= 0
+  const validateOnCall = (onCall: IOnCall): boolean => {
+    const isValid = onCall && onCall.startDate && onCall.names.length >= 0
+    if (isValid) {
       setOncallListValid(isValid)
       return isValid
     }
@@ -222,7 +220,11 @@ const Auth: React.FC<{
             onChange={(event) => {
               const oncallListJson = event.target.value
               setOncall(oncallListJson)
-              validateOnCallList(oncallListJson)
+              if (validateJson(oncallListJson)) {
+                validateOnCall(convertToJSON(oncallListJson))
+              } else {
+                setOncallListValid(oncallListJson.length <= 0)
+              }
             }}
             className={!onCallListValid ? 'REQUIRED' : ''}
           />

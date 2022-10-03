@@ -8,12 +8,17 @@ export const DASHBOARD_AUTH = {
   COLUMN_COUNT: 'columnCount',
 }
 
+export interface IOnCall {
+  startDate: string
+  names: Array<string>
+}
+
 export interface IAuth {
   org?: string
   team?: string
   search?: string[]
   token?: string
-  oncall?: any
+  oncall?: IOnCall
   isOnlyMainBranch?: boolean
   columnCount?: number
 }

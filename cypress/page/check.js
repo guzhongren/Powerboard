@@ -46,9 +46,7 @@ export function checkAuthInput() {
 }
 
 export function checkLocalStorageInfo(dashboardConfig) {
-  expect(dashboardConfig.orgName).to.equal(
-    localStorage.getItem(DASHBOARD_AUTH.ORG),
-  )
+  expect(dashboardConfig.org).to.equal(localStorage.getItem(DASHBOARD_AUTH.ORG))
   expect(dashboardConfig.team).to.equal(
     localStorage.getItem(DASHBOARD_AUTH.TEAM),
   )
@@ -74,7 +72,7 @@ export function checkAuthInfo(dashboardConfig) {
   cy.contains(TITLE_ORG_NAME)
     .parent()
     .find('input[type=text]')
-    .should('have.value', dashboardConfig.orgName)
+    .should('have.value', dashboardConfig.org)
   cy.get(ID_PIPELINES).should(
     'have.value',
     dashboardConfig.pipelines.join('\n'),

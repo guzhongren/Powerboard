@@ -1,6 +1,6 @@
 {
   "token": "token",
-  "orgName": "elastic",
+  "org": "elastic",
   "team": "",
   "pipelines": ["apm-onweek-alerts-as-code", "kibana / on merge"],
   "oncall": {

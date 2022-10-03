@@ -22,7 +22,7 @@ import {
 
 describe('show pipeline', () => {
   dashboardConfig.token = Cypress.env('BUILDKITE_TOKEN')
-  const orgName = dashboardConfig.orgName
+  const orgName = dashboardConfig.org
   const pipelinesConfig = dashboardConfig.pipelines
 
   describe('display pipeline by manuel config', () => {
@@ -148,7 +148,7 @@ describe('show pipeline', () => {
               (content) => {
                 cy.wrap(content).then((json) => {
                   console.log(json)
-                  expect(json.org).to.equal(dashboardConfig.orgName)
+                  expect(json.org).to.equal(dashboardConfig.org)
                   expect(json.token).to.equal(dashboardConfig.token)
                   expect(json.search).to.contain(dashboardConfig.pipelines[0])
                   expect(json.search).to.contain(dashboardConfig.pipelines[1])
@@ -170,7 +170,7 @@ describe('show pipeline', () => {
             cy.readFile('cypress/downloads/dashboardConfig.json').then(
               (content) => {
                 cy.wrap(content).then((json) => {
-                  expect(json.org).to.equal(dashboardConfig.orgName)
+                  expect(json.org).to.equal(dashboardConfig.org)
                   expect(json.token).to.equal(dashboardConfig.token)
                   expect(json.search).to.contain(dashboardConfig.pipelines[0])
                   expect(json.search).to.contain(dashboardConfig.pipelines[1])

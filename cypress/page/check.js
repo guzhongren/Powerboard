@@ -87,3 +87,14 @@ export function checkAuthInfo(dashboardConfig) {
     `${dashboardConfig.isOnlyMainBranch ? '' : 'not.'}be.checked`,
   )
 }
+
+export function checkAuthErrorInfo() {
+  cy.contains(TITLE_ACCESS_TOKEN)
+    .parent()
+    .find('input[type=password]')
+    .should('have.attr', 'class', 'REQUIRED')
+  cy.contains(TITLE_ORG_NAME)
+    .parent()
+    .find('input[type=text]')
+    .should('have.attr', 'class', 'REQUIRED')
+}

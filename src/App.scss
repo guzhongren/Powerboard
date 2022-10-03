@@ -75,6 +75,10 @@ a {
   background-color: #ffa500;
 }
 
+.REQUIRED {
+  border: 1px solid $alert-color;
+}
+
 .icon {
   display: inline-block;
   width: 16px;

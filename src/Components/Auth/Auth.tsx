@@ -6,7 +6,7 @@ import { saveLayouts, getLayouts } from '../../Utils/LayoutStorageUtils'
 import { DASHBOARD_AUTH, IAuth } from '../../Constants/Auth'
 import { importJsonFile, downloadConfig } from '../../Utils/JsonFileProcessor'
 import { convertToJSON, convertToString } from '../../Utils/ConvertUtils'
-import { splitSearch } from '../../Utils/StringUtils'
+import { splitSearch, validateJson } from '../../Utils/StringUtils'
 
 const defaultColumnCount = 10
 
@@ -31,6 +31,10 @@ const Auth: React.FC<{
     parseInt(getValueByKey(DASHBOARD_AUTH.COLUMN_COUNT)) || 1,
   )
 
+  const [tokenValid, setTokenValid] = useState(true)
+  const [orgNameValid, setOrgNameValid] = useState(true)
+  const [onCallListValid, setOncallListValid] = useState(true)
+
   const storeConfig = () => {
     saveValue(DASHBOARD_AUTH.ORG, orz)
     saveValue(DASHBOARD_AUTH.TEAM, team)
@@ -42,16 +46,49 @@ const Auth: React.FC<{
   }
 
   const submit = () => {
-    storeConfig()
-    onConfigChanged({
-      org: orz,
-      team,
-      search,
-      token,
-      oncall,
-      isOnlyMainBranch,
-      columnCount,
-    })
+    if (validateDate()) {
+      storeConfig()
+      onConfigChanged({
+        org: orz,
+        team,
+        search,
+        token,
+        oncall,
+        isOnlyMainBranch,
+        columnCount,
+      })
+    }
+  }
+
+  const validateDate = () => {
+    validateToken(token)
+    validateOrgName(orz)
+    validateOnCallList(oncall)
+    return tokenValid && orgNameValid && onCallListValid
+  }
+
+  const validateToken = (token: string): boolean => {
+    const isValid = token.length > 0
+    setTokenValid(isValid)
+    return isValid
+  }
+
+  const validateOrgName = (orgName: string): boolean => {
+    const isValid = orgName.length > 0
+    setOrgNameValid(isValid)
+    return isValid
+  }
+
+  const validateOnCallList = (onCallListStr: string): boolean => {
+    if (onCallListStr) {
+      const isValid =
+        (onCallListStr.length > 0 && validateJson(onCallListStr)) ||
+        onCallListStr.length <= 0
+      setOncallListValid(isValid)
+      return isValid
+    }
+    setOncallListValid(true)
+    return true
   }
 
   const importConfig = (evt: any) => {
@@ -116,15 +153,18 @@ const Auth: React.FC<{
               target="_blank"
               rel="noreferrer"
             >
-              generate a Token{' '}
+              Generate a Token ...
             </a>
           </div>
           <input
             type="password"
             value={token}
             onChange={(event) => {
-              setToken(event.target.value)
+              const token = event.target.value
+              setToken(token)
+              validateToken(token)
             }}
+            className={!tokenValid ? 'REQUIRED' : ''}
             required={true}
           />
         </label>
@@ -136,8 +176,11 @@ const Auth: React.FC<{
             type="text"
             value={orz}
             onChange={(event) => {
-              setOrz(event.target.value)
+              const orgName = event.target.value
+              setOrz(orgName)
+              validateOrgName(orgName)
             }}
+            className={!orgNameValid ? 'REQUIRED' : ''}
             required={true}
           />
         </label>
@@ -177,8 +220,11 @@ const Auth: React.FC<{
             placeholder={oncallPlaceholder()}
             value={(oncall && convertToString(oncall)) || ''}
             onChange={(event) => {
-              setOncall(event.target.value)
+              const oncallListJson = event.target.value
+              setOncall(oncallListJson)
+              validateOnCallList(oncallListJson)
             }}
+            className={!onCallListValid ? 'REQUIRED' : ''}
           />
         </label>
       </div>

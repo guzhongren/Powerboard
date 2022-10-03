@@ -17,6 +17,7 @@ import {
   checkAuthInput,
   checkLocalStorageInfo,
   checkAuthInfo,
+  checkAuthErrorInfo,
 } from '../page/check'
 
 describe('show pipeline', () => {
@@ -194,6 +195,19 @@ describe('show pipeline', () => {
       )
       checkPipelineTitle(2, pipelinesConfig[0])
       checkPipelineRepo(TITLE_PIPELINE_REPO)
+    })
+  })
+
+  describe('Show error info for invalid input', () => {
+    beforeEach(() => {
+      cy.visit(Cypress.env('url'))
+    })
+    it('show error in every input given empty input', () => {
+      cy.get(CLASS_BUTTON_GO)
+        .click()
+        .then(() => {
+          checkAuthErrorInfo()
+        })
     })
   })
 })

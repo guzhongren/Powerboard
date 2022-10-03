@@ -1,3 +1,6 @@
+@import '~react-grid-layout/css/styles.css';
+@import '../../root.scss';
+
 .auth {
   padding: 20px;
   min-height: 200px;
@@ -9,7 +12,7 @@
 
   &__message {
     text-align: center;
-    color: #f37051;
+    color: $alert-color;
     &-line {
       display: flex;
       justify-content: space-between;

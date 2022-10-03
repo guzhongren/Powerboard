@@ -2,6 +2,41 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.0](https://github.com/guzhongren/Powerboard/compare/v2.1.0...v2.2.0) (2022-10-03)
+
+
+### Features
+
+* **analytics:** Add google analytics ([26d1df6](https://github.com/guzhongren/Powerboard/commit/26d1df67385ceedf724b33d691eb26448972ab85))
+* **LHCI:** Should upload result before failed ([2283af8](https://github.com/guzhongren/Powerboard/commit/2283af8c1f521e78698d00d25fb8410cbceae46c))
+* **LHCI:** Should upload result before failed ([b5445f4](https://github.com/guzhongren/Powerboard/commit/b5445f45ff52d1f46609d701ef215e8a054b773b))
+
+
+### Bug Fixes
+
+* **ci:** Fix ci e2e ([65ab02e](https://github.com/guzhongren/Powerboard/commit/65ab02e7ab1717af86c0f111005e39775c86e287))
+* **ci:** Fix ci e2e ([18011da](https://github.com/guzhongren/Powerboard/commit/18011da6e6fd99b9cc9ed18e3cdb559dd690ca24))
+* **ci:** Fix ci e2e ([2b452c0](https://github.com/guzhongren/Powerboard/commit/2b452c0fbec0bcb03dbf4f98aac7ada15be16d22))
+* **ci:** Fix CI issue ([36640fc](https://github.com/guzhongren/Powerboard/commit/36640fcb0c2264bd19c6e9c12b70a966884983ae))
+* **ci:** Fix env ([4a9482a](https://github.com/guzhongren/Powerboard/commit/4a9482aa9b285c730262cb0832e12aae3a0c6236))
+* **ci:** Fix env ([185eab1](https://github.com/guzhongren/Powerboard/commit/185eab1ccb436ac7a40a829d451c340d3b09e109))
+* **ci:** Fix env ([f4064c3](https://github.com/guzhongren/Powerboard/commit/f4064c350077eacca22904c764feaa27b6996b1a))
+* **ci:** Fix env ([852e95a](https://github.com/guzhongren/Powerboard/commit/852e95a364c4b5052beecb369d247cd8b7e63dc9))
+* **ci:** Fix env ([065ba75](https://github.com/guzhongren/Powerboard/commit/065ba75f2ac317cd6be92275250ade9c1fddefad))
+* **ci:** Fix env ([252ae3b](https://github.com/guzhongren/Powerboard/commit/252ae3bce43f740f93a307b69b389804d97e6064))
+* **ci:** Fix env ([68a2963](https://github.com/guzhongren/Powerboard/commit/68a2963bbfe977a2da23fd1af91ca7a1f11eb29a))
+* **ci:** Fix env ([9a7dc63](https://github.com/guzhongren/Powerboard/commit/9a7dc637cc98366b013b2180500af34d1fd6e7bc))
+* **ci:** Fix env ([3f23569](https://github.com/guzhongren/Powerboard/commit/3f23569514ba77853a6f0a0fdc46014c72158858))
+* **ci:** Fix env ([dfe02dd](https://github.com/guzhongren/Powerboard/commit/dfe02dd3fd3ea58fd70ddf045ef0338d9c356041))
+* **ci:** Fix env ([d7ed9f0](https://github.com/guzhongren/Powerboard/commit/d7ed9f03227d2cd866cc771358adbc9102d094cb))
+* **ci:** Not upload again ([4a0a8b2](https://github.com/guzhongren/Powerboard/commit/4a0a8b2f599ae8c2b53be82c68e77484945701a4))
+* **ci:** Use special version for lhci ([a325203](https://github.com/guzhongren/Powerboard/commit/a325203f1dc599afc907c99e8594eda72f13134d))
+* **contributor:** fix typo ([ce2a650](https://github.com/guzhongren/Powerboard/commit/ce2a650850ea43bb04e3507a95b447284052b492))
+* **layout:** Should given corrent value when drag item ([db6b3cf](https://github.com/guzhongren/Powerboard/commit/db6b3cf35dbe07704293459207fdf6e41da5da5b))
+* **lhci:** Typo ([14f2e84](https://github.com/guzhongren/Powerboard/commit/14f2e84242c02696775d9bdd369e5611055123ee))
+* lint readme ([b0a4919](https://github.com/guzhongren/Powerboard/commit/b0a491944b3745ca29fcb4fc3d9887ecff578a9e))
+* **Model:** Add children in props ([9e23e3f](https://github.com/guzhongren/Powerboard/commit/9e23e3fa02e12c367ef7e8aac5b9427aa0bd10ef))
+
 ## [2.1.0](https://github.com/guzhongren/Powerboard/compare/v2.0.0...v2.1.0) (2022-03-21)
 
 

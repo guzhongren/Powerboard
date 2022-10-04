@@ -238,7 +238,9 @@ const Auth: React.FC<{
             checked={isOnlyMainBranch}
             onChange={() => setIsOnlyMainBranch(!isOnlyMainBranch)}
           />
-          <label htmlFor="justOnlyMainBranch">Just only show master</label>
+          <label htmlFor="justOnlyMainBranch">
+            Just only show main/master branch
+          </label>
         </span>
         <span>
           <label htmlFor="columnCount">Column count</label>

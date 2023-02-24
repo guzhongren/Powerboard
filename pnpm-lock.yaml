@@ -1,7 +1,7 @@
 lockfileVersion: 5.4
 
 overrides:
-  mini-css-extract-plugin: 2.4.5
+  mini-css-extract-plugin: 2.7.2
 
 specifiers:
   '@testing-library/jest-dom': ^5.16.5
@@ -33,7 +33,7 @@ specifiers:
   jest: 28.1.0
   lint-staged: 13.0.3
   lodash: ^4.17.21
-  mini-css-extract-plugin: 2.4.5
+  mini-css-extract-plugin: 2.7.2
   node-sass: ^7.0.3
   postcss: ^8.4.17
   postcss-loader: 7.0.1
@@ -96,7 +96,7 @@ devDependencies:
   husky: 8.0.1
   jest: 28.1.0
   lint-staged: 13.0.3
-  mini-css-extract-plugin: 2.4.5_webpack@5.74.0
+  mini-css-extract-plugin: 2.7.2_webpack@5.74.0
   node-sass: 7.0.3
   postcss: 8.4.17
   postcss-loader: 7.0.1_sat2ilddhdkv6huwh4d4inpfry
@@ -6967,8 +6967,8 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
-  /mini-css-extract-plugin/2.4.5_webpack@5.74.0:
-    resolution: {integrity: sha512-oEIhRucyn1JbT/1tU2BhnwO6ft1jjH1iCX9Gc59WFMg0n5773rQU0oyQ0zzeYFFuBfONaRbQJyGoPtuNseMxjA==}
+  /mini-css-extract-plugin/2.7.2_webpack@5.74.0:
+    resolution: {integrity: sha512-EdlUizq13o0Pd+uCp+WO/JpkLvHRVGt97RqfeGhXqAcorYo1ypJSpkV+WDT0vY/kmh/p7wRdJNJtuyK540PXDw==}
     engines: {node: '>= 12.13.0'}
     peerDependencies:
       webpack: ^5.0.0

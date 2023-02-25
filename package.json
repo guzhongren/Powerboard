@@ -79,7 +79,7 @@
     "postcss": "^8.4.17",
     "postcss-loader": "7.0.1",
     "prettier": "^2.7.1",
-    "sass-loader": "13.0.2",
+    "sass-loader": "13.2.0",
     "standard": "17.0.0",
     "standard-version": "^9.5.0",
     "style-loader": "^3.3.1",

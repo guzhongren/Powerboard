@@ -29,7 +29,7 @@ specifiers:
   graphql: ^16.6.0
   graphql-request: 4.3.0
   html-webpack-plugin: ^5.5.0
-  husky: 8.0.1
+  husky: 8.0.3
   jest: 28.1.0
   lint-staged: 13.0.3
   lodash: ^4.17.21
@@ -93,7 +93,7 @@ devDependencies:
   eslint-plugin-unused-imports: 2.0.0_midyrlpgzehpt3miiu2m4e3aei
   fork-ts-checker-webpack-plugin: 7.2.13_qqxisngxjbp7lstdk7boexbu3e
   html-webpack-plugin: 5.5.0_webpack@5.74.0
-  husky: 8.0.1
+  husky: 8.0.3
   jest: 28.1.0
   lint-staged: 13.0.3
   mini-css-extract-plugin: 2.7.2_webpack@5.74.0
@@ -5510,8 +5510,8 @@ packages:
       ms: 2.1.3
     dev: true
 
-  /husky/8.0.1:
-    resolution: {integrity: sha512-xs7/chUH/CKdOCs7Zy0Aev9e/dKOMZf3K1Az1nar3tzlv0jfqnYtu235bstsWTmXOR0EfINrPa97yy4Lz6RiKw==}
+  /husky/8.0.3:
+    resolution: {integrity: sha512-+dQSyqPh4x1hlO1swXBiNb2HzTDN1I2IGLQx1GrBuiqFJfoMrnZWwVmatvSiO+Iz8fBUnf+lekwNo4c2LlXItg==}
     engines: {node: '>=14'}
     hasBin: true
     dev: true

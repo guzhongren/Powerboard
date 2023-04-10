@@ -17,11 +17,11 @@ jobs:
       - name: Use lts Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 16.13.2
+          node-version: 19
       - name: install & lint
         run: |
           npm install -g pnpm
-          pnpm install
+          pnpm install --no-frozen-lockfile
           pnpm lint
       - name: E2E
         run: |

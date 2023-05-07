@@ -17,7 +17,7 @@ jobs:
       - name: Use lts Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 19
+          node-version: 16.18.0
       - name: install & lint
         run: |
           npm install -g pnpm

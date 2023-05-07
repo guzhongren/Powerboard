@@ -1,4 +1,4 @@
-FROM node:19-alpine as distPackage
+FROM node:20-alpine as distPackage
 COPY ./ /app
 WORKDIR /app
 RUN npm install -g pnpm && pnpm install && pnpm build

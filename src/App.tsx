@@ -13,7 +13,7 @@ const AuthComponent = React.lazy(() => import('./Components/Auth/Auth'))
 const fetcher = (url: string) => fetch(url).then((res) => res.json())
 const defaultColumnCount =
   parseInt(getValueByKey(DASHBOARD_AUTH.COLUMN_COUNT)) || 1
-function App() {
+function App () {
   const authConfig: any = {
     org: getValueByKey(DASHBOARD_AUTH.ORG),
     team: getValueByKey(DASHBOARD_AUTH.TEAM),

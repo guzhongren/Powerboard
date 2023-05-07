@@ -1,4 +1,4 @@
-import { isArray, set } from 'lodash'
+import { set } from 'lodash'
 
 export const mergePipelinesWithResponse: any = (resData: any) => {
   const pipelines = []

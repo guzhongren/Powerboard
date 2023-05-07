@@ -50,7 +50,6 @@ const Grid: React.FC<{
       },
     },
   )
-  console.log(data)
   if (error) {
     return (
       <>

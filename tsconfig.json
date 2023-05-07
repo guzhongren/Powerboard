@@ -4,6 +4,7 @@
     "paths": {
       "@root/*": ["src/*"]
     },
+    "rootDir": "./",
     "outDir": "./dist/",
     "sourceMap": true,
     "noImplicitAny": true,
@@ -12,8 +13,12 @@
     "jsx": "react",
     "allowJs": true,
     "experimentalDecorators": true,
+    "composite": true,
+    "skipLibCheck": true,
+    "module": "ESNext",
+    "moduleResolution": "bundler",
     "allowSyntheticDefaultImports": true,
     "types": ["cypress", "cypress-file-upload"]
   },
-  "include": ["./src"]
+  "include": ["./src", "vite.config.ts"]
 }

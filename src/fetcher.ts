@@ -1,4 +1,4 @@
-import { GraphQLClient, gql } from 'graphql-request'
+import { GraphQLClient } from 'graphql-request'
 import { isString, isArray, isNil } from 'lodash'
 import { AUTO_RELOAD_PERIOD } from './Constants/Config'
 
@@ -7,7 +7,7 @@ const API = 'https://graphql.buildkite.com/v1'
 export const fetcher = (query: string, token: string) => {
   return new GraphQLClient(API, {
     headers: {
-      authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     },
   })
     .request(query)
@@ -95,9 +95,9 @@ export const buildKiteQuery = (
     }
     `
 
-  return gql`
+  return `query fetchAllPipelineInfo
     {
-      organization(slug: "${orz.toLowerCase()}") {
+      organization(slug: "${orz}") {
         name
         ${isString(search) ? buildPipelineQuery(search) : ''}
         ${isArray(search) ? search.map(buildPipelineQuery) : ''}

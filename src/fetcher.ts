@@ -97,7 +97,9 @@ export const buildKiteQuery = (
 
   return `query fetchAllPipelineInfo
     {
-      organization(slug: "${orz}") {
+      organization(slug: "${
+        orz.charAt(0).toLocaleLowerCase() + orz.slice(1)
+      }") {
         name
         ${isString(search) ? buildPipelineQuery(search) : ''}
         ${isArray(search) ? search.map(buildPipelineQuery) : ''}

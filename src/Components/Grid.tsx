@@ -1,7 +1,7 @@
 import * as React from 'react'
 import useSWR from 'swr'
 import { useState, useEffect, useMemo } from 'react'
-import * as dayjs from 'dayjs'
+import dayjs from 'dayjs'
 import { Responsive, WidthProvider, Layouts } from 'react-grid-layout'
 import { isEqual } from 'lodash'
 import { buildKiteQuery, fetcher } from '../fetcher'

@@ -1,12 +1,13 @@
 import * as React from 'react'
 import { first, tail } from 'lodash'
-import * as dayjs from 'dayjs'
-import * as relativeTime from 'dayjs/plugin/relativeTime'
+import dayjs from 'dayjs'
 import Jobs from './Jobs'
 import './Pipeline.scss'
 import Timer from '../Timer'
 import BuildHistory from './BuildHistory'
-dayjs.extend(relativeTime)
+import { extendRelativeTimeForDayjs } from '../../Utils/dayjsUtils'
+
+extendRelativeTimeForDayjs()
 
 const Pipeline: React.FC<{ pipeline: any; style?: React.CSSProperties }> = ({
   pipeline,

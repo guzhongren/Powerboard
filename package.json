@@ -4,7 +4,7 @@
   "name": "Powerboard",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build --base=/Powerboard",
+    "build": "tsc && vite build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "test": "jest",
@@ -43,7 +43,6 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-grid-layout": "^1.3.4",
-    "react-router-dom": "^6.4.1",
     "swr": "^1.3.0"
   },
   "devDependencies": {

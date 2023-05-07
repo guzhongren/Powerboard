@@ -1,10 +1,10 @@
 import * as React from 'react'
 import { useState } from 'react'
-import * as dayjs from 'dayjs'
+import dayjs from 'dayjs'
 import './OncallPannel.scss'
-import * as relativeTime from 'dayjs/plugin/relativeTime'
+import { extendRelativeTimeForDayjs } from '../../Utils/dayjsUtils'
 
-dayjs.extend(relativeTime)
+extendRelativeTimeForDayjs()
 
 const OncallPannel: React.FC<{ oncallListJSON?: any }> = ({
   oncallListJSON,

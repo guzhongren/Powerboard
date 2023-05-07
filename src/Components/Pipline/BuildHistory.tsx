@@ -1,8 +1,7 @@
 import * as React from 'react'
-import * as dayjs from 'dayjs'
-import * as relativeTime from 'dayjs/plugin/relativeTime'
+import { extendRelativeTimeForDayjs } from '../../Utils/dayjsUtils'
 
-dayjs.extend(relativeTime)
+extendRelativeTimeForDayjs()
 
 const BuildHistory: React.FC<{ build: any }> = ({ build }) => {
   const info = build?.node || {}

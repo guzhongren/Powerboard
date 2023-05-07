@@ -1,8 +1,8 @@
-import ReactDOM from 'react-dom/client'
+import { createRoot } from 'react-dom/client'
 import App from './App'
 import React from 'react'
 
-ReactDOM.createRoot(document.getElementById('app') as HTMLElement).render(
+createRoot(document.getElementById('app')).render(
   <App />,
 )
 

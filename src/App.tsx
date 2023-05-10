@@ -2,7 +2,7 @@ import * as React from 'react'
 import { useState } from 'react'
 import useSWR from 'swr'
 import './App.scss'
-import { parse } from 'query-string'
+import queryString from 'query-string'
 import { getValueByKey } from './Utils/LocalStorageUtils'
 import { convertToJSON } from './Utils/ConvertUtils'
 import { DASHBOARD_AUTH } from './Constants/Auth'
@@ -27,7 +27,7 @@ function App () {
 
   const [auth, setAuth] = useState(authConfig)
 
-  const parsed = parse(window.location.search) as any
+  const parsed = queryString.parse(window.location.search) as any
 
   const { data, error } = useSWR(parsed?.config, fetcher, {
     refreshInterval: 1000 * 60 * 60,

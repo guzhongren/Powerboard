@@ -13,7 +13,7 @@ specifiers:
   '@vitejs/plugin-react': ^4.0.0
   autoprefixer: ^10.4.14
   cross-env: ^7.0.3
-  cypress: 10.9.0
+  cypress: 12.12.0
   cypress-downloadfile: ^1.2.3
   cypress-file-upload: ^5.0.8
   dayjs: ^1.11.5
@@ -67,9 +67,9 @@ devDependencies:
   '@vitejs/plugin-react': 4.0.0_vite@4.3.5
   autoprefixer: 10.4.14_postcss@8.4.23
   cross-env: 7.0.3
-  cypress: 10.9.0
+  cypress: 12.12.0
   cypress-downloadfile: 1.2.3
-  cypress-file-upload: 5.0.8_cypress@10.9.0
+  cypress-file-upload: 5.0.8_cypress@12.12.0
   eslint: 8.40.0
   eslint-plugin-react: 7.32.2_eslint@8.40.0
   eslint-plugin-react-hooks: 4.6.0_eslint@8.40.0
@@ -2243,7 +2243,7 @@ packages:
     resolution: {integrity: sha512-Cn6WYCm0tXv8p6k+A8PvbDG763EDpBoTzHdA+Q/MF6H3sapGjCm9NzoaJncJS9tUKSuCoDs9XHxYYsQDgxR6kw==}
     requiresBuild: true
     dependencies:
-      '@types/node': 14.18.45
+      '@types/node': 20.1.0
     dev: true
     optional: true
 
@@ -3050,8 +3050,8 @@ packages:
     resolution: {integrity: sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==}
     dev: true
 
-  /commander/5.1.0:
-    resolution: {integrity: sha512-P0CysNDQ7rtVw4QIQtm+MRxV66vKFSvlsQvGYXZWR3qFU0jlMKHZZZgw8e+8DSah4UDKMqnknRDQz+xuQXQ/Zg==}
+  /commander/6.2.1:
+    resolution: {integrity: sha512-U7VdrJFnJgo4xjrHpTzu0yrHPGImdsmD95ZlgYSEajAn2JKzDhDTPG9kBTefmObL2w/ngeZnilk+OV9CG3d7UA==}
     engines: {node: '>= 6'}
     dev: true
 
@@ -3319,18 +3319,18 @@ packages:
       - encoding
     dev: true
 
-  /cypress-file-upload/5.0.8_cypress@10.9.0:
+  /cypress-file-upload/5.0.8_cypress@12.12.0:
     resolution: {integrity: sha512-+8VzNabRk3zG6x8f8BWArF/xA/W0VK4IZNx3MV0jFWrJS/qKn8eHfa5nU73P9fOQAgwHFJx7zjg4lwOnljMO8g==}
     engines: {node: '>=8.2.1'}
     peerDependencies:
       cypress: '>3.0.0'
     dependencies:
-      cypress: 10.9.0
+      cypress: 12.12.0
     dev: true
 
-  /cypress/10.9.0:
-    resolution: {integrity: sha512-MjIWrRpc+bQM9U4kSSdATZWZ2hUqHGFEQTF7dfeZRa4MnalMtc88FIE49USWP2ZVtfy5WPBcgfBX+YorFqGElA==}
-    engines: {node: '>=12.0.0'}
+  /cypress/12.12.0:
+    resolution: {integrity: sha512-UU5wFQ7SMVCR/hyKok/KmzG6fpZgBHHfrXcHzDmPHWrT+UUetxFzQgt7cxCszlwfozckzwkd22dxMwl/vNkWRw==}
+    engines: {node: ^14.0.0 || ^16.0.0 || >=18.0.0}
     hasBin: true
     requiresBuild: true
     dependencies:
@@ -3348,7 +3348,7 @@ packages:
       check-more-types: 2.24.0
       cli-cursor: 3.1.0
       cli-table3: 0.6.3
-      commander: 5.1.0
+      commander: 6.2.1
       common-tags: 1.8.2
       dayjs: 1.11.7
       debug: 4.3.4_supports-color@8.1.1

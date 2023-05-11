@@ -6,7 +6,7 @@
     },
     "rootDir": "./",
     "outDir": "./dist/",
-    "sourceMap": true,
+    "sourceMap": false,
     "noImplicitAny": true,
     "lib": ["es6", "es7", "dom"],
     "target": "es5",

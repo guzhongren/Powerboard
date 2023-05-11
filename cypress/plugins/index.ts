@@ -33,7 +33,6 @@ module.exports = (on, config) => {
   }
 
   config.env.BUILDKITE_TOKEN = process.env.BUILDKITE_TOKEN
-  console.log(config.env.buildKiteToken)
 
   generateTestData()
 

@@ -6,4 +6,7 @@ import { VitePWA } from 'vite-plugin-pwa'
 export default defineConfig({
   base: process.env.ci === 'true' ? '/Powerboard' : '',
   plugins: [react(), VitePWA()],
+  server: {
+    port: 4321
+  }
 })

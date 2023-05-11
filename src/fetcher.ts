@@ -4,7 +4,8 @@ import { AUTO_RELOAD_PERIOD } from './Constants/Config'
 
 const API = 'https://graphql.buildkite.com/v1'
 
-export const fetcher = (query: string, token: string) => {
+export const fetcher = (queryKey: string[]) => {
+  const [query, token] = queryKey
   return new GraphQLClient(API, {
     headers: {
       Authorization: `Bearer ${token}`,

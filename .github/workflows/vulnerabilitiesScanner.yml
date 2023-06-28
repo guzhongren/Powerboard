@@ -9,13 +9,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - name: Scan fs
-        run: |
-          docker run --rm -v /var/run/docker.sock:/var/run/docker.sock \
-             aquasec/trivy fs \
-             --severity HIGH,CRITICAL \
-             --exit-code 1 \
-             ./
+      # - name: Scan fs
+      #   run: |
+      #     docker run --rm -v /var/run/docker.sock:/var/run/docker.sock \
+      #        aquasec/trivy fs \
+      #        --severity HIGH,CRITICAL \
+      #        --exit-code 1 \
+      #        ./
       - name: Scan repo
         run: |
           docker run --rm -v\

@@ -12,3 +12,12 @@ jobs:
           fetch-depth: 0
       - name: trufflehog-actions-scan
         uses: edplato/trufflehog-actions-scan@master
+      - name: gitleaks
+        run: |
+          docker run --rm \
+            -v /var/run/docker.sock:/var/run/docker.sock
+            -v "${PWD}:/path" \
+            ghcr.io/gitleaks/gitleaks:latest \
+            detect \
+            --source="/path" \
+            -v --redact

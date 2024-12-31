@@ -23,7 +23,7 @@ specifiers:
   eslint-plugin-react-refresh: ^0.3.4
   eslint-plugin-unused-imports: ^2.0.0
   graphql: ^16.6.0
-  graphql-request: 6.0.0
+  graphql-request: 6.1.0
   husky: 8.0.3
   jest: 29.5.0
   lint-staged: 13.1.2
@@ -46,7 +46,7 @@ specifiers:
 dependencies:
   dayjs: 1.11.7
   graphql: 16.6.0
-  graphql-request: 6.0.0_graphql@16.6.0
+  graphql-request: 6.1.0_graphql@16.6.0
   lodash: 4.17.21
   query-string: 8.1.0
   react: 18.3.1
@@ -4569,8 +4569,8 @@ packages:
     resolution: {integrity: sha512-bzh50DW9kTPM00T8y4o8vQg89Di9oLJVLW/KaOGIXJWP/iqCN6WKYkbNOF04vFLJhwcpYUh9ydh/+5vpOqV4YQ==}
     dev: true
 
-  /graphql-request/6.0.0_graphql@16.6.0:
-    resolution: {integrity: sha512-2BmHTuglonjZvmNVw6ZzCfFlW/qkIPds0f+Qdi/Lvjsl3whJg2uvHmSvHnLWhUTEw6zcxPYAHiZoPvSVKOZ7Jw==}
+  /graphql-request/6.1.0_graphql@16.6.0:
+    resolution: {integrity: sha512-p+XPfS4q7aIpKVcgmnZKhMNqhltk20hfXtkaIkTfjjmiKMJ5xrt5c743cL03y/K7y1rg3WrIC49xGiEQ4mxdNw==}
     peerDependencies:
       graphql: 14 - 16
     dependencies:
